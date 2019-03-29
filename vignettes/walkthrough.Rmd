@@ -107,9 +107,27 @@ If the included participants are on multiple medications, then the name and dose
 
 ## Checking for inclusion and matching of antpsychotic names
 
-The software depends on an exact match (except for case) of the generic names of antipsychotics. To check if there are rows that do not match, `check_ap()` can be used. For example:
+The software depends on an exact match (except for case) of the generic names of antipsychotics. To check if there are rows that do not match, `check_ap()` can be used. Here is an example of data where all the antipsychotic names match the key, showing that 0 is returned (the number of mismatches):
 
 ```{r}
-
+check_ap(example_sai, ap_label = "antipsychotic", route = "sai")
 ```
 
+When there are mismatches, they are listed, and the number is returned:
+
+```{r}
+example_sai_bad <- example_sai
+example_sai_bad[3,3] <- "nope"
+check_ap(example_sai_bad, ap_label = "antipsychotic", route = "sai")
+```
+
+As with `to_cpz()`, mixed routes can be used with `check_ap()`:
+
+```{r}
+example_mixed_bad <- example_mixed
+example_mixed_bad[1,3] <- "olanzzzzapine"
+example_mixed_bad[4,3] <- "Seroquel"
+example_mixed_bad[5,3] <- "chlorpromazineHCl"
+example_mixed_bad[9,3] <- "zuclo decanoate"
+check_ap(example_mixed_bad, ap_label = "antipsychotic", route = "mixed", route_label = "route")
+```
