@@ -1,0 +1,24 @@
+Package: chlorpromazineR
+Title: Convert Antipsychotic Doses to Chlorpromazine Equivalents
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Eric",
+             family = "Brown",
+             role = c("aut", "cre"),
+             email = "eb@ericebrown.com"),
+      person(given = "Parita",
+             family = "Shah",
+             role = "aut"),
+      person(given = "Julia",
+             family = "Kim",
+             role = "aut"))
+Description: Using a conversion key generated from the published literature, antipsychotic doses are converted to chlorpromazine equivalents. Not for clinical use.
+Depends: R (>= 3.4)
+License: TBA
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

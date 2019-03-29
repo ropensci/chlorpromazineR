@@ -1,0 +1,115 @@
+---
+title: "Using chlorpromazineR to calculate chlorpromazine-equivalent doses"
+author: "Eric Brown, Parita Shah, Julia Kim"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library("chlorpromazineR")
+```
+
+## Background
+
+A chlorpromazine-equivalent dose is typically defined as a dose of antipsychotic that is comparable to 100 mg of chlorpromazine (CPZ).^[Davis, J. M. (1974). Dose equivalence of the antipsychotic drugs. Journal of Psychiatric Research, 1, 65–69.] CPZ daily dose equivalent (i.e. mg/day) is commonly utilized in both clinical and research settings.^[Danivas, V., & Venkatasubramanian, G. (2013). Current perspectives on chlorpromazine equivalents: Comparing apples and oranges! Indian Journal of Psychiatry, 55(2), 207–208. <https://doi.org/10.4103/0019-5545.111475>]
+
+For example, in clinical settings, CPZ-equivalent dosing facilitates comparison between different antipsychotics and can be helpful in interpreting a dose when switching antipsychotics or monitoring side effects. In research, CPZ daily dose equivalents allow comparison of participants on different antipsychotics to assess the influence of treatment on the study variable of interest.
+
+There are various approaches to defining dose equivalents, including the defined daily doses (Methodology WCCfDS, 2013), and Delphie methods.^[Dalkey, N. (1969). The Delphi Method: An Experimental Study of Group Opinion | RAND. Retrieved from <https://www.rand.org/pubs/research_memoranda/RM5888.html>] Defined daily doses, which are produced by the World Health Organization, provide an estimate of the average maintenance antipsychotic daily dose required for a 70-kg adult with psychosis.^[Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin, 42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>] On the other hand, the Delphi method is an approach to reach a consensus to antipsychotic dose equivalents based on a two-stage, questionnaire-based survey of experts.^[Hasson, F., Keeney, S., & McKenna, H. (2000). Research guidelines for the Delphi survey technique. Journal of Advanced Nursing, 32(4), 1008–1015.] Using the doses defined through these methods, equivalency ratio for each antipsychotic can be calculated, with CPZ as a reference medication (i.e. x mg/day of antipsychotic A is equal to 1 mg/day CPZ). 
+
+While there is no standardized method to defining doses, the International Consensus Study, which used the Delphi method,^[Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., & Baldessarini, R. J. (2010). International consensus study of antipsychotic dosing. The American Journal of Psychiatry, 167(6), 686–693. <https://doi.org/10.1176/appi.ajp.2009.09060802>] is a widely used resource to calculate equivalency ratios.
+
+## chlorpromazineR
+
+Using the International Consensus Study guidelines, we present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and intramuscular antipsychotics. The potential advantages to this tool are multi-fold. First, we hope it will make the approaches to calculating CPZ daily dose equivalents more transparent and consistent among researchers. Second, we hope it will reduce human error and improve accuracy. Third, we hope it will help provide a simple and replicable way to determine CPZ daily dose equivalents for large datasets, such as those that may be available from chart reviews of electronic health records.
+
+## Input data structure
+
+The data is assumed to be stored in a `data.frame` where each row represents a participant, and with the required variables stored in columns. The two variables always required are the antipsychotic names and the dose to convert. The generic name of the medication must be used. There are differing conventions for drug name abbreviations, and different brand names around the world, so brand names are not built into the package.
+
+For oral medications or short-acting injectables, the dose is converted directly, i.e. not accounting for dosing frequencies, which must be done separately. The exception is for long-acting injectables (LAIs), which converts to daily equivalent oral CPZ dose by dividing by the frequency of admnistration in days. Thus when using LAIs, a third variable, the administration frequency in days, must be available.
+
+## Example for one route only
+
+To demonstrate with a simple example using only oral medications, consider the following data:
+
+```{r}
+participant_ID <- c("P01", "P02", "P03", "P04")
+age <- c(42, 29, 30, 60)
+antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+dose <- c(10, 12.5, 300, 60)
+example_oral <- data.frame(participant_ID, age, antipsychotic, dose, stringsAsFactors = FALSE)
+
+example_oral
+```
+
+In this case we have `example_oral`, a `data.frame`, with one row per participant, and a variable for the antipsychotic name, labeled `antipsychotic` and a variable for the dose, named `dose`.
+
+To calculate CPZ-equivalent doses, use the `to_cpz()` function:
+
+```{r}
+to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", route = "oral")
+```
+
+Notice that 2 new columns appear, which are named based on the default arguments in `to_cpz()`. The CPZ-equivalent doses are in the column labelled `cpz_eq`.
+
+## Example for data with oral and injectable routes
+
+The default key from the study by Gardner et al. included dosing equivalents for oral medications, short acting injectables and long-acting injectables. If the original data includes more than one of these routes, the `route` argument can be set to "mixed".
+
+In this cases, more information is required to calculate the equivalent doses. Specifically, a variable to indicate the route ("oral", "sai", or "lai") is required, and if long-acting injectables are used, then the injection frequency is also required.
+
+Here is some example data:
+
+```{r}
+example_lai <- example_oral
+example_lai$participant_ID <- c("P05", "P06", "P07", "P08")
+example_lai$antipsychotic <- c("zuclopenthixol decanoate", "zuclopenthixol decanoate", "perphenazine enanthate", "fluspirilene")
+example_lai$q <- c(14, 21, 14, 14)
+example_lai$dose <- c(200, 200, 50, 6)
+
+example_sai <- example_oral
+example_sai$participant_ID <- c("P09", "P10", "P11", "P12")
+example_sai$antipsychotic <- c("Chlorpromazine HCl", "Loxapine HCl", "Olanzapine tartrate", "Olanzapine tartrate")
+example_sai$dose <- c(100, 50, 10, 5)
+
+example_oral$q <- NA
+example_sai$q <- NA
+
+example_oral$route <- "oral"
+example_lai$route <- "lai"
+example_sai$route <- "sai"
+
+example_mixed <- rbind(example_oral, example_sai, example_lai)
+
+example_mixed
+```
+
+The function `to_cpz()` is used similarly as above, with the extra variable names (route_label, q) specified:
+
+```{r}
+to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", route = "mixed", 
+       route_label = "route", q = "q") 
+```
+
+## Participants on multiple medications
+
+If the included participants are on multiple medications, then the name and dose of the antipsychotic should be specified as separate variables in the `data.frame`. In this case, `to_cpz()` can be used multiple times, each time specifying the appropriate variables. Run it first specifying the name and dose of the first medication, and then run it again specifying the name and dose of the second medication. Be sure to change the name of the `eq_label` where the result will be stored.
+
+## Checking for inclusion and matching of antpsychotic names
+
+The software depends on an exact match (except for case) of the generic names of antipsychotics. To check if there are rows that do not match, `check_ap()` can be used. For example:
+
+```{r}
+
+```
+

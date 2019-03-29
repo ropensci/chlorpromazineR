@@ -1,0 +1,62 @@
+﻿route,drug,median,days
+oral,Chlorpromazine,600,
+oral,Amisulpride,700,
+oral,Aripiprazole,30,
+oral,Benperidol,5,
+oral,Clopenthixol,60,
+oral,Clorprothixene,500,
+oral,Clotiapine,100,
+oral,Clozapine,400,
+oral,Droperidol,10,
+oral,Flupenthixol,10,
+oral,Fluphenazine,12,
+oral,Haloperidol,10,
+oral,Levomepromazine,400,
+oral,Loxapine,60,
+oral,Mesoridazine,300,
+oral,Methotrimeprazine,300,
+oral,Molindone,100,
+oral,Olanzapine,20,
+oral,Oxypertine,240,
+oral,Paliperidone,9,
+oral,Pericyazine,50,
+oral,Perphenazine,30,
+oral,Pimozide,8,
+oral,Prochlorperazine,88,
+oral,Quetiapine,750,
+oral,Remoxipride,212,
+oral,Risperidone,6,
+oral,Sertindole,20,
+oral,Sulpiride,800,
+oral,Thioridazine,500,
+oral,Thiothixene,30,
+oral,Trifluoperazine,20,
+oral,Trifluperidol,2,
+oral,Triflupromazine,100,
+oral,Ziprasidone,160,
+oral,Zotepine,300,
+oral,Zuclopenthixol,50,
+SAI,Chlorpromazine HCl,100,
+SAI,Clotiapine injectable,40,
+SAI,Fluphenazine HCl,5,
+SAI,Haloperidol lactate,5,
+SAI,Loxapine HCl,25,
+SAI,Mesoridazine besylate,100,
+SAI,Olanzapine tartrate,10,
+SAI,Perphenazine USP,10,
+SAI,Prochlorperazine mesylate,22,
+SAI,Promazine HCl,100,
+SAI,Trifluoperazine HCl,5,
+SAI,Triflupromazine HCl,60,
+SAI,Ziprasidone mesylate,20,
+SAI,Zuclopenthixol acetate,50,
+LAI,Clopenthixol decanoate,300,14
+LAI,Flupenthixol decanoate,40,14
+LAI,Fluphenazine decanoate,25,14
+LAI,Fluphenazine enanthate,25,14
+LAI,Fluspirilene,6,7
+LAI,Haloperidol decanoate,150,28
+LAI,Perphenazine enanthate,100,14
+LAI,Pipotiazine palmitate,100,28
+LAI,Risperidone microspheres,50,14
+LAI,Zuclopenthixol decanoate,200,14
