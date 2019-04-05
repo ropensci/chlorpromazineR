@@ -76,7 +76,7 @@ to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::g
                               factor_label=factor_label, eq_label=eq_label)
 
         x[x$route=="lai",][, eq_label] <- 
-         x[x[,route_label]=="lai",][, eq_label] * x[x[,route_label]=="lai",][,q]
+         x[x[,route_label]=="lai",][, eq_label] / x[x[,route_label]=="lai",][,q]
     }
     
     return(x)
