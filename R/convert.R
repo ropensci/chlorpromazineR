@@ -46,7 +46,7 @@ to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::g
         x[,factor_label] <- as.numeric(key[[route]][x[,ap_label]])
         x[,eq_label] <- apply(x[,c(dose_label, factor_label)], 1, prod)
     }
-    if (route == "lai") x[,eq_label] <- x[,eq_label] * x[,q]
+    if (route == "lai") x[,eq_label] <- x[,eq_label] / x[,q]
     
     if (route == "mixed") {
         

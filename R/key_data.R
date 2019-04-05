@@ -16,8 +16,8 @@
 #' #   names(g_oral) <- tolower(g[g[,"route"]=="oral",]$drug) |cr
 #' #   g_sai <- as.list(100 / g[g[,"route"]=="SAI",]$median) |cr
 #' #   names(g_sai) <- tolower(g[g[,"route"]=="SAI",]$drug) |cr
-#' #   g_lai <- as.list((600 / g[g[,"route"]=="LAI",]$median) |cr
-#' #                                 / g[g[,"route"]=="LAI",]$days) |cr
+#' #   g_lai <- as.list((600 / ((g[g[,"route"]=="LAI",]$median) |cr
+#' #                                 / g[g[,"route"]=="LAI",]$days))) |cr
 #' #   names(g_lai) <- tolower(g[g[,"route"]=="LAI",]$drug) |cr
 #' #   return(list(oral=g_oral, sai=g_sai, lai=g_lai)) |cr
 #' # }
@@ -28,3 +28,18 @@
 #' names corresponding to the antipsychotic, e.g. `olanzapine`.
 #' @source Reference
 "gardner2010"
+
+
+# gardner2010gen <- function() {
+#   g <- read.csv(system.file("extdata", "gardner2010.csv", 
+#                             package="chlorpromazineR"), 
+#                 stringsAsFactors = FALSE)
+#   g_oral <- as.list(600 / g[g[,"route"]=="oral",]$median) 
+#   names(g_oral) <- tolower(g[g[,"route"]=="oral",]$drug) 
+#   g_sai <- as.list(100 / g[g[,"route"]=="SAI",]$median) 
+#   names(g_sai) <- tolower(g[g[,"route"]=="SAI",]$drug) 
+#   g_lai <- as.list((600 / ((g[g[,"route"]=="LAI",]$median) / 
+#                                      g[g[,"route"]=="LAI",]$days)))
+#   names(g_lai) <- tolower(g[g[,"route"]=="LAI",]$drug) 
+#   return(list(oral=g_oral, sai=g_sai, lai=g_lai)) 
+# }
