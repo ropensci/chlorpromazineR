@@ -20,7 +20,8 @@
 #' @param route_label if "mixed" route is specified, provide the column that
 #' stores the route information
 #' @param q if long-acting injectable doses are included, provide the column
-#' that stores the injection frequency (days) 
+#' that stores the injection frequency (days), or only if the doses have already
+#' been divided, set q = 1.
 #' @return data.frame with new variables storing conversion factor and 
 #' CPZ-equivalent doses
 #' @family conversion functions
@@ -75,8 +76,10 @@ to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::g
                               route_label=route_label, 
                               factor_label=factor_label, eq_label=eq_label)
 
-        x[x$route=="lai",][, eq_label] <- 
-         x[x[,route_label]=="lai",][, eq_label] / x[x[,route_label]=="lai",][,q]
+        if (q != 1) {
+          x[x$route=="lai",][, eq_label] <- 
+            x[x[,route_label]=="lai",][, eq_label] / x[x[,route_label]=="lai",][,q]
+        }
     }
     
     return(x)
@@ -147,6 +150,8 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, route
     return(sum(notfound))
 }
 
+#' @export
 check_route <- function(x, route_label) {
     return(all(x[,route_label] %in% c("oral", "sai", "lai")))
 }
+

@@ -14,7 +14,7 @@ Authors@R:
              role = "aut"))
 Description: Using a conversion key generated from the published literature, antipsychotic doses are converted to chlorpromazine equivalents. Not for clinical use.
 Depends: R (>= 3.4)
-License: TBA
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

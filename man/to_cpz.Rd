@@ -29,7 +29,8 @@ conversion factors}
 stores the route information}
 
 \item{q}{if long-acting injectable doses are included, provide the column
-that stores the injection frequency (days)}
+that stores the injection frequency (days), or only if the doses have already
+been divided, set q = 1.}
 }
 \value{
 data.frame with new variables storing conversion factor and 

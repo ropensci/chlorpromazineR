@@ -10,12 +10,11 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+library(chlorpromazineR)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
-library("chlorpromazineR")
 ```
 
 ## Background
@@ -30,15 +29,39 @@ While there is no standardized method to defining doses, the International Conse
 
 ## chlorpromazineR
 
-Using the International Consensus Study guidelines, we present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and intramuscular antipsychotics. The potential advantages to this tool are multi-fold. First, we hope it will make the approaches to calculating CPZ daily dose equivalents more transparent and consistent among researchers. Second, we hope it will reduce human error and improve accuracy. Third, we hope it will help provide a simple and replicable way to determine CPZ daily dose equivalents for large datasets, such as those that may be available from chart reviews of electronic health records.
+We present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and intramuscular antipsychotics. We use the data from the International Consensus Study (Gardner et al. 2010) as the default conversion "key". The potential advantages to this tool are multi-fold. First, we hope it will make the approaches to calculating CPZ daily dose equivalents more transparent and consistent among researchers. Second, we hope it will reduce human error and improve accuracy. Third, we hope it will help provide a simple and replicable way to determine CPZ daily dose equivalents for large datasets, such as those that may be available from chart reviews of electronic health records.
 
-## Input data structure
+### Input data structure
 
 The data is assumed to be stored in a `data.frame` where each row represents a participant, and with the required variables stored in columns. The two variables always required are the antipsychotic names and the dose to convert. The generic name of the medication must be used. There are differing conventions for drug name abbreviations, and different brand names around the world, so brand names are not built into the package.
 
-For oral medications or short-acting injectables, the dose is converted directly, i.e. not accounting for dosing frequencies, which must be done separately. The exception is for long-acting injectables (LAIs), which converts to daily equivalent oral CPZ dose by dividing by the frequency of admnistration in days. Thus when using LAIs, a third variable, the administration frequency in days, must be available.
+For oral medications or short-acting injectables, the dose is converted directly, i.e. not accounting for dosing frequencies, which must be done separately. The exception is for long-acting injectables (LAIs), which converts to daily equivalent oral CPZ dose by dividing by the frequency of admnistration in days. Thus when using LAIs, a third variable, the administration frequency in days, must be available, unless the stored doses have already been divided by the administration frequency.
 
-## Example for one route only
+### Key data structure
+
+The conversion factors are stored in "keys". The default key is `gardner2010`, derived from the 2010 paper by Gardner et al. as described above. A key is a `list` of 3 named sub-`lists`: `oral`, `sai` and `lai`. 
+
+```{r}
+names(gardner2010)
+```
+
+Each sub-`list` is itself a named list where the names are the antipsychotic names, and the values are the conversion factors. 
+
+```{r}
+names(gardner2010$oral)[1:5]
+```
+
+The conversion factor is what a given dose needs to be mulitiplied by to get the CPZ-equivalent. 
+
+```{r}
+gardner2010$oral$aripiprazole
+```
+
+For example, with aripiprazole, the value is 20, meaning that the CPZ-equivalent dose of aripiprazole 5 mg is `5 * 20 = 100`.
+
+## Tutorial
+
+### Example for one route only
 
 To demonstrate with a simple example using only oral medications, consider the following data:
 
@@ -62,24 +85,28 @@ to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", route = "o
 
 Notice that 2 new columns appear, which are named based on the default arguments in `to_cpz()`. The CPZ-equivalent doses are in the column labelled `cpz_eq`.
 
-## Example for data with oral and injectable routes
+### Example for data with oral and injectable routes
 
 The default key from the study by Gardner et al. included dosing equivalents for oral medications, short acting injectables and long-acting injectables. If the original data includes more than one of these routes, the `route` argument can be set to "mixed".
 
-In this cases, more information is required to calculate the equivalent doses. Specifically, a variable to indicate the route ("oral", "sai", or "lai") is required, and if long-acting injectables are used, then the injection frequency is also required.
+In this case, more information is required to calculate the equivalent doses. Specifically, a variable to indicate the route ("oral", "sai", or "lai") is required, and if long-acting injectables are used, then the injection frequency is also required.* 
+
+*If the doses have already manually been divided by the frequency, then setting the `q` parameter to `1` will forgo the need to specify a variable storing the frequency information.
 
 Here is some example data:
 
 ```{r}
 example_lai <- example_oral
 example_lai$participant_ID <- c("P05", "P06", "P07", "P08")
-example_lai$antipsychotic <- c("zuclopenthixol decanoate", "zuclopenthixol decanoate", "perphenazine enanthate", "fluspirilene")
+example_lai$antipsychotic <- c("zuclopenthixol decanoate", "zuclopenthixol decanoate", 
+                               "perphenazine enanthate", "fluspirilene")
 example_lai$q <- c(14, 21, 14, 14)
 example_lai$dose <- c(200, 200, 50, 6)
 
 example_sai <- example_oral
 example_sai$participant_ID <- c("P09", "P10", "P11", "P12")
-example_sai$antipsychotic <- c("Chlorpromazine HCl", "Loxapine HCl", "Olanzapine tartrate", "Olanzapine tartrate")
+example_sai$antipsychotic <- c("Chlorpromazine HCl", "Loxapine HCl", 
+                               "Olanzapine tartrate", "Olanzapine tartrate")
 example_sai$dose <- c(100, 50, 10, 5)
 
 example_oral$q <- NA
@@ -101,7 +128,7 @@ to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", route = "
        route_label = "route", q = "q") 
 ```
 
-## Participants on multiple medications
+### Participants on multiple medications
 
 If the included participants are on multiple medications, then the name and dose of the antipsychotic should be specified as separate variables in the `data.frame`. In this case, `to_cpz()` can be used multiple times, each time specifying the appropriate variables. Run it first specifying the name and dose of the first medication, and then run it again specifying the name and dose of the second medication. Be sure to change the name of the `eq_label` where the result will be stored.
 
@@ -129,5 +156,60 @@ example_mixed_bad[1,3] <- "olanzzzzapine"
 example_mixed_bad[4,3] <- "Seroquel"
 example_mixed_bad[5,3] <- "chlorpromazineHCl"
 example_mixed_bad[9,3] <- "zuclo decanoate"
-check_ap(example_mixed_bad, ap_label = "antipsychotic", route = "mixed", route_label = "route")
+check_ap(example_mixed_bad, ap_label = "antipsychotic", 
+         route = "mixed", route_label = "route")
 ```
+
+While the default `gardner2010` key uses the full antipsychotic name for SAI and LAI formulations (e.g. Chlorpromazine HCl) in order to be consistent with the publication and reduce the risk of errors due to ambiguity, the use can modify the key to "trim" the antipsychotic names to just 1 word (e.g. chlorpromazine). 
+
+```{r}
+names(gardner2010$lai)
+```
+
+To trim to 1-word antipsychotic names, we have made the `trim_key()` function, which takes a key and generates a new key from it with the 1-word antipsychotic labels. If you want to use the `gardner2010` key but want 1-word antipsychotic names, then you can use `trim_key` to generate that new key, which you can then use in `to_cpz()`. For example:
+
+```{r}
+trimmed_gardner <- trim_key(gardner2010)
+
+names(trimmed_gardner$lai)
+```
+
+## Using other keys
+
+The above examples have used the default CPZ conversion key, `gardner2010`, based on data extracted from Gardner et al. 2010. However, not all antipsychotic medications were included in that study. This package also includes a key extracted from the data included in the Leucht et al. 2016 publication based on the World Health Organization's Defined Daily Doses. To explicitly change the CPZ key, use the key parameter when calling `to_cpz()`.
+
+```{r}
+to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "oral", key = leucht2016)
+```
+
+However, the authors do not recommend using the DDD values when more scientific values are available. Therefore, it can be desirable to create a new key with data from the `gardner2010` key (or your own created key) combined with the `leucht2016` key, using data from `gardner2010` key where possible. 
+
+For this purpose, we have created the `add_key()` function, which takes a base key to use ALL of the values from, and adds only the missing antipsychotic conversion values from the second key to be added. Further, there is a `trim` parameter, which invokes the `trim_key()` function on both keys, in the case as in `leucht2016` where only 1-word antipsychotic names are provided.
+
+```{r}
+gardner_leucht <- add_key(base = gardner2010, add = leucht2016, trim = TRUE)
+
+names(gardner_leucht$sai)
+```
+
+
+Let's change a value in the `example_oral` data so that there is an antipsychotic that is not listed in the `gardner2010` key: asenapine.
+
+```{r}
+other_oral <- example_oral
+other_oral[2,3] <- "asenapine"
+other_oral[2,4] <- 10
+
+check_ap(other_oral, ap_label = "antipsychotic", route = "oral")
+```
+
+We can see that asenapine is not in the default key. We could use the `leucht2016` key:
+
+```{r}
+to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose", route = "oral", key = gardner_leucht)
+```
+
+Note that it used the `gardner2010` values where they were available (olanzapine, quetiapine, ziprasidone) and the `leucht2016` key for asenapine.
+
+To draw from values from additional keys (e.g. user-created keys), the `add_key()` function could be used iteratively. The first argument of `add_key()`, `base`, is always the key with values that take priority.
