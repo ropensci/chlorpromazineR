@@ -41,4 +41,14 @@ If the time_unit and activity_unit attributes are already in the data.frame,
 they do not need to be set again, but otherwise they will need to be
 specified in the input parameters.
 }
+\examples{
+participant_ID <- c("P01", "P02", "P03", "P04")
+age <- c(42, 29, 30, 60)
+antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+dose <- c(10, 12.5, 300, 60)
+example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
+                           stringsAsFactors = FALSE)
+to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "oral")
+}
 \concept{conversion functions}

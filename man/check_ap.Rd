@@ -33,5 +33,7 @@ antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
 dose <- c(10, 12.5, 300, 60)
 example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
                            stringsAsFactors = FALSE)
+check_ap(example_oral, ap_label = "antipsychotic", route = "oral", 
+         key = gardner2010)
 }
 \concept{checking functions}

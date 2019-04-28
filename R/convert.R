@@ -26,6 +26,14 @@
 #' CPZ-equivalent doses
 #' @family conversion functions
 #' @examples
+#' participant_ID <- c("P01", "P02", "P03", "P04")
+#' age <- c(42, 29, 30, 60)
+#' antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+#' dose <- c(10, 12.5, 300, 60)
+#' example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
+#'                            stringsAsFactors = FALSE)
+#' to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
+#'        route = "oral")
 to_cpz <- function(x, ap_label, dose_label, route="oral", 
                    key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
                    factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
@@ -121,6 +129,8 @@ convert_by_route <- function(x, key=chlorpromazineR::gardner2010, ap_label,
 #' dose <- c(10, 12.5, 300, 60)
 #' example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
 #'                            stringsAsFactors = FALSE)
+#' check_ap(example_oral, ap_label = "antipsychotic", route = "oral", 
+#'          key = gardner2010)
 check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, 
                      route_label) {
     
