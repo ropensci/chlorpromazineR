@@ -19,17 +19,20 @@ participant_ID <- c("P01", "P02", "P03", "P04")
 age <- c(42, 29, 30, 60)
 antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
 dose <- c(10, 12.5, 300, 60)
-example_oral <- data.frame(participant_ID, age, antipsychotic, dose, stringsAsFactors = FALSE)
+example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
+                           stringsAsFactors = FALSE)
 
 example_oral
 
 ## ------------------------------------------------------------------------
-to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", route = "oral")
+to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "oral")
 
 ## ------------------------------------------------------------------------
 example_lai <- example_oral
 example_lai$participant_ID <- c("P05", "P06", "P07", "P08")
-example_lai$antipsychotic <- c("zuclopenthixol decanoate", "zuclopenthixol decanoate", 
+example_lai$antipsychotic <- c("zuclopenthixol decanoate", 
+                               "zuclopenthixol decanoate", 
                                "perphenazine enanthate", "fluspirilene")
 example_lai$q <- c(14, 21, 14, 14)
 example_lai$dose <- c(200, 200, 50, 6)
@@ -52,8 +55,8 @@ example_mixed <- rbind(example_oral, example_sai, example_lai)
 example_mixed
 
 ## ------------------------------------------------------------------------
-to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", route = "mixed", 
-       route_label = "route", q = "q") 
+to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "mixed", route_label = "route", q = "q") 
 
 ## ------------------------------------------------------------------------
 check_ap(example_sai, ap_label = "antipsychotic", route = "sai")
@@ -97,5 +100,6 @@ other_oral[2,4] <- 10
 check_ap(other_oral, ap_label = "antipsychotic", route = "oral")
 
 ## ------------------------------------------------------------------------
-to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose", route = "oral", key = gardner_leucht)
+to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "oral", key = gardner_leucht)
 

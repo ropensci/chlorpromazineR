@@ -12,7 +12,10 @@
 #' contains the conversion factors for each antipsychotic. The 3 top-level lists
 #' are named `oral`, `sai`, and `lai` (route), and the lists they contain have
 #' names corresponding to the antipsychotic, e.g. `olanzapine`.
-#' @source Reference
+#' @source Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., & 
+#' Baldessarini, R. J. (2010). International consensus study of antipsychotic 
+#' dosing. The American Journal of #' Psychiatry, 167(6), 686–693. 
+#' <https://doi.org/10.1176/appi.ajp.2009.09060802>
 "gardner2010"
 
 #' Chlorpromazine equivalent key from Leucht et al. 2016 data
@@ -25,7 +28,9 @@
 #' contains the conversion factors for each antipsychotic. The 3 top-level lists
 #' are named `oral`, `sai`, and `lai` (route), and the lists they contain have
 #' names corresponding to the antipsychotic, e.g. `olanzapine`.
-#' @source Reference
+#' @source Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose 
+#' Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin,
+#' 42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>
 "leucht2016"
 
 

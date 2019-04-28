@@ -26,4 +26,12 @@ number of antipsychotic names in x[,ap_label] that don't match key
 Provided a data.frame, x, this checks that the antipsychotic names stored in
 the x's variable ap_label are present in the key.
 }
+\examples{
+participant_ID <- c("P01", "P02", "P03", "P04")
+age <- c(42, 29, 30, 60)
+antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+dose <- c(10, 12.5, 300, 60)
+example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
+                           stringsAsFactors = FALSE)
+}
 \concept{checking functions}

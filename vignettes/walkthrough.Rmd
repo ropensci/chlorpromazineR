@@ -70,7 +70,8 @@ participant_ID <- c("P01", "P02", "P03", "P04")
 age <- c(42, 29, 30, 60)
 antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
 dose <- c(10, 12.5, 300, 60)
-example_oral <- data.frame(participant_ID, age, antipsychotic, dose, stringsAsFactors = FALSE)
+example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
+                           stringsAsFactors = FALSE)
 
 example_oral
 ```
@@ -80,7 +81,8 @@ In this case we have `example_oral`, a `data.frame`, with one row per participan
 To calculate CPZ-equivalent doses, use the `to_cpz()` function:
 
 ```{r}
-to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", route = "oral")
+to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "oral")
 ```
 
 Notice that 2 new columns appear, which are named based on the default arguments in `to_cpz()`. The CPZ-equivalent doses are in the column labelled `cpz_eq`.
@@ -98,7 +100,8 @@ Here is some example data:
 ```{r}
 example_lai <- example_oral
 example_lai$participant_ID <- c("P05", "P06", "P07", "P08")
-example_lai$antipsychotic <- c("zuclopenthixol decanoate", "zuclopenthixol decanoate", 
+example_lai$antipsychotic <- c("zuclopenthixol decanoate", 
+                               "zuclopenthixol decanoate", 
                                "perphenazine enanthate", "fluspirilene")
 example_lai$q <- c(14, 21, 14, 14)
 example_lai$dose <- c(200, 200, 50, 6)
@@ -124,8 +127,8 @@ example_mixed
 The function `to_cpz()` is used similarly as above, with the extra variable names (route_label, q) specified:
 
 ```{r}
-to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", route = "mixed", 
-       route_label = "route", q = "q") 
+to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "mixed", route_label = "route", q = "q") 
 ```
 
 ### Participants on multiple medications
@@ -207,7 +210,8 @@ check_ap(other_oral, ap_label = "antipsychotic", route = "oral")
 We can see that asenapine is not in the default key. We could use the `leucht2016` key:
 
 ```{r}
-to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose", route = "oral", key = gardner_leucht)
+to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose", 
+       route = "oral", key = gardner_leucht)
 ```
 
 Note that it used the `gardner2010` values where they were available (olanzapine, quetiapine, ziprasidone) and the `leucht2016` key for asenapine.

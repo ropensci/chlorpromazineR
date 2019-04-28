@@ -9,7 +9,9 @@ contains the conversion factors for each antipsychotic. The 3 top-level lists
 are named `oral`, `sai`, and `lai` (route), and the lists they contain have
 names corresponding to the antipsychotic, e.g. `olanzapine`.}
 \source{
-Reference
+Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose 
+Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin,
+42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>
 }
 \usage{
 leucht2016

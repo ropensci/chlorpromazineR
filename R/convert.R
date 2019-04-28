@@ -26,9 +26,9 @@
 #' CPZ-equivalent doses
 #' @family conversion functions
 #' @examples
-to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::gardner2010,
-                   eq_label="cpz_eq", factor_label="cpz_conv_factor", 
-                   route_label=NULL, q=NULL) {
+to_cpz <- function(x, ap_label, dose_label, route="oral", 
+                   key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
+                   factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
     
     cpz_conv_factor <- data.frame(NA)
     cpz_eq <- data.frame(NA)
@@ -58,8 +58,8 @@ to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::g
         if (is.null(q)) stop("A column name for the LAI frequency, q, (days)
                               must be specified")
 
-        if (is.null(route_label)) stop("A column name for the route, route_label,
-                                       must be specified.")
+        if (is.null(route_label)) stop("A column name for the route, 
+                                       route_label, must be specified.")
         if (!is.numeric(x[, q])) stop("q column must be numeric for LAIs
                                        (days)")
         
@@ -78,7 +78,8 @@ to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::g
 
         if (q != 1) {
           x[x$route=="lai",][, eq_label] <- 
-            x[x[,route_label]=="lai",][, eq_label] / x[x[,route_label]=="lai",][,q]
+            x[x[,route_label]=="lai",][, eq_label] / 
+                                                 x[x[,route_label]=="lai",][,q]
         }
     }
     
@@ -86,8 +87,9 @@ to_cpz <- function(x, ap_label, dose_label, route="oral", key=chlorpromazineR::g
 }
 
 #' @noRd
-convert_by_route <- function(x, key=chlorpromazineR::gardner2010, ap_label, dose_label,
-                             route, route_label, factor_label, eq_label) {
+convert_by_route <- function(x, key=chlorpromazineR::gardner2010, ap_label, 
+                             dose_label, route, route_label, factor_label, 
+                             eq_label) {
     
     x[x[,route_label]==route,][, factor_label] <-
                           as.numeric(key[x[x[,route_label]==route,][,ap_label]])
@@ -113,7 +115,14 @@ convert_by_route <- function(x, key=chlorpromazineR::gardner2010, ap_label, dose
 #' @return number of antipsychotic names in x[,ap_label] that don't match key
 #' @family checking functions
 #' @examples
-check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, route_label) {
+#' participant_ID <- c("P01", "P02", "P03", "P04")
+#' age <- c(42, 29, 30, 60)
+#' antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+#' dose <- c(10, 12.5, 300, 60)
+#' example_oral <- data.frame(participant_ID, age, antipsychotic, dose, 
+#'                            stringsAsFactors = FALSE)
+check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, 
+                     route_label) {
     
     if (route %in% c("oral", "sai", "lai")) {
         notfound <- !(tolower(x[,ap_label]) %in% names(key[[route]]))
@@ -150,7 +159,6 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, route
     return(sum(notfound))
 }
 
-#' @export
 check_route <- function(x, route_label) {
     return(all(x[,route_label] %in% c("oral", "sai", "lai")))
 }
