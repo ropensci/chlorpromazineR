@@ -38,74 +38,69 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
                    key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
                    factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
     
-    cpz_conv_factor <- data.frame(NA)
-    cpz_eq <- data.frame(NA)
-    names(cpz_conv_factor) <- factor_label
-    names(cpz_eq) <- eq_label
-    x <- cbind(x, cpz_conv_factor, cpz_eq)
+  cpz_conv_factor <- data.frame(NA)
+  cpz_eq <- data.frame(NA)
+  names(cpz_conv_factor) <- factor_label
+  names(cpz_eq) <- eq_label
+  x <- cbind(x, cpz_conv_factor, cpz_eq)
     
-    x[,ap_label] <- tolower(x[,ap_label])
+  x[,ap_label] <- tolower(x[,ap_label])
     
-    if ((length(route) != 1) | !(route) %in% c("oral", "sai", "lai", "mixed")) {
-      stop("route must be 1 of \"oral\", \"sai\", \"lai\", or \"mixed\"")
-    }
+  if ((length(route) != 1) | !(route %in% c("oral", "sai", "lai", "mixed"))) {
+    stop("route must be 1 of \"oral\", \"sai\", \"lai\", or \"mixed\"")
+  }
 
+  if (route %in% c("oral", "sai", "lai")) {
+    x[,factor_label] <- as.numeric(key[[route]][x[,ap_label]])
+    x[,eq_label] <- apply(x[,c(dose_label, factor_label)], 1, prod)
 
-    if (route %in% c("oral", "sai", "lai")) {
-        x[,factor_label] <- as.numeric(key[[route]][x[,ap_label]])
-        x[,eq_label] <- apply(x[,c(dose_label, factor_label)], 1, prod)
-    }
-    if (route == "lai") x[,eq_label] <- x[,eq_label] / x[,q]
+    if (route == "lai" && q != 1) x[,eq_label] <- x[,eq_label] / x[,q]
+  }
+
+  if (route == "mixed") {
+        
+    if (!check_route(x, route_label)) stop("Route column must only include
+                                            oral, sai or lai")
+        
+    if (is.null(q)) stop("A column name for the LAI frequency, q, (days)
+                          must be specified")
+    if (is.null(route_label)) stop("A column name for the route, 
+                                   route_label, must be specified.")
+    if (!is.numeric(x[, q])) stop("q column must be numeric for LAIs (days)")
+        
+    x <- convert_by_route(x=x, key=key, ap_label=ap_label, 
+                          dose_label=dose_label, route_label=route_label, 
+                          factor_label=factor_label, eq_label=eq_label)
+
+    if (q != 1) {
+      x[x$route=="lai",][, eq_label] <- x[x[,route_label]=="lai",][, eq_label] / 
+                                        x[x[,route_label]=="lai",][,q]
+      }
+  }
     
-    if (route == "mixed") {
-        
-        if (!check_route(x, route_label)) stop("Route column must only include
-                                                oral, sai or lai")
-        
-        
-        if (is.null(q)) stop("A column name for the LAI frequency, q, (days)
-                              must be specified")
-
-        if (is.null(route_label)) stop("A column name for the route, 
-                                       route_label, must be specified.")
-        if (!is.numeric(x[, q])) stop("q column must be numeric for LAIs
-                                       (days)")
-        
-        x <- convert_by_route(x=x, key=key$oral, ap_label=ap_label, 
-                              dose_label=dose_label, route="oral", 
-                              route_label=route_label, 
-                              factor_label=factor_label, eq_label=eq_label)
-        x <- convert_by_route(x=x, key=key$sai, ap_label=ap_label, 
-                              dose_label=dose_label, route="sai", 
-                              route_label=route_label, 
-                              factor_label=factor_label, eq_label=eq_label)
-        x <- convert_by_route(x=x, key=key$lai, ap_label=ap_label, 
-                              dose_label=dose_label, route="lai", 
-                              route_label=route_label, 
-                              factor_label=factor_label, eq_label=eq_label)
-
-        if (q != 1) {
-          x[x$route=="lai",][, eq_label] <- 
-            x[x[,route_label]=="lai",][, eq_label] / 
-                                                 x[x[,route_label]=="lai",][,q]
-        }
-    }
-    
-    return(x)
+  return(x)
 }
 
 #' @noRd
-convert_by_route <- function(x, key=chlorpromazineR::gardner2010, ap_label, 
-                             dose_label, route, route_label, factor_label, 
-                             eq_label) {
+convert_by_route <- function(x, key, ap_label, dose_label, route_label, 
+                             factor_label, eq_label) {
+
+  for (r in c("oral", "sai", "lai")) {
+    k <- key[[r]]
+    x[x[,route_label]==r,][, factor_label] <-
+                              as.numeric(k[x[x[,route_label]==r,][,ap_label]])
     
-    x[x[,route_label]==route,][, factor_label] <-
-                          as.numeric(key[x[x[,route_label]==route,][,ap_label]])
-    
-    x[x[,route_label]==route,][, eq_label] <-
-        apply(x[x[,route_label]==route,][,c(dose_label, factor_label)], 1, prod)
-    
-    return(x)
+    x[x[,route_label]==r,][, eq_label] <-
+            apply(x[x[,route_label]==r,][,c(dose_label, factor_label)], 1, prod)
+
+  }
+  
+  return(x)
+}
+
+#' @noRd
+check_route <- function(x, route_label) {
+    return(all(x[,route_label] %in% c("oral", "sai", "lai")))
 }
 
 #' Checks whether antipsychotic names are in the key
@@ -134,42 +129,41 @@ convert_by_route <- function(x, key=chlorpromazineR::gardner2010, ap_label,
 check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, 
                      route_label) {
     
-    if (route %in% c("oral", "sai", "lai")) {
-        notfound <- !(tolower(x[,ap_label]) %in% names(key[[route]]))
-        bad <- paste0(x[,ap_label][notfound], " (", route, ")\n")
-    } else if (route == "mixed") {
-        notfound_oral <- !(tolower(x[x[,route_label]=="oral",][,ap_label])
-                           %in% names(key$oral))
-        notfound_sai <- !(tolower(x[x[,route_label]=="sai",][,ap_label])
-                          %in% names(key$sai))
-        notfound_lai <- !(tolower(x[x[,route_label]=="lai",][,ap_label])
-                          %in% names(key$lai))
-        notfound <- c(notfound_oral, notfound_sai, notfound_lai)
+  if (route %in% c("oral", "sai", "lai")) {
+      notfound <- !(tolower(x[,ap_label]) %in% names(key[[route]]))
+      bad <- paste0(x[,ap_label][notfound], " (", route, ")\n")
+  } else if (route == "mixed") {
+      notfound_oral <- !(tolower(x[x[,route_label]=="oral",][,ap_label])
+                         %in% names(key$oral))
+      notfound_sai <- !(tolower(x[x[,route_label]=="sai",][,ap_label])
+                        %in% names(key$sai))
+      notfound_lai <- !(tolower(x[x[,route_label]=="lai",][,ap_label])
+                        %in% names(key$lai))
+      notfound <- c(notfound_oral, notfound_sai, notfound_lai)
         
-        if (any(notfound_oral)) {
-            bad1 <- paste(x[x[,route_label]=="oral",][,ap_label][notfound_oral],
-                          "(oral)\n")
-        } else bad1 <- NULL
-        if (any(notfound_sai)) {
-            bad2 <- paste(x[x[,route_label]=="sai",][,ap_label][notfound_sai],
-                          "(sai)\n")
-        } else bad2 <- NULL
-        if (any(notfound_lai)) {
-            bad3 <- paste(x[x[,route_label]=="lai",][,ap_label][notfound_lai],
-                          "(lai)\n")
-        } else bad3 <- NULL
-        bad <- c(bad1, bad2, bad3)
-    }
-    
-    if (sum(notfound) > 0) {
-        message("The following antipsychotics were not found in the key:")
-        message(bad)
-    }
-    
-    return(sum(notfound))
-}
+      if (any(notfound_oral)) {
+          bad1 <- paste(x[x[,route_label]=="oral",][,ap_label][notfound_oral],
+                        "(oral)\n")
+      } else bad1 <- NULL
 
-check_route <- function(x, route_label) {
-    return(all(x[,route_label] %in% c("oral", "sai", "lai")))
+      if (any(notfound_sai)) {
+          bad2 <- paste(x[x[,route_label]=="sai",][,ap_label][notfound_sai],
+                        "(sai)\n")
+      } else bad2 <- NULL
+
+      if (any(notfound_lai)) {
+          bad3 <- paste(x[x[,route_label]=="lai",][,ap_label][notfound_lai],
+                        "(lai)\n")
+      } else bad3 <- NULL
+
+      bad <- c(bad1, bad2, bad3)
+    }
+    
+  if (sum(notfound) > 0) {
+      message("The following antipsychotics were not found in the key:")
+      message(bad)
+  }
+    
+  return(sum(notfound))
 }
 
