@@ -69,10 +69,11 @@ trim_key <- function(key) {
 #' @param added the key from which other antipsychotics are found to add 
 #' @param trim TRUE to use trim_key on both the base and added key, needed when
 #' one does not use the full names (e.g. leucht2016).
+#' @param verbose If TRUE, added antipsychotic names will be shown in a message
 #' @return a merged key
 #' @family key functions
 #' @examples add_key(gardner2010, leucht2016, trim = TRUE)
-add_key <- function(base, added, trim) {
+add_key <- function(base, added, trim, verbose = TRUE) {
  
   if (!check_key(base)) stop("base key did not validate.")
   if (!check_key(added)) stop("added key did not validate.")      
@@ -80,16 +81,49 @@ add_key <- function(base, added, trim) {
   if (trim) {
     base <- trim_key(base)
     added <- trim_key(added)
+  } else {
+    if (has_long_name(base) != has_long_name(added)) {
+      warning(paste("\nThe 2 keys differ in use of single-word names.",
+                     "Consider checking compatability and using trim = TRUE.",
+                     "Otherwise there may be duplicates.\n"))
+    }
   }
   
   merged <- base
   
-  merged$oral <- c(base$oral, 
-                   added$oral[!(names(added$oral) %in% names(base$oral))])
-  merged$sai <- c(base$sai, added$sai[!(names(added$sai) %in% names(base$sai))])
-  merged$lai <- c(base$lai, added$lai[!(names(added$lai) %in% names(base$lai))])
+  oral_add <- added$oral[!(names(added$oral) %in% names(base$oral))]
+  sai_add <- added$sai[!(names(added$sai) %in% names(base$sai))]
+  lai_add <- added$lai[!(names(added$lai) %in% names(base$lai))]
+
+  merged$oral <- c(base$oral, oral_add)
+  merged$sai <- c(base$sai, sai_add)
+  merged$lai <- c(base$lai, lai_add)
   
   if (!check_key(merged)) stop("Output key did not validate.")   
 
+  if (verbose) {
+    message(paste0(length(oral_add), " (ORAL) were added the the base key (",
+                   paste(names(oral_add), collapse=", "), ") \n\n",
+                   length(sai_add), " (SAI) were added the the base key (",
+                   paste(names(sai_add), collapse=", "), ") \n\n",
+                   length(lai_add), " (LAI) were added the the base key (",
+                   paste(names(lai_add), collapse=", "), ") \n\n" ))
+  }
+
   return(merged)
+}
+
+
+# Function to check whether any of the antpsychotic names in a key have a space,
+# i.e. likely are 2 words and would need trimming if combined. Used in add_key()
+# returns TRUE if any name has a space
+#'@noRd
+has_long_name <- function(key) {
+
+  oral <- any(grepl(" ", names(key$oral)))
+  sai <- any(grepl(" ", names(key$sai)))
+  lai <- any(grepl(" ", names(key$lai)))
+
+  return(any(c(oral, sai, lai)))
+
 }

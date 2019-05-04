@@ -35,7 +35,7 @@ We present here an easy-to-use R package to calculate CPZ daily dose equivalents
 
 The data is assumed to be stored in a `data.frame` where each row represents a participant, and with the required variables stored in columns. The two variables always required are the antipsychotic names and the dose to convert. The generic name of the medication must be used. There are differing conventions for drug name abbreviations, and different brand names around the world, so brand names are not built into the package.
 
-For oral medications or short-acting injectables, the dose is converted directly, i.e. not accounting for dosing frequencies, which must be done separately. The exception is for long-acting injectables (LAIs), which converts to daily equivalent oral CPZ dose by dividing by the frequency of admnistration in days. Thus when using LAIs, a third variable, the administration frequency in days, must be available, unless the stored doses have already been divided by the administration frequency.
+For oral medications or short-acting injectables, the dose is converted directly, i.e. not accounting for dosing frequencies, which must be done separately. The exception is for long-acting injectables (LAIs), which converts to daily equivalent oral CPZ dose by dividing by the frequency of administration in days. Thus when using LAIs, a third variable, the administration frequency in days, must be available, unless the stored doses have already been divided by the administration frequency.
 
 ### Key data structure
 
@@ -51,7 +51,7 @@ Each sub-`list` is itself a named list where the names are the antipsychotic nam
 names(gardner2010$oral)[1:5]
 ```
 
-The conversion factor is what a given dose needs to be mulitiplied by to get the CPZ-equivalent. 
+The conversion factor is what a given dose needs to be multiplied by to get the CPZ-equivalent.
 
 ```{r}
 gardner2010$oral$aripiprazole
@@ -85,7 +85,7 @@ to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose",
        route = "oral")
 ```
 
-Notice that 2 new columns appear, which are named based on the default arguments in `to_cpz()`. The CPZ-equivalent doses are in the column labelled `cpz_eq`.
+Notice that 2 new columns appear, which are named based on the default arguments in `to_cpz()`. The CPZ-equivalent doses are in the column labeled `cpz_eq`.
 
 ### Example for data with oral and injectable routes
 
@@ -135,7 +135,7 @@ to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose",
 
 If the included participants are on multiple medications, then the name and dose of the antipsychotic should be specified as separate variables in the `data.frame`. In this case, `to_cpz()` can be used multiple times, each time specifying the appropriate variables. Run it first specifying the name and dose of the first medication, and then run it again specifying the name and dose of the second medication. Be sure to change the name of the `eq_label` where the result will be stored.
 
-## Checking for inclusion and matching of antpsychotic names
+## Checking for inclusion and matching of antipsychotic names
 
 The software depends on an exact match (except for case) of the generic names of antipsychotics. To check if there are rows that do not match, `check_ap()` can be used. Here is an example of data where all the antipsychotic names match the key, showing that 0 is returned (the number of mismatches):
 

@@ -73,7 +73,7 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
                           factor_label=factor_label, eq_label=eq_label)
 
     if (q != 1) {
-      x[x$route=="lai",][, eq_label] <- x[x[,route_label]=="lai",][, eq_label] / 
+      x[x$route=="lai",][, eq_label] <- x[x[,route_label]=="lai",][, eq_label] /
                                         x[x[,route_label]=="lai",][,q]
       }
   }

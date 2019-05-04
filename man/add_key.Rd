@@ -4,7 +4,7 @@
 \alias{add_key}
 \title{Combine 2 keys with base key taking precedence}
 \usage{
-add_key(base, added, trim)
+add_key(base, added, trim, verbose = TRUE)
 }
 \arguments{
 \item{base}{the base key}
@@ -13,6 +13,8 @@ add_key(base, added, trim)
 
 \item{trim}{TRUE to use trim_key on both the base and added key, needed when
 one does not use the full names (e.g. leucht2016).}
+
+\item{verbose}{If TRUE, added antipsychotic names will be shown in a message}
 }
 \value{
 a merged key
