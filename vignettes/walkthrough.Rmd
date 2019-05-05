@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 ## Background
 
-A chlorpromazine-equivalent dose is typically defined as a dose of antipsychotic that is comparable to 100 mg of chlorpromazine (CPZ).^[Davis, J. M. (1974). Dose equivalence of the antipsychotic drugs. Journal of Psychiatric Research, 1, 65–69.] CPZ daily dose equivalent (i.e. mg/day) is commonly utilized in both clinical and research settings.^[Danivas, V., & Venkatasubramanian, G. (2013). Current perspectives on chlorpromazine equivalents: Comparing apples and oranges! Indian Journal of Psychiatry, 55(2), 207–208. <https://doi.org/10.4103/0019-5545.111475>]
+Studies investigating or controlling for the impact of antipsychotic medications often need to quantify the amount of medication to which an individual is or has been exposed. As different antipsychotics have different potencies, the task is more complicated than using each medications daily dosage in miligrams, for example. Further complicating the matter is that antipsychotic medications have different formulations including oral medications, and injectable formulations that are either short- or long-acting (also called depots). A commonly used strategy to account for the differing potencies is to calculate the equivalent dose of each medication in terms of a reference medication.
 
-For example, in clinical settings, CPZ-equivalent dosing facilitates comparison between different antipsychotics and can be helpful in interpreting a dose when switching antipsychotics or monitoring side effects. In research, CPZ daily dose equivalents allow comparison of participants on different antipsychotics to assess the influence of treatment on the study variable of interest.
+A chlorpromazine-equivalent dose is typically defined as a dose of antipsychotic that is comparable to 100 mg of the antipsychotic chlorpromazine (CPZ).^[Davis, J. M. (1974). Dose equivalence of the antipsychotic drugs. Journal of Psychiatric Research, 1, 65–69.] CPZ daily dose equivalent (i.e. mg/day) is commonly utilized in both clinical and research settings.^[Danivas, V., & Venkatasubramanian, G. (2013). Current perspectives on chlorpromazine equivalents: Comparing apples and oranges! Indian Journal of Psychiatry, 55(2), 207–208. <https://doi.org/10.4103/0019-5545.111475>]
 
 There are various approaches to defining dose equivalents, including the defined daily doses (Methodology WCCfDS, 2013), and Delphie methods.^[Dalkey, N. (1969). The Delphi Method: An Experimental Study of Group Opinion | RAND. Retrieved from <https://www.rand.org/pubs/research_memoranda/RM5888.html>] Defined daily doses, which are produced by the World Health Organization, provide an estimate of the average maintenance antipsychotic daily dose required for a 70-kg adult with psychosis.^[Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin, 42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>] On the other hand, the Delphi method is an approach to reach a consensus to antipsychotic dose equivalents based on a two-stage, questionnaire-based survey of experts.^[Hasson, F., Keeney, S., & McKenna, H. (2000). Research guidelines for the Delphi survey technique. Journal of Advanced Nursing, 32(4), 1008–1015.] Using the doses defined through these methods, equivalency ratio for each antipsychotic can be calculated, with CPZ as a reference medication (i.e. x mg/day of antipsychotic A is equal to 1 mg/day CPZ). 
 
@@ -29,7 +29,11 @@ While there is no standardized method to defining doses, the International Conse
 
 ## chlorpromazineR
 
-We present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and intramuscular antipsychotics. We use the data from the International Consensus Study (Gardner et al. 2010) as the default conversion "key". The potential advantages to this tool are multi-fold. First, we hope it will make the approaches to calculating CPZ daily dose equivalents more transparent and consistent among researchers. Second, we hope it will reduce human error and improve accuracy. Third, we hope it will help provide a simple and replicable way to determine CPZ daily dose equivalents for large datasets, such as those that may be available from chart reviews of electronic health records.
+We present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and injectable antipsychotic medications. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
+
+The potential advantages of this tool are multi-fold. First, we hope it will make the approaches to calculating CPZ daily dose equivalents more transparent and consistent among researchers. Second, we hope it will reduce human error and improve accuracy. Third, we hope it will help provide a simple and replicable way to determine CPZ daily dose equivalents for large datasets, such as those that may be available from chart reviews of electronic health records.
+
+We use the data from the International Consensus Study (Gardner et al. 2010) as the default conversion "key" and include the DDD conversion factors as reported by Leucht et al. 2016. The user can also create their own keys (and contribute them to this package), which are `list` objects as described below. 
 
 ### Input data structure
 
@@ -188,14 +192,13 @@ to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose",
 
 However, the authors do not recommend using the DDD values when more scientific values are available. Therefore, it can be desirable to create a new key with data from the `gardner2010` key (or your own created key) combined with the `leucht2016` key, using data from `gardner2010` key where possible. 
 
-For this purpose, we have created the `add_key()` function, which takes a base key to use ALL of the values from, and adds only the missing antipsychotic conversion values from the second key to be added. Further, there is a `trim` parameter, which invokes the `trim_key()` function on both keys, in the case as in `leucht2016` where only 1-word antipsychotic names are provided.
+For this purpose, we have created the `add_key()` function, which takes a preferred base key from which ALL available values are taken, and adds only the missing antipsychotic conversion values from the second key to be added. Further, there is a `trim` parameter, which invokes the `trim_key()` function on both keys, in the case as in `leucht2016` where only 1-word antipsychotic names are provided.
 
 ```{r}
 gardner_leucht <- add_key(base = gardner2010, add = leucht2016, trim = TRUE)
 
 names(gardner_leucht$sai)
 ```
-
 
 Let's change a value in the `example_oral` data so that there is an antipsychotic that is not listed in the `gardner2010` key: asenapine.
 
