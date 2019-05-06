@@ -102,11 +102,11 @@ add_key <- function(base, added, trim, verbose = TRUE) {
   if (!check_key(merged)) stop("Output key did not validate.")   
 
   if (verbose) {
-    message(paste0(length(oral_add), " (ORAL) were added the the base key (",
+    message(paste0(length(oral_add), " (ORAL) were added to the base key (",
                    paste(names(oral_add), collapse=", "), ") \n\n",
-                   length(sai_add), " (SAI) were added the the base key (",
+                   length(sai_add), " (SAI) were added to the base key (",
                    paste(names(sai_add), collapse=", "), ") \n\n",
-                   length(lai_add), " (LAI) were added the the base key (",
+                   length(lai_add), " (LAI) were added to the base key (",
                    paste(names(lai_add), collapse=", "), ") \n\n" ))
   }
 
