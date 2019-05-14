@@ -22,4 +22,8 @@ A list of antipsychotics and their chlorpromazine equivalent doses, generated
 from the following file included with the package:
 system.file("extdata", "gardner2010.csv", package="chlorpromazineR").
 }
+\details{
+The SAI equivalents produced by this key are equivalent to chlorpromazine SAI
+not oral. They could be manually converted.
+}
 \keyword{datasets}

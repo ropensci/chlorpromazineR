@@ -8,6 +8,12 @@
 #' from the following file included with the package:
 #' system.file("extdata", "gardner2010.csv", package="chlorpromazineR").
 #'
+#' The SAI data is not included in this key, because the original study did not
+#' specify a conversion factor from chlorpromazine LAI to oral. The alternative
+#' key gardner2010_withsai can be used, which includes the SAI data, but the
+#' chlorpromazine equivalent doses produced are equivalent to chlorpromazine SAI
+#' not chlorpromazine oral. They could be manually converted.
+#'
 #' @format A named list of 3 named lists (1 for each route) and each sub-list
 #' contains the conversion factors for each antipsychotic. The 3 top-level lists
 #' are named `oral`, `sai`, and `lai` (route), and the lists they contain have
@@ -23,6 +29,9 @@
 #' A list of antipsychotics and their chlorpromazine equivalent doses, generated
 #' from the following file included with the package:
 #' system.file("extdata", "gardner2010.csv", package="chlorpromazineR").
+#'
+#' The SAI equivalents produced by this key are equivalent to chlorpromazine SAI
+#' not oral. They could be manually converted.
 #'
 #' @format A named list of 3 named lists (1 for each route) and each sub-list
 #' contains the conversion factors for each antipsychotic. The 3 top-level lists
