@@ -31,9 +31,15 @@ While there is no standardized method to defining doses, the International Conse
 
 We present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and injectable antipsychotic medications. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
 
-The potential advantages of this tool are multi-fold. First, we hope it will make the approaches to calculating CPZ daily dose equivalents more transparent and consistent among researchers. Second, we hope it will reduce human error and improve accuracy. Third, we hope it will help provide a simple and replicable way to determine CPZ daily dose equivalents for large datasets, such as those that may be available from chart reviews of electronic health records.
+We hope this package has several benefits:
 
-We use the data from the International Consensus Study (Gardner et al. 2010) as the default conversion "key" and include the DDD conversion factors as reported by Leucht et al. 2016. The user can also create their own keys (and contribute them to this package), which are `list` objects as described below. 
+* improve transparency and consistency in calculating CPZ equivalents
+* reduce human error and improve accuracy
+* simplify workflows for large datasets, as from chart reviews of electronic health records
+
+We use the data from the International Consensus Study (Gardner et al. 2010) as the default conversion "key" and include the DDD conversion factors as reported by Leucht et al. 2016. The user can also create their own keys (and contribute them to this package), which are `list` objects as described below.
+
+The default key is `gardner2010`, derived from the 2010 paper by Gardner et al. In this paper, no equivalency was provided for short acting vs. oral chlorpromazine, so the default `gardner2010` key only includes oral and long acting injectable conversion factors. However, the SAI equivalencies are available in terms of chlorpromazine SAI equivalents, so to use that data, the key `gardner2010_withsai` can be used if it is understood that the `sai` and `oral` are doses are not directly comparable (but could be converted using an external reference value).
 
 ### Input data structure
 
@@ -43,7 +49,7 @@ For oral medications or short-acting injectables, the dose is converted directly
 
 ### Key data structure
 
-The conversion factors are stored in "keys". The default key is `gardner2010`, derived from the 2010 paper by Gardner et al. as described above. A key is a `list` of 3 named sub-`lists`: `oral`, `sai` and `lai`. 
+The conversion factors are stored in "keys". A key is a `list` object containing 3 named sub-`lists`: `oral`, `sai` and `lai`. 
 
 ```{r}
 names(gardner2010)
@@ -132,7 +138,7 @@ The function `to_cpz()` is used similarly as above, with the extra variable name
 
 ```{r}
 to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", 
-       route = "mixed", route_label = "route", q = "q") 
+       route = "mixed", route_label = "route", q = "q", key=gardner2010_withsai) 
 ```
 
 ### Participants on multiple medications
@@ -144,15 +150,14 @@ If the included participants are on multiple medications, then the name and dose
 The software depends on an exact match (except for case) of the generic names of antipsychotics. To check if there are rows that do not match, `check_ap()` can be used. Here is an example of data where all the antipsychotic names match the key, showing that 0 is returned (the number of mismatches):
 
 ```{r}
-check_ap(example_sai, ap_label = "antipsychotic", route = "sai")
+check_ap(example_oral, ap_label = "antipsychotic", route = "oral", key=gardner2010)
 ```
 
 When there are mismatches, they are listed, and the number is returned:
 
 ```{r}
-example_sai_bad <- example_sai
-example_sai_bad[3,3] <- "nope"
-check_ap(example_sai_bad, ap_label = "antipsychotic", route = "sai")
+example_sai <- example_sai
+check_ap(example_sai, ap_label = "antipsychotic", route = "sai", key=gardner2010)
 ```
 
 As with `to_cpz()`, mixed routes can be used with `check_ap()`:
@@ -164,7 +169,7 @@ example_mixed_bad[4,3] <- "Seroquel"
 example_mixed_bad[5,3] <- "chlorpromazineHCl"
 example_mixed_bad[9,3] <- "zuclo decanoate"
 check_ap(example_mixed_bad, ap_label = "antipsychotic", 
-         route = "mixed", route_label = "route")
+         route = "mixed", route_label = "route", key=gardner2010_withsai)
 ```
 
 While the default `gardner2010` key uses the full antipsychotic name for SAI and LAI formulations (e.g. Chlorpromazine HCl) in order to be consistent with the publication and reduce the risk of errors due to ambiguity, the use can modify the key to "trim" the antipsychotic names to just 1 word (e.g. chlorpromazine). 

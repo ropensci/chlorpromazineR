@@ -48,26 +48,26 @@ test_that("to_cpz() produces accurate values with mixed example", {
   answers <- c(rep(600, 5), rep(100, 5), rep(600, 5))
 
   test <- to_cpz(example, "antipsychotic", "dose", "mixed", 
-                 route_label = "route", q ="q", key = gardner2010)
+                 route_label = "route", q ="q", key = gardner2010_withsai)
 
   expect_equal(answers, test$cpz_eq)
 
   # and below, errors occur with malformed data
 
   expect_error(to_cpz(example, "antipsychotic", "dose", route = "not_route", 
-               route_label = "route", q ="q", key = gardner2010))
+               route_label = "route", q ="q", key = gardner2010_withsai))
 
   expect_error(to_cpz(example, "antipsychotic", "dose", route = "mixed", 
-               route_label = "route", q = NULL, key = gardner2010))
+               route_label = "route", q = NULL, key = gardner2010_withsai))
   
   expect_error(to_cpz(example, "antipsychotic", "dose", route = "mixed", 
-               route_label = NULL, q = "q", key = gardner2010))
+               route_label = NULL, q = "q", key = gardner2010_withsai))
 
   q <- c(rep(NA, 10), 14,"notnumber",14,14,7)
   example <- data.frame(antipsychotic, dose, q, route, stringsAsFactors = FALSE)
 
   expect_error(to_cpz(example, "antipsychotic", "dose", "mixed", 
-                 route_label = "route", q ="q", key = gardner2010))
+                 route_label = "route", q ="q", key = ggardner2010_withsai))
 
 
 })
@@ -103,7 +103,7 @@ test_that("to_cpz() produces accurate values with mixed example with
   answers <- c(rep(600, 5), rep(100, 5), rep(600, 5))
 
   test <- to_cpz(example, "antipsychotic", "dose", "mixed", 
-                 route_label = "route", q =1, key = gardner2010)
+                 route_label = "route", q =1, key = gardner2010_withsai)
 
   expect_equal(answers, test$cpz_eq)
 

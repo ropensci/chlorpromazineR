@@ -56,15 +56,14 @@ example_mixed
 
 ## ------------------------------------------------------------------------
 to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", 
-       route = "mixed", route_label = "route", q = "q") 
+       route = "mixed", route_label = "route", q = "q", key=gardner2010_withsai) 
 
 ## ------------------------------------------------------------------------
-check_ap(example_sai, ap_label = "antipsychotic", route = "sai")
+check_ap(example_oral, ap_label = "antipsychotic", route = "oral", key=gardner2010)
 
 ## ------------------------------------------------------------------------
-example_sai_bad <- example_sai
-example_sai_bad[3,3] <- "nope"
-check_ap(example_sai_bad, ap_label = "antipsychotic", route = "sai")
+example_sai <- example_sai
+check_ap(example_sai, ap_label = "antipsychotic", route = "sai", key=gardner2010)
 
 ## ------------------------------------------------------------------------
 example_mixed_bad <- example_mixed
@@ -73,7 +72,7 @@ example_mixed_bad[4,3] <- "Seroquel"
 example_mixed_bad[5,3] <- "chlorpromazineHCl"
 example_mixed_bad[9,3] <- "zuclo decanoate"
 check_ap(example_mixed_bad, ap_label = "antipsychotic", 
-         route = "mixed", route_label = "route")
+         route = "mixed", route_label = "route", key=gardner2010_withsai)
 
 ## ------------------------------------------------------------------------
 names(gardner2010$lai)

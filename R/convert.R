@@ -37,7 +37,14 @@
 to_cpz <- function(x, ap_label, dose_label, route="oral", 
                    key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
                    factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
-    
+  
+  check_key(key)
+  
+  if (check_ap(x, key=key, ap_label=ap_label, route=route,
+               route_label=route_label) != 0) {
+    stop("Data contains antipsychotics not in the key")
+  }
+  
   cpz_conv_factor <- data.frame(NA)
   cpz_eq <- data.frame(NA)
   names(cpz_conv_factor) <- factor_label

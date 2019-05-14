@@ -28,13 +28,14 @@ test_that("check_ap() works with all matching example", {
   example <- data.frame(antipsychotic, dose, q, route,
                         stringsAsFactors = FALSE)
 
-  result <- check_ap(example, gardner2010, "antipsychotic", "mixed", "route")
+  result <- check_ap(example, gardner2010_withsai, "antipsychotic", "mixed",
+                     "route")
 
   expect_equal(0, result)
 
 })
 
-test_that("check_ap() works with single route example", {
+test_that("check_ap() works with single route example, sai", {
 
   antipsychotic <- c("Chlorpromazine HCl", "Clotiapine injectable", 
                      "Fluphenazine HCl", "Haloperidol lactate",
@@ -44,16 +45,37 @@ test_that("check_ap() works with single route example", {
 
   example <- data.frame(antipsychotic, dose, stringsAsFactors = FALSE)
 
-  result <- check_ap(example, gardner2010, "antipsychotic", "sai")
+  result <- check_ap(example, gardner2010_withsai, "antipsychotic", "sai")
 
   expect_equal(0, result)
 
   antipsychotic[2] <- "not real"
   example <- data.frame(antipsychotic, dose, stringsAsFactors = FALSE)
-  result <- check_ap(example, gardner2010, "antipsychotic", "sai")
+  result <- check_ap(example, gardner2010_withsai, "antipsychotic", "sai")
   expect_equal(1, result)
 
 
+})
+
+test_that("check_ap() works with single route example, oral", {
+    
+    antipsychotic <- c("Amisulpride", "Aripiprazole", "Benperidol",
+                       "Chlorpromazine", "Clopenthixol")
+    
+    dose <- c(700, 30, 5, 600, 60)
+    
+    example <- data.frame(antipsychotic, dose, stringsAsFactors = FALSE)
+    
+    result <- check_ap(example, gardner2010, "antipsychotic", "oral")
+    
+    expect_equal(0, result)
+    
+    antipsychotic[2] <- "not real"
+    example <- data.frame(antipsychotic, dose, stringsAsFactors = FALSE)
+    result <- check_ap(example, gardner2010, "antipsychotic", "oral")
+    expect_equal(1, result)
+    
+    
 })
 
 test_that("check_ap() works with mismatches in each route", {
@@ -80,7 +102,8 @@ test_that("check_ap() works with mismatches in each route", {
   example <- data.frame(antipsychotic, dose, q, route,
                         stringsAsFactors = FALSE)
 
-  result <- check_ap(example, gardner2010, "antipsychotic", "mixed", "route")
+  result <- check_ap(example, gardner2010_withsai, "antipsychotic", "mixed",
+                     "route")
 
   expect_equal(3, result)
 
