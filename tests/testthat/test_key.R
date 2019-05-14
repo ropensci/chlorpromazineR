@@ -34,4 +34,14 @@ test_that("add_key() works with gardner2010 and leucht2016", {
   expect_equal(merged$oral$haloperidol, gardner2010$oral$haloperidol)
   expect_equal(merged$oral$tiapride, leucht2016$oral$tiapride)
 
+  expect_warning(add_key(gardner2010, leucht2016, trim=FALSE))
+
+})
+
+test_that("has_long_name() does as it says", {
+
+  expect_equal(has_long_name(gardner2010), TRUE)
+  expect_equal(has_long_name(gardner2010_withsai), TRUE)
+  expect_equal(has_long_name(leucht2016), FALSE)
+    
 })
