@@ -3,9 +3,12 @@
 
 #' Calculates chlorpromazine-equivalent doses
 #' 
-#' If the time_unit and activity_unit attributes are already in the data.frame,
-#' they do not need to be set again, but otherwise they will need to be
-#' specified in the input parameters.
+#' Given a data.frame containing doses of antipsychotics to_cpz() converts the
+#' doses into the equivalent chlorpromazine (CPZ) doses, using the conversion
+#' factors specified in the key.
+#'
+#' The default key is gardner2010 which has data for both oral and long-acting
+#' antipsychotic medications. See help(gardner2010) for the source reference.
 #' 
 #' @export
 #' @param x data.frame with antipsychotic name and dose data
@@ -174,3 +177,54 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
   return(sum(notfound))
 }
 
+#' Calculates equivalent doses
+#'
+#' As in to_cpz(), to_ap() converts doses of antipsychotics into equivalent
+#' doses to a reference antipsychotic. Whereas in to_cpz() the reference
+#' antipsychotic is chlorpromazine (CPZ), to_ap() converts to equivalents of an
+#' artbitrary antipsychotic specified as a string to convert_to_ap. Conversion
+#' factors are specified in the key.
+#'
+#' @export
+#' @param x data.frame with antipsychotic name and dose data
+#' @param convert_to_ap name of desired reference antipsychotic
+#' @param convert_to_route the route of the desired reference antipsychotic
+#' @param ap_label column in x that stores antipsychotic name
+#' @param dose_label column in x that stores dose
+#' @param route options include "oral", "sai", "lai" or "mixed"
+#' @param key source of the conversion factors--defaults to Gardner et al. 2010
+#' @param eq_label the name of the column to be created, to save the
+#' calculated antipsychotic-equivalent dose
+#' @param factor_label the name of the column to be created to store the
+#' conversion factors
+#' @param route_label if "mixed" route is specified, provide the column that
+#' stores the route information
+#' @param q if long-acting injectable doses are included, provide the column
+#' that stores the injection frequency (days), or only if the doses have already
+#' been divided, set q = 1.
+#' @return data.frame with new variables storing conversion factor and
+#' CPZ-equivalent doses
+#' @family conversion functions
+#' @examples
+#' participant_ID <- c("P01", "P02", "P03", "P04")
+#' age <- c(42, 29, 30, 60)
+#' antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+#' dose <- c(10, 12.5, 300, 60)
+#' example_oral <- data.frame(participant_ID, age, antipsychotic, dose,
+#'                            stringsAsFactors = FALSE)
+#' to_ap(convert_to_ap="olanzapine", convert_to_route="oral",
+#'       ap_label = "antipsychotic", dose_label = "dose", route = "oral")
+to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
+                   ap_label, dose_label, route="oral",
+                   key=chlorpromazineR::gardner2010, eq_label="ap_eq",
+                   factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
+                       
+  out <- to_cpz(x=x, ap_label=ap_label, dose_label=dose_label, route=route,
+                key=key, eq_label=eq_label, factor_label=factor_label,
+                route_label=route_label, q=q)
+                
+  out[,eq_label] <- out[,eq_label] /
+                              as.numeric(key[[convert_to_route]][convert_to_ap])
+  
+  return(out)
+}

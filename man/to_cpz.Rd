@@ -37,9 +37,13 @@ data.frame with new variables storing conversion factor and
 CPZ-equivalent doses
 }
 \description{
-If the time_unit and activity_unit attributes are already in the data.frame,
-they do not need to be set again, but otherwise they will need to be
-specified in the input parameters.
+Given a data.frame containing doses of antipsychotics to_cpz() converts the
+doses into the equivalent chlorpromazine (CPZ) doses, using the conversion
+factors specified in the key.
+}
+\details{
+The default key is gardner2010 which has data for both oral and long-acting
+antipsychotic medications. See help(gardner2010) for the source reference.
 }
 \examples{
 participant_ID <- c("P01", "P02", "P03", "P04")
@@ -50,5 +54,8 @@ example_oral <- data.frame(participant_ID, age, antipsychotic, dose,
                            stringsAsFactors = FALSE)
 to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
        route = "oral")
+}
+\seealso{
+Other conversion functions: \code{\link{to_ap}}
 }
 \concept{conversion functions}

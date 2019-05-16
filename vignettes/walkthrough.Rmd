@@ -225,3 +225,14 @@ to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose",
 Note that it used the `gardner2010` values where they were available (olanzapine, quetiapine, ziprasidone) and the `leucht2016` key for asenapine.
 
 To draw from values from additional keys (e.g. user-created keys), the `add_key()` function could be used iteratively. The first argument of `add_key()`, `base`, is always the key with values that take priority.
+
+## Converting to equivalents of an arbitrary antipsychotic
+
+Historically, CPZ has been used as the reference antipsychotic. However, using the same key data, any arbitrary reference antipsychotic could be used. Similar to `to_cpz()`, `to_ap()` can perform this conversion. The desired reference antipsychotic can be specified, e.g. with the paramaters `convert_to_ap = "olanzapine", convert_to_route = "oral"`.
+
+```{r}
+to_ap(other_oral, convert_to_ap = "olanzapine", convert_to_route = "oral", 
+      ap_label = "antipsychotic", dose_label = "dose", 
+      route = "oral", key = gardner_leucht)
+```
+
