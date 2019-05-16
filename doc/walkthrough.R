@@ -102,3 +102,8 @@ check_ap(other_oral, ap_label = "antipsychotic", route = "oral")
 to_cpz(other_oral, ap_label = "antipsychotic", dose_label = "dose", 
        route = "oral", key = gardner_leucht)
 
+## ------------------------------------------------------------------------
+to_ap(other_oral, convert_to_ap = "olanzapine", convert_to_route = "oral", 
+      ap_label = "antipsychotic", dose_label = "dose", 
+      route = "oral", key = gardner_leucht)
+

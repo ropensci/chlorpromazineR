@@ -193,8 +193,10 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
 #' @param dose_label column in x that stores dose
 #' @param route options include "oral", "sai", "lai" or "mixed"
 #' @param key source of the conversion factors--defaults to Gardner et al. 2010
-#' @param eq_label the name of the column to be created, to save the
-#' calculated antipsychotic-equivalent dose
+#' @param cpz_eq_label the name of the column to be created, to save the
+#' calculated CPZ-equivalent dose
+#' @param ref_eq_label the name of the column to be created to save the doses in
+#' terms of the specified reference antipsychotic (in convert_to_ap)
 #' @param factor_label the name of the column to be created to store the
 #' conversion factors
 #' @param route_label if "mixed" route is specified, provide the column that
@@ -212,18 +214,23 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
 #' dose <- c(10, 12.5, 300, 60)
 #' example_oral <- data.frame(participant_ID, age, antipsychotic, dose,
 #'                            stringsAsFactors = FALSE)
-#' to_ap(convert_to_ap="olanzapine", convert_to_route="oral",
+#' to_ap(example_oral, convert_to_ap="olanzapine", convert_to_route="oral",
 #'       ap_label = "antipsychotic", dose_label = "dose", route = "oral")
 to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
                    ap_label, dose_label, route="oral",
-                   key=chlorpromazineR::gardner2010, eq_label="ap_eq",
-                   factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
-                       
+                   key=chlorpromazineR::gardner2010, cpz_eq_label="cpz_eq",
+                   ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
+                   route_label=NULL, q=NULL) {
+  
+  if (!(convert_to_ap %in% names(key[[convert_to_route]]))) {
+      stop("The specified convert_to antipsychotic/route is not in the key")
+  }
+  
   out <- to_cpz(x=x, ap_label=ap_label, dose_label=dose_label, route=route,
-                key=key, eq_label=eq_label, factor_label=factor_label,
+                key=key, eq_label=cpz_eq_label, factor_label=factor_label,
                 route_label=route_label, q=q)
                 
-  out[,eq_label] <- out[,eq_label] /
+  out[,ref_eq_label] <- out[,cpz_eq_label] /
                               as.numeric(key[[convert_to_route]][convert_to_ap])
   
   return(out)

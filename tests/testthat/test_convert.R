@@ -109,3 +109,30 @@ test_that("to_cpz() produces accurate values with mixed example with
 
 })
 
+test_that("to_ap() rejects invalid reference antipsychotics and works", {
+  
+  participant_ID <- c("P01", "P02", "P03", "P04")
+  antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
+  dose <- c(10, 12.5, 300, 60)
+  example_oral <- data.frame(participant_ID, antipsychotic, dose,
+                             stringsAsFactors = FALSE)
+  
+  olanz_answers <- c(10, 12.5, 8, 7.5)
+  
+  expect_error(to_ap(example_oral, convert_to_ap = "olANZ",
+                     convert_to_route = "oral", ap_label = "antipsychotic",
+                     dose_label = "dose", route = "oral",
+                     key = chlorpromazineR::gardner2010))
+  
+  expect_error(to_ap(example_oral, convert_to_ap = "olanzapine",
+                     convert_to_route = "nai", ap_label = "antipsychotic",
+                     dose_label = "dose", route = "oral",
+                     key = chlorpromazineR::gardner2010))
+  
+  test_olanz <- to_ap(example_oral, convert_to_ap = "olanzapine",
+                   convert_to_route = "oral", ap_label = "antipsychotic",
+                   dose_label = "dose", route = "oral",
+                   key = chlorpromazineR::gardner2010)
+                   
+  expect_equal(test_olanz$ap_eq, olanz_answers)
+})

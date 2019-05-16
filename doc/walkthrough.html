@@ -12,7 +12,7 @@
 
 <meta name="author" content="Eric Brown, Parita Shah, Julia Kim" />
 
-<meta name="date" content="2019-05-14" />
+<meta name="date" content="2019-05-16" />
 
 <title>Using chlorpromazineR to calculate chlorpromazine-equivalent doses</title>
 
@@ -303,7 +303,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Using chlorpromazineR to calculate chlorpromazine-equivalent doses</h1>
 <h4 class="author">Eric Brown, Parita Shah, Julia Kim</h4>
-<h4 class="date">2019-05-14</h4>
+<h4 class="date">2019-05-16</h4>
 
 
 
@@ -544,6 +544,23 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span></a></code></pre></div>
 <p>Note that it used the <code>gardner2010</code> values where they were available (olanzapine, quetiapine, ziprasidone) and the <code>leucht2016</code> key for asenapine.</p>
 <p>To draw from values from additional keys (e.g. user-created keys), the <code>add_key()</code> function could be used iteratively. The first argument of <code>add_key()</code>, <code>base</code>, is always the key with values that take priority.</p>
+</div>
+<div id="converting-to-equivalents-of-an-arbitrary-antipsychotic" class="section level2">
+<h2>Converting to equivalents of an arbitrary antipsychotic</h2>
+<p>Historically, CPZ has been used as the reference antipsychotic. However, using the same key data, any arbitrary reference antipsychotic could be used. Similar to <code>to_cpz()</code>, <code>to_ap()</code> can perform this conversion. The desired reference antipsychotic can be specified, e.g. with the paramaters <code>convert_to_ap = &quot;olanzapine&quot;, convert_to_route = &quot;oral&quot;</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">to_ap</span>(other_oral, <span class="dt">convert_to_ap =</span> <span class="st">&quot;olanzapine&quot;</span>, <span class="dt">convert_to_route =</span> <span class="st">&quot;oral&quot;</span>, </a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">      <span class="dt">ap_label =</span> <span class="st">&quot;antipsychotic&quot;</span>, <span class="dt">dose_label =</span> <span class="st">&quot;dose&quot;</span>, </a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">      <span class="dt">route =</span> <span class="st">&quot;oral&quot;</span>, <span class="dt">key =</span> gardner_leucht)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#&gt;   participant_ID age antipsychotic dose  q route cpz_conv_factor  cpz_eq</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">#&gt; 1            P01  42    olanzapine   10 NA  oral         30.0000 300.000</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; 2            P02  29     asenapine   10 NA  oral         14.9925 149.925</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt; 3            P03  30    quetiapine  300 NA  oral          0.8000 240.000</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt;       ap_eq</span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt; 1 10.000000</span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">#&gt; 2  4.997501</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt; 3  8.000000</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co">#&gt; 4  7.500000</span></a></code></pre></div>
 </div>
 <div class="footnotes">
 <hr />
