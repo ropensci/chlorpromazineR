@@ -45,3 +45,11 @@ test_that("has_long_name() does as it says", {
   expect_equal(has_long_name(leucht2016), FALSE)
     
 })
+
+test_that("included keys are valid format", {
+  expect_equal(check_key(gardner2010), TRUE)
+  expect_equal(check_key(gardner2010_withsai), TRUE)
+  expect_equal(check_key(leucht2016), TRUE)
+  expect_equal(check_key(davis1974), TRUE)
+  expect_equal(check_key(woods2003), TRUE)
+})

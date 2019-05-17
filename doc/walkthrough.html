@@ -12,7 +12,7 @@
 
 <meta name="author" content="Eric Brown, Parita Shah, Julia Kim" />
 
-<meta name="date" content="2019-05-16" />
+<meta name="date" content="2019-05-17" />
 
 <title>Using chlorpromazineR to calculate chlorpromazine-equivalent doses</title>
 
@@ -303,7 +303,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Using chlorpromazineR to calculate chlorpromazine-equivalent doses</h1>
 <h4 class="author">Eric Brown, Parita Shah, Julia Kim</h4>
-<h4 class="date">2019-05-16</h4>
+<h4 class="date">2019-05-17</h4>
 
 
 
@@ -544,6 +544,51 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span></a></code></pre></div>
 <p>Note that it used the <code>gardner2010</code> values where they were available (olanzapine, quetiapine, ziprasidone) and the <code>leucht2016</code> key for asenapine.</p>
 <p>To draw from values from additional keys (e.g. user-created keys), the <code>add_key()</code> function could be used iteratively. The first argument of <code>add_key()</code>, <code>base</code>, is always the key with values that take priority.</p>
+</div>
+<div id="list-of-included-keys" class="section level2">
+<h2>List of included keys</h2>
+<p>Use the built in help function to see the full reference for any key, e.g. <code>help(davis1974)</code>.</p>
+<table>
+<colgroup>
+<col width="29%"></col>
+<col width="32%"></col>
+<col width="38%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key name</th>
+<th>Reference</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>davis1974</td>
+<td><a href="https://doi.org/10.1016/0022-3956(74)90071-5" class="uri">https://doi.org/10.1016/0022-3956(74)90071-5</a></td>
+<td>Classic paper on chlorpromazine equivalent doses.</td>
+</tr>
+<tr class="even">
+<td>gardner2010</td>
+<td><a href="https://doi.org/10.1176/appi.ajp.2009.09060802" class="uri">https://doi.org/10.1176/appi.ajp.2009.09060802</a></td>
+<td>Consensus study.</td>
+</tr>
+<tr class="odd">
+<td>gardner2010_withsai</td>
+<td><a href="https://doi.org/10.1176/appi.ajp.2009.09060802" class="uri">https://doi.org/10.1176/appi.ajp.2009.09060802</a></td>
+<td>The included SAI data result in equivalent to SAI (parenteral) chlorpromazine, not oral.</td>
+</tr>
+<tr class="even">
+<td>leucht2016</td>
+<td><a href="https://doi.org/10.1093/schbul/sbv167" class="uri">https://doi.org/10.1093/schbul/sbv167</a></td>
+<td>WHO DDD method.</td>
+</tr>
+<tr class="odd">
+<td>woods2003</td>
+<td><a href="https://doi.org/10.4088/JCP.v64n0607" class="uri">https://doi.org/10.4088/JCP.v64n0607</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="converting-to-equivalents-of-an-arbitrary-antipsychotic" class="section level2">
 <h2>Converting to equivalents of an arbitrary antipsychotic</h2>
