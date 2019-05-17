@@ -9,7 +9,7 @@ contains the conversion factors for each antipsychotic. The 3 top-level lists
 are named `oral`, `sai`, and `lai` (route), and the lists they contain have
 names corresponding to the antipsychotic, e.g. `olanzapine`.}
 \source{
-Scott Wods (2003). Chlorpromazine Equivalent Doses for the Newer
+Scott Woods (2003). Chlorpromazine Equivalent Doses for the Newer
 Atypical Antipsychotics. Journal of Clinical Psychiatry. 64(6). 663-667.
 <https://doi.org/10.4088/JCP.v64n0607>
 }

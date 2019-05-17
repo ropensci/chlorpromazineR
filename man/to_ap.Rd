@@ -49,7 +49,7 @@ CPZ-equivalent doses
 As in to_cpz(), to_ap() converts doses of antipsychotics into equivalent
 doses to a reference antipsychotic. Whereas in to_cpz() the reference
 antipsychotic is chlorpromazine (CPZ), to_ap() converts to equivalents of an
-artbitrary antipsychotic specified as a string to convert_to_ap. Conversion
+arbitrary antipsychotic specified as a string to convert_to_ap. Conversion
 factors are specified in the key.
 }
 \examples{
