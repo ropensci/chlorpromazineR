@@ -228,7 +228,7 @@ To draw from values from additional keys (e.g. user-created keys), the `add_key(
 
 ## List of included keys
 
-Use the built in help function to see the full reference for any key, e.g. `help(davis1974)`.
+Use the built in help function to see the full reference for any key, e.g. `help(davis1974)`. The data may need to be loaded prior to using the help function (e.g. load via `chlorpromazineR::davis1974`, then use `help(davis1974)`.
 
 | Key name | Reference | Description |
 |----------|-----------|-------------|
