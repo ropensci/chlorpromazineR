@@ -1,12 +1,12 @@
 # chlorpromazineR: Convert antipsychotic doses to chlorpromazine equivalents
 
-[![Travis build status](https://travis-ci.org/eebrown/chlorpromazineR.svg?branch=master)](https://travis-ci.org/eebrown/chlorpromazineR) [![Coverage status](https://codecov.io/gh/eebrown/chlorpromazineR/branch/master/graph/badge.svg)](https://codecov.io/github/eebrown/chlorpromazineR?branch=master)
+[![Travis build status](https://travis-ci.org/eebrown/chlorpromazineR.svg?branch=master)](https://travis-ci.org/eebrown/chlorpromazineR) [![Coverage status](https://codecov.io/gh/eebrown/chlorpromazineR/branch/master/graph/badge.svg)](https://codecov.io/github/eebrown/chlorpromazineR?branch=master) [![DOI](https://zenodo.org/badge/175675220.svg)](https://zenodo.org/badge/latestdoi/175675220) [![](https://badges.ropensci.org/307_status.svg)](https://github.com/ropensci/onboarding/issues/307)
 
 Studies investigating or controlling for the impact of antipsychotic medications often need to quantify the amount of medication to which an individual is or has been exposed. As different antipsychotics have different potencies, the task is more complicated than using each medication’s daily dosage in milligrams, for example. `chlorpromazineR` is an R package to calculate dose equivalents for common oral and injectable antipsychotic medications based on conversion factors from the published literature. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
 
-With this package, he hope:
+With this package, we hope:
 
-* to improve transparency and consistency in calculating CPZ equivalents,
+* to improve transparency and consistency in calculating chlorpromazine equivalents,
 * to reduce human error and improve accuracy,
 * and to simplify workflows for large datasets, as from chart reviews of electronic health records.
 

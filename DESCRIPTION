@@ -2,16 +2,16 @@ Package: chlorpromazineR
 Title: Convert Antipsychotic Doses to Chlorpromazine Equivalents
 Version: 0.1.0
 Authors@R: 
-    c(person(given = "Eric",
-             family = "Brown",
+    c(person("Eric", "Brown", 
              role = c("aut", "cre"),
-             email = "eb@ericebrown.com"),
-      person(given = "Parita",
-             family = "Shah",
-             role = "aut"),
-      person(given = "Julia",
-             family = "Kim",
-             role = "aut"))
+             email = "eb@ericebrown.com",
+             comment = c(ORCID = "0000-0002-1575-2606")),
+      person("Parita", "Shah",
+             role = "aut",
+             comment = c(ORCID = "0000-0002-7302-0411")),
+      person("Julia", "Kim",
+             role = "aut",
+             comment = c(ORCID = "0000-0002-0379-1333")))
 Description: As different antipsychotic medications have different potencies,
     the doses of different medications cannot be directly compared. Various
     strategies are used to convert doses into a common reference so that

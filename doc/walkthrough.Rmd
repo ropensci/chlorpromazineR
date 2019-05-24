@@ -31,7 +31,7 @@ While there is no single standard method to defining dose equivalence, the Inter
 
 We present here an easy-to-use R package to calculate CPZ daily dose equivalents for common oral and injectable antipsychotic medications. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
 
-With this package, he hope:
+With this package, we hope:
 
 * to improve transparency and consistency in calculating CPZ equivalents,
 * to reduce human error and improve accuracy,

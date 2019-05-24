@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "chlorpromazineR",
   "description": "As different antipsychotic medications have different potencies,\n    the doses of different medications cannot be directly compared. Various\n    strategies are used to convert doses into a common reference so that\n    comparison is meaningful. Chlorpromazine (CPZ) has historically been used\n    as a reference medication into which other antipsychotic doses can be\n    converted, as \"chlorpromazine-equivalent doses\". Using conversion keys\n    generated from widely-cited scientific papers (Gardner et. al 2010\n    <https://doi.org/10.1176/appi.ajp.2009.09060802>, Leucht et al. 2016\n    <https://doi.org/10.1093/schbul/sbv167>), antipsychotic doses are converted\n    to CPZ (or any specified antipsychotic) equivalents. The use of the package\n    is described in the included vignette. Not for clinical use.",
@@ -20,17 +23,20 @@
       "@type": "Person",
       "givenName": "Eric",
       "familyName": "Brown",
-      "email": "eb@ericebrown.com"
+      "email": "eb@ericebrown.com",
+      "@id": "https://orcid.org/0000-0002-1575-2606"
     },
     {
       "@type": "Person",
       "givenName": "Parita",
-      "familyName": "Shah"
+      "familyName": "Shah",
+      "@id": "https://orcid.org/0000-0002-7302-0411"
     },
     {
       "@type": "Person",
       "givenName": "Julia",
-      "familyName": "Kim"
+      "familyName": "Kim",
+      "@id": "https://orcid.org/0000-0002-0379-1333"
     }
   ],
   "contributor": {},
@@ -41,7 +47,8 @@
       "@type": "Person",
       "givenName": "Eric",
       "familyName": "Brown",
-      "email": "eb@ericebrown.com"
+      "email": "eb@ericebrown.com",
+      "@id": "https://orcid.org/0000-0002-1575-2606"
     }
   ],
   "softwareSuggestions": [
@@ -103,6 +110,20 @@
     }
   ],
   "readme": "https://github.com/eebrown/chlorpromazineR/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.org/eebrown/chlorpromazineR", "https://codecov.io/github/eebrown/chlorpromazineR?branch=master"],
-  "keywords": ["psychiatry", "pharmacology", "r", "antipsychotic", "schizophrenia"]
+  "contIntegration": [
+    "https://travis-ci.org/eebrown/chlorpromazineR",
+    "https://codecov.io/github/eebrown/chlorpromazineR?branch=master"
+  ],
+  "keywords": [
+    "psychiatry",
+    "pharmacology",
+    "r",
+    "antipsychotic",
+    "schizophrenia"
+  ],
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/onboarding/issues/307",
+    "provider": "http://ropensci.org"
+  }
 }
