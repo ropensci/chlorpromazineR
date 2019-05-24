@@ -8,3 +8,4 @@
 ^Meta$
 ^doc$
 ^.buildconfig
+^codemeta\.json$

@@ -1,6 +1,6 @@
 Package: chlorpromazineR
 Title: Convert Antipsychotic Doses to Chlorpromazine Equivalents
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Eric",
              family = "Brown",
@@ -12,11 +12,21 @@ Authors@R:
       person(given = "Julia",
              family = "Kim",
              role = "aut"))
-Description: As different antipsychotic medications have different potencies, the doses of different medications cannot be directly compared. Various strategies are used to convert doses into a common reference so that comparison is meaningful. Chlorpromazine (CPZ) has historically been used as a reference medication into which other antipsychotic doses can be converted, as "chlorpromazine-equivalent doses". Using conversion keys generated from widely-cited scientific papers (Gardner et. al 2010 <https://doi.org/10.1176/appi.ajp.2009.09060802>, Leucht et al. 2016 <https://doi.org/10.1093/schbul/sbv167>), antipsychotic doses are converted to CPZ (or any specified antipsychotic) equivalents. The use of the package is described in the included vignette. Not for clinical use.
+Description: As different antipsychotic medications have different potencies,
+    the doses of different medications cannot be directly compared. Various
+    strategies are used to convert doses into a common reference so that
+    comparison is meaningful. Chlorpromazine (CPZ) has historically been used
+    as a reference medication into which other antipsychotic doses can be
+    converted, as "chlorpromazine-equivalent doses". Using conversion keys
+    generated from widely-cited scientific papers (Gardner et. al 2010
+    <https://doi.org/10.1176/appi.ajp.2009.09060802>, Leucht et al. 2016
+    <https://doi.org/10.1093/schbul/sbv167>), antipsychotic doses are converted
+    to CPZ (or any specified antipsychotic) equivalents. The use of the package
+    is described in the included vignette. Not for clinical use.
 URL: https://github.com/eebrown/chlorpromazineR
 BugReports: https://github.com/eebrown/chlorpromazineR/issues
 Depends: R (>= 3.5)
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
