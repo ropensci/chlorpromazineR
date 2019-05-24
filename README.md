@@ -14,11 +14,15 @@ For further details and usage, please see the [walkthrough vignette](https://htm
 
 This package is in production and not yet suitable for production use. We welcome feedback--please contact via eb@ericebrown.com or file an issue.
 
-# Disclaimer
+## Installation
+
+The development version of this package can be installed via the command:  `devtools::install_github("eebrown/chlorpromazineR")`.
+
+## Disclaimer
 
 This package is not for clinical use. The authors assume no liability. All work must be verified independently. Use at own risk.
 
-# Licence
+## Licence
 
     Copyright (C) 2019 Eric E. Brown
 
@@ -32,6 +36,6 @@ This package is not for clinical use. The authors assume no liability. All work 
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-# Citation
+## Citation
 
 In addition to citing this package, please cite the original papers from which the conversion factors are derived. The references can be viewed by using the built-in help function, e.g. `help(gardner2010)`.
