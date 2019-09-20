@@ -41,6 +41,8 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
                    key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
                    factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
   
+  if (!(is.data.frame(x))) stop("x must be a data.frame")
+  
   check_key(key)
   
   if (check_ap(x, key=key, ap_label=ap_label, route=route,
@@ -138,7 +140,9 @@ check_route <- function(x, route_label) {
 #'          key = gardner2010)
 check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, 
                      route_label) {
-    
+  
+  if (!(is.data.frame(x))) stop("x must be a data.frame")
+  
   if (route %in% c("oral", "sai", "lai")) {
       notfound <- !(tolower(x[,ap_label]) %in% names(key[[route]]))
       bad <- paste0(x[,ap_label][notfound], " (", route, ")\n")
@@ -221,6 +225,8 @@ to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
                    key=chlorpromazineR::gardner2010, cpz_eq_label="cpz_eq",
                    ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
                    route_label=NULL, q=NULL) {
+  
+  if (!(is.data.frame(x))) stop("x must be a data.frame")
   
   if (!(convert_to_ap %in% names(key[[convert_to_route]]))) {
       stop("The specified convert_to antipsychotic/route is not in the key")
