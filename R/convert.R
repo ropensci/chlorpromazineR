@@ -45,8 +45,8 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
                route_label, q)
   check_key(key)
   
-  if (check_ap(x, key=key, ap_label=ap_label, route=route,
-               route_label=route_label) != 0) {
+  if (check_ap(x, key = key, ap_label = ap_label, route = route,
+               route_label = route_label) != 0) {
     stop("Data contains antipsychotics not in the key")
   }
   
@@ -63,10 +63,10 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
   }
 
   if (route %in% c("oral", "sai", "lai")) {
-    x[,factor_label] <- as.numeric(key[[route]][x[,ap_label]])
-    x[,eq_label] <- apply(x[,c(dose_label, factor_label)], 1, prod)
+    x[, factor_label] <- as.numeric(key[[route]][x[, ap_label]])
+    x[, eq_label] <- apply(x[, c(dose_label, factor_label)], 1, prod)
 
-    if (route == "lai" && q != 1) x[,eq_label] <- x[,eq_label] / x[,q]
+    if (route == "lai" && q != 1) x[, eq_label] <- x[, eq_label] / x[, q]
   }
 
   if (route == "mixed") {
@@ -85,8 +85,9 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
                           factor_label=factor_label, eq_label=eq_label)
 
     if (q != 1) {
-      x[x$route=="lai",][, eq_label] <- x[x[,route_label]=="lai",][, eq_label] /
-                                        x[x[,route_label]=="lai",][,q]
+      x[x$route == "lai", ][, eq_label] <-
+                                  x[x[, route_label] == "lai", ][, eq_label] /
+                                  x[x[, route_label] == "lai", ][, q]
       }
   }
     
@@ -99,21 +100,17 @@ convert_by_route <- function(x, key, ap_label, dose_label, route_label,
 
   for (r in c("oral", "sai", "lai")) {
     k <- key[[r]]
-    x[x[,route_label]==r,][, factor_label] <-
-                              as.numeric(k[x[x[,route_label]==r,][,ap_label]])
+    x[x[, route_label] == r, ][, factor_label] <-
+                           as.numeric(k[x[x[, route_label] == r,][, ap_label]])
     
-    x[x[,route_label]==r,][, eq_label] <-
-            apply(x[x[,route_label]==r,][,c(dose_label, factor_label)], 1, prod)
+    x[x[,route_label] == r, ][, eq_label] <-
+         apply(x[x[, route_label] == r,][,c(dose_label, factor_label)], 1, prod)
 
   }
   
   return(x)
 }
 
-#' @noRd
-check_route <- function(x, route_label) {
-    return(all(x[,route_label] %in% c("oral", "sai", "lai")))
-}
 
 #' Checks whether antipsychotic names are in the key
 #' 
@@ -145,29 +142,30 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
   check_key(key)
   
   if (route %in% c("oral", "sai", "lai")) {
-      notfound <- !(tolower(x[,ap_label]) %in% names(key[[route]]))
-      bad <- paste0(x[,ap_label][notfound], " (", route, ")\n")
+      notfound <- !(tolower(x[, ap_label]) %in% names(key[[route]]))
+      bad <- paste0(x[, ap_label][notfound], " (", route, ")\n")
   } else if (route == "mixed") {
-      notfound_oral <- !(tolower(x[x[,route_label]=="oral",][,ap_label])
+      notfound_oral <- !(tolower(x[x[, route_label] == "oral",][, ap_label])
                          %in% names(key$oral))
-      notfound_sai <- !(tolower(x[x[,route_label]=="sai",][,ap_label])
+      notfound_sai <- !(tolower(x[x[, route_label] == "sai",][, ap_label])
                         %in% names(key$sai))
-      notfound_lai <- !(tolower(x[x[,route_label]=="lai",][,ap_label])
+      notfound_lai <- !(tolower(x[x[, route_label] == "lai",][, ap_label])
                         %in% names(key$lai))
       notfound <- c(notfound_oral, notfound_sai, notfound_lai)
         
       if (any(notfound_oral)) {
-          bad1 <- paste(x[x[,route_label]=="oral",][,ap_label][notfound_oral],
-                        "(oral)\n")
+          bad1 <-
+                paste(x[x[, route_label] == "oral",][, ap_label][notfound_oral],
+                "(oral)\n")
       } else bad1 <- NULL
 
       if (any(notfound_sai)) {
-          bad2 <- paste(x[x[,route_label]=="sai",][,ap_label][notfound_sai],
+          bad2 <- paste(x[x[, route_label] == "sai",][, ap_label][notfound_sai],
                         "(sai)\n")
       } else bad2 <- NULL
 
       if (any(notfound_lai)) {
-          bad3 <- paste(x[x[,route_label]=="lai",][,ap_label][notfound_lai],
+          bad3 <- paste(x[x[, route_label] == "lai",][, ap_label][notfound_lai],
                         "(lai)\n")
       } else bad3 <- NULL
 
@@ -238,11 +236,11 @@ to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
       stop("The specified convert_to antipsychotic/route is not in the key")
   }
   
-  out <- to_cpz(x=x, ap_label=ap_label, dose_label=dose_label, route=route,
-                key=key, eq_label=cpz_eq_label, factor_label=factor_label,
-                route_label=route_label, q=q)
+  out <- to_cpz(x = x, ap_label = ap_label, dose_label = dose_label,
+                route = route, key = key, eq_label = cpz_eq_label,
+                factor_label = factor_label, route_label = route_label, q = q)
                 
-  out[,ref_eq_label] <- out[,cpz_eq_label] /
+  out[, ref_eq_label] <- out[, cpz_eq_label] /
                               as.numeric(key[[convert_to_route]][convert_to_ap])
   
   return(out)
@@ -278,4 +276,9 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
   if (!(is.character(factor_label))) {
     stop("factor_label must be a character string.")
   }
+}
+
+#' @noRd
+check_route <- function(x, route_label) {
+  return(all(x[,route_label] %in% c("oral", "sai", "lai")))
 }
