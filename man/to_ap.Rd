@@ -54,7 +54,8 @@ factors are specified in the key.
 }
 \examples{
 participant_ID <- c("P01", "P02", "P03", "P04")
-age <- c(42, 29, 30, 60)
+age <- c(42, 29, 30, 60) # not used in calculation, just shows other data
+                         # can exist in the data.frame
 antipsychotic <- c("olanzapine", "olanzapine", "quetiapine", "ziprasidone")
 dose <- c(10, 12.5, 300, 60)
 example_oral <- data.frame(participant_ID, age, antipsychotic, dose,
