@@ -41,8 +41,8 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
                    key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
                    factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
   
-  if (!(is.data.frame(x))) stop("x must be a data.frame")
-  
+  check_params(x, ap_label, dose_label, route, eq_label, factor_label,
+               route_label, q)
   check_key(key)
   
   if (check_ap(x, key=key, ap_label=ap_label, route=route,
@@ -141,8 +141,8 @@ check_route <- function(x, route_label) {
 #'          key = gardner2010)
 check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, 
                      route_label) {
-  
-  if (!(is.data.frame(x))) stop("x must be a data.frame")
+    
+  check_key(key)
   
   if (route %in% c("oral", "sai", "lai")) {
       notfound <- !(tolower(x[,ap_label]) %in% names(key[[route]]))
@@ -172,7 +172,9 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
       } else bad3 <- NULL
 
       bad <- c(bad1, bad2, bad3)
-    }
+  } else {
+    stop("route parameter must be oral, sai or lai.")
+  }
     
   if (sum(notfound) > 0) {
       message("The following antipsychotics were not found in the key:")
@@ -228,7 +230,9 @@ to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
                    ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
                    route_label=NULL, q=NULL) {
   
-  if (!(is.data.frame(x))) stop("x must be a data.frame")
+  check_params(x, ap_label, dose_label, route, eq_label=cpz_eq_label,
+               factor_label, route_label, q)
+  check_key(key)
   
   if (!(convert_to_ap %in% names(key[[convert_to_route]]))) {
       stop("The specified convert_to antipsychotic/route is not in the key")
@@ -242,4 +246,36 @@ to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
                               as.numeric(key[[convert_to_route]][convert_to_ap])
   
   return(out)
+}
+
+#' @noRd
+check_params <- function(x, ap_label, dose_label, route, eq_label,
+                         factor_label, route_label, q) {
+  if (!(is.data.frame(x))) stop("x must be a data.frame.")
+  
+  if (!(ap_label %in% names(x))) stop("ap_label must be variable in x.")
+  
+  if (!(dose_label %in% names(x))) stop("dose_label must be variable in x.")
+  
+  if (!(route %in% c("oral", "sai", "lai", "mixed"))) {
+    stop("route must be one of oral, sai, lai or mixed.")
+  }
+  
+  if (route == "mixed") {
+    if (!(is.character(route_label))) {
+      stop("route_label must be character string.")
+    }
+  } else {
+    if (!(is.null(route_label))) {
+      stop("route_label should be null if route is not mixed.")
+    }
+  }
+  
+  if (!(is.character(eq_label))) {
+    stop("eq_label/cpz_eq_label must be character string.")
+  }
+  
+  if (!(is.character(factor_label))) {
+    stop("factor_label must be character string.")
+  }
 }
