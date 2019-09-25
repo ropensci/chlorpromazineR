@@ -48,6 +48,12 @@ check_key <- function(key) {
 #' @examples trim_key(gardner2010)
 trim_key <- function(key) {
 
+  message("The trim_key() function can introduce errors if used in improper
+           circumstances. Ensure that the antipsychotic compounds in your data
+           and in the intended keys are the same compounds. The trim function is
+           for convenience, but would introduce errors in your data if the
+           compounds are not equivalent.")
+  
   if (!check_key(key)) stop("Input key did not validate.")  
 
   names(key$oral) <- sub("([A-Za-z]+).*", "\\1", names(key$oral))
