@@ -253,17 +253,17 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
                          factor_label, route_label, q) {
   if (!(is.data.frame(x))) stop("x must be a data.frame.")
   
-  if (!(ap_label %in% names(x))) stop("ap_label must be variable in x.")
+  if (!(ap_label %in% names(x))) stop("ap_label must be a variable in x.")
   
-  if (!(dose_label %in% names(x))) stop("dose_label must be variable in x.")
+  if (!(dose_label %in% names(x))) stop("dose_label must be a variable in x.")
   
   if (!(route %in% c("oral", "sai", "lai", "mixed"))) {
     stop("route must be one of oral, sai, lai or mixed.")
   }
   
   if (route == "mixed") {
-    if (!(is.character(route_label))) {
-      stop("route_label must be character string.")
+    if (!(route_label %in% names(x))) {
+      stop("route_label must be a variable in x.")
     }
   } else {
     if (!(is.null(route_label))) {
@@ -272,10 +272,10 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
   }
   
   if (!(is.character(eq_label))) {
-    stop("eq_label/cpz_eq_label must be character string.")
+    stop("eq_label/cpz_eq_label must be a character string.")
   }
   
   if (!(is.character(factor_label))) {
-    stop("factor_label must be character string.")
+    stop("factor_label must be a character string.")
   }
 }
