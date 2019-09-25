@@ -57,11 +57,7 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
   x <- cbind(x, cpz_conv_factor, cpz_eq)
     
   x[,ap_label] <- tolower(x[,ap_label])
-    
-  if ((length(route) != 1) | !(route %in% c("oral", "sai", "lai", "mixed"))) {
-    stop("route must be 1 of \"oral\", \"sai\", \"lai\", or \"mixed\"")
-  }
-
+  
   if (route %in% c("oral", "sai", "lai")) {
     x[, factor_label] <- as.numeric(key[[route]][x[, ap_label]])
     x[, eq_label] <- apply(x[, c(dose_label, factor_label)], 1, prod)
@@ -255,8 +251,8 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
   
   if (!(dose_label %in% names(x))) stop("dose_label must be a variable in x.")
   
-  if (!(route %in% c("oral", "sai", "lai", "mixed"))) {
-    stop("route must be one of oral, sai, lai or mixed.")
+  if ((length(route) != 1) | !(route %in% c("oral", "sai", "lai", "mixed"))) {
+    stop("route must be 1 of \"oral\", \"sai\", \"lai\", or \"mixed\"")
   }
   
   if (route == "mixed") {
