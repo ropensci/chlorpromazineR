@@ -4,7 +4,7 @@
 
 Studies investigating or controlling for the impact of antipsychotic medications often need to quantify the amount of medication to which an individual is or has been exposed. As different antipsychotics have different potencies, the task is more complicated than using each medication’s daily dosage in milligrams, for example. `chlorpromazineR` is an R package to calculate dose equivalents for common oral and injectable antipsychotic medications based on conversion factors from the published literature. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
 
-With this package, we hope:
+We hope that this package is of use to scientists who do clinical research involving antipsychotic medications. Specifically, the goals of this package are:
 
 * to improve transparency and consistency in calculating chlorpromazine equivalents,
 * to reduce human error and improve accuracy,
