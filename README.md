@@ -45,4 +45,23 @@ This package is not for clinical use. The authors assume no liability. All work 
 
 ## Citation
 
-In addition to citing this package, please cite the original papers from which the conversion factors are derived. The references can be viewed by using the built-in help function, e.g. `help(gardner2010)`.
+If you use this package in your scientific paper, please cite the original papers from which the conversion factors are derived, in addition to citing this R package. The references can be viewed by using the built-in help function, e.g. `help(gardner2010)`.
+
+The keys included in this package are derived from the following publications. In addition, a spreadsheet-based tool facilitating dose equivalence conversion has been published by Leucht et al. (2016).
+
+    Davis, J. (1974). Dose equivalence of the anti-psychotic drugs.
+    Journal of Psychiatric Research, 11, 65-69.
+    <https://doi.org/10.1016/0022-3956(74)90071-5>
+
+    Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., & 
+    Baldessarini, R. J. (2010). International consensus study of 
+    antipsychotic dosing. The American Journal of Psychiatry, 167(6),
+    686–693. <https://doi.org/10.1176/appi.ajp.2009.09060802>
+
+    Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose
+    Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia
+    Bulletin, 42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>
+
+    Woods, S. (2003). Chlorpromazine Equivalent Doses for the Newer
+    Atypical Antipsychotics. Journal of Clinical Psychiatry. 64(6).
+    663-667. <https://doi.org/10.4088/JCP.v64n0607>
