@@ -138,7 +138,7 @@ The function `to_cpz()` is used similarly as above, with the extra variable name
 
 ```{r}
 to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", 
-       route = "mixed", route_label = "route", q = "q", key=gardner2010_withsai) 
+       route = "mixed", route_label = "route", q_label = "q", key=gardner2010_withsai) 
 ```
 
 ### Participants on multiple medications

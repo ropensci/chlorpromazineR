@@ -56,7 +56,7 @@ example_mixed
 
 ## ------------------------------------------------------------------------
 to_cpz(example_mixed, ap_label = "antipsychotic", dose_label = "dose", 
-       route = "mixed", route_label = "route", q = "q", key=gardner2010_withsai) 
+       route = "mixed", route_label = "route", q_label = "q", key=gardner2010_withsai) 
 
 ## ------------------------------------------------------------------------
 check_ap(example_oral, ap_label = "antipsychotic", route = "oral", key=gardner2010)

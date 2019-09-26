@@ -7,12 +7,13 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Eric Brown, Parita Shah, Julia Kim" />
 
-<meta name="date" content="2019-05-24" />
+<meta name="date" content="2019-09-26" />
 
 <title>Using chlorpromazineR to calculate chlorpromazine-equivalent doses</title>
 
@@ -96,7 +97,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -303,7 +304,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Using chlorpromazineR to calculate chlorpromazine-equivalent doses</h1>
 <h4 class="author">Eric Brown, Parita Shah, Julia Kim</h4>
-<h4 class="date">2019-05-24</h4>
+<h4 class="date">2019-09-26</h4>
 
 
 
@@ -419,7 +420,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai</span></a></code></pre></div>
 <p>The function <code>to_cpz()</code> is used similarly as above, with the extra variable names (route_label, q) specified:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">to_cpz</span>(example_mixed, <span class="dt">ap_label =</span> <span class="st">&quot;antipsychotic&quot;</span>, <span class="dt">dose_label =</span> <span class="st">&quot;dose&quot;</span>, </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">&quot;mixed&quot;</span>, <span class="dt">route_label =</span> <span class="st">&quot;route&quot;</span>, <span class="dt">q =</span> <span class="st">&quot;q&quot;</span>, <span class="dt">key=</span>gardner2010_withsai) </a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">&quot;mixed&quot;</span>, <span class="dt">route_label =</span> <span class="st">&quot;route&quot;</span>, <span class="dt">q_label =</span> <span class="st">&quot;q&quot;</span>, <span class="dt">key=</span>gardner2010_withsai) </a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route</span></a>
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral</span></a>
@@ -489,11 +490,16 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;  [9] &quot;risperidone microspheres&quot; &quot;zuclopenthixol decanoate&quot;</span></a></code></pre></div>
 <p>To trim to 1-word antipsychotic names, we have made the <code>trim_key()</code> function, which takes a key and generates a new key from it with the 1-word antipsychotic labels. If you want to use the <code>gardner2010</code> key but want 1-word antipsychotic names, then you can use <code>trim_key</code> to generate that new key, which you can then use in <code>to_cpz()</code>. For example:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">trimmed_gardner &lt;-<span class="st"> </span><span class="kw">trim_key</span>(gardner2010)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">names</span>(trimmed_gardner<span class="op">$</span>lai)</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;  [1] &quot;clopenthixol&quot;   &quot;flupenthixol&quot;   &quot;fluphenazine&quot;   &quot;fluphenazine&quot;  </span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;  [5] &quot;fluspirilene&quot;   &quot;haloperidol&quot;    &quot;perphenazine&quot;   &quot;pipotiazine&quot;   </span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;  [9] &quot;risperidone&quot;    &quot;zuclopenthixol&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;            compounds are not equivalent.</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="kw">names</span>(trimmed_gardner<span class="op">$</span>lai)</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;  [1] &quot;clopenthixol&quot;   &quot;flupenthixol&quot;   &quot;fluphenazine&quot;   &quot;fluphenazine&quot;  </span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;  [5] &quot;fluspirilene&quot;   &quot;haloperidol&quot;    &quot;perphenazine&quot;   &quot;pipotiazine&quot;   </span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  [9] &quot;risperidone&quot;    &quot;zuclopenthixol&quot;</span></a></code></pre></div>
 </div>
 <div id="using-other-keys" class="section level2">
 <h2>Using other keys</h2>
@@ -508,23 +514,33 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>However, the authors do not recommend using the DDD values when more scientific values are available. Therefore, it can be desirable to create a new key with data from the <code>gardner2010</code> key (or your own created key) combined with the <code>leucht2016</code> key, using data from <code>gardner2010</code> key where possible.</p>
 <p>For this purpose, we have created the <code>add_key()</code> function, which takes a preferred base key from which ALL available values are taken, and adds only the missing antipsychotic conversion values from the second key to be added. Further, there is a <code>trim</code> parameter, which invokes the <code>trim_key()</code> function on both keys, in the case as in <code>leucht2016</code> where only 1-word antipsychotic names are provided.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">gardner_leucht &lt;-<span class="st"> </span><span class="kw">add_key</span>(<span class="dt">base =</span> gardner2010, <span class="dt">add =</span> leucht2016, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; 24 (ORAL) were added to the base key (acepromazine, acetophenazine, asenapine, bromperidol, butaperazine, chlorprothixene, dixyrazine, flupentixol, levosulpiride, lurasidone, melperone, moperone, penfluridol, perazine, periciazine, pipamperone, pipotiazine, promazine, prothipendyl, sultopride, thiopropazate, thioproperazine, tiapride, tiotixene) </span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt; 30 (SAI) were added to the base key (acepromazine, aripiprazole, bromperidol, chlorpromazine, chlorprothixene, clopenthixol, clotiapine, clozapine, dixyrazine, droperidol, haloperidol, levomepromazine, melperone, mesoridazine, moperone, olanzapine, perazine, periciazine, perphenazine, prochlorperazine, promazine, prothipendyl, remoxipride, sulpiride, thioproperazine, tiapride, trifluoperazine, triflupromazine, ziprasidone, zuclopenthixol) </span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; 4 (LAI) were added to the base key (bromperidol, flupentixol, olanzapine, paliperidone)</span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">names</span>(gardner_leucht<span class="op">$</span>sai)</a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;  [1] &quot;acepromazine&quot;     &quot;aripiprazole&quot;     &quot;bromperidol&quot;     </span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;  [4] &quot;chlorpromazine&quot;   &quot;chlorprothixene&quot;  &quot;clopenthixol&quot;    </span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;  [7] &quot;clotiapine&quot;       &quot;clozapine&quot;        &quot;dixyrazine&quot;      </span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; [10] &quot;droperidol&quot;       &quot;haloperidol&quot;      &quot;levomepromazine&quot; </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; [13] &quot;melperone&quot;        &quot;mesoridazine&quot;     &quot;moperone&quot;        </span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; [16] &quot;olanzapine&quot;       &quot;perazine&quot;         &quot;periciazine&quot;     </span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; [19] &quot;perphenazine&quot;     &quot;prochlorperazine&quot; &quot;promazine&quot;       </span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; [22] &quot;prothipendyl&quot;     &quot;remoxipride&quot;      &quot;sulpiride&quot;       </span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"><span class="co">#&gt; [25] &quot;thioproperazine&quot;  &quot;tiapride&quot;         &quot;trifluoperazine&quot; </span></a>
-<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="co">#&gt; [28] &quot;triflupromazine&quot;  &quot;ziprasidone&quot;      &quot;zuclopenthixol&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;            compounds are not equivalent.</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;            compounds are not equivalent.</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 24 (ORAL) were added to the base key (acepromazine, acetophenazine, asenapine, bromperidol, butaperazine, chlorprothixene, dixyrazine, flupentixol, levosulpiride, lurasidone, melperone, moperone, penfluridol, perazine, periciazine, pipamperone, pipotiazine, promazine, prothipendyl, sultopride, thiopropazate, thioproperazine, tiapride, tiotixene) </span></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; 30 (SAI) were added to the base key (acepromazine, aripiprazole, bromperidol, chlorpromazine, chlorprothixene, clopenthixol, clotiapine, clozapine, dixyrazine, droperidol, haloperidol, levomepromazine, melperone, mesoridazine, moperone, olanzapine, perazine, periciazine, perphenazine, prochlorperazine, promazine, prothipendyl, remoxipride, sulpiride, thioproperazine, tiapride, trifluoperazine, triflupromazine, ziprasidone, zuclopenthixol) </span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 4 (LAI) were added to the base key (bromperidol, flupentixol, olanzapine, paliperidone)</span></a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="kw">names</span>(gardner_leucht<span class="op">$</span>sai)</a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt;  [1] &quot;acepromazine&quot;     &quot;aripiprazole&quot;     &quot;bromperidol&quot;     </span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt;  [4] &quot;chlorpromazine&quot;   &quot;chlorprothixene&quot;  &quot;clopenthixol&quot;    </span></a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt;  [7] &quot;clotiapine&quot;       &quot;clozapine&quot;        &quot;dixyrazine&quot;      </span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt; [10] &quot;droperidol&quot;       &quot;haloperidol&quot;      &quot;levomepromazine&quot; </span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; [13] &quot;melperone&quot;        &quot;mesoridazine&quot;     &quot;moperone&quot;        </span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt; [16] &quot;olanzapine&quot;       &quot;perazine&quot;         &quot;periciazine&quot;     </span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; [19] &quot;perphenazine&quot;     &quot;prochlorperazine&quot; &quot;promazine&quot;       </span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; [22] &quot;prothipendyl&quot;     &quot;remoxipride&quot;      &quot;sulpiride&quot;       </span></a>
+<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="co">#&gt; [25] &quot;thioproperazine&quot;  &quot;tiapride&quot;         &quot;trifluoperazine&quot; </span></a>
+<a class="sourceLine" id="cb14-28" data-line-number="28"><span class="co">#&gt; [28] &quot;triflupromazine&quot;  &quot;ziprasidone&quot;      &quot;zuclopenthixol&quot;</span></a></code></pre></div>
 <p>Let’s change a value in the <code>example_oral</code> data so that there is an antipsychotic that is not listed in the <code>gardner2010</code> key: asenapine.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">other_oral &lt;-<span class="st"> </span>example_oral</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">other_oral[<span class="dv">2</span>,<span class="dv">3</span>] &lt;-<span class="st"> &quot;asenapine&quot;</span></a>
@@ -619,6 +635,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </ol>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

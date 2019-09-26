@@ -40,34 +40,40 @@ test_that("to_cpz() produces accurate values with mixed example", {
 
   route <- c(rep("oral", 5), rep("sai", 5), rep("lai", 5))
 
-  q <- c(rep(NA, 10), 14,14,14,14,7)
+  q_label <- c(rep(NA, 10), 14,14,14,14,7)
 
-  example <- data.frame(participant_ID, antipsychotic, dose, q, route,
+  example <- data.frame(participant_ID, antipsychotic, dose, q_label, route,
                              stringsAsFactors = FALSE)
 
   answers <- c(rep(600, 5), rep(100, 5), rep(600, 5))
 
   test <- to_cpz(example, "antipsychotic", "dose", "mixed", 
-                 route_label = "route", q ="q", key = gardner2010_withsai)
+                 route_label = "route", q_label ="q_label",
+                 key = gardner2010_withsai)
 
   expect_equal(answers, test$cpz_eq)
 
   # and below, errors occur with malformed data
 
   expect_error(to_cpz(example, "antipsychotic", "dose", route = "not_route", 
-               route_label = "route", q ="q", key = gardner2010_withsai))
+               route_label = "route", q_label ="q_label",
+               key = gardner2010_withsai))
 
   expect_error(to_cpz(example, "antipsychotic", "dose", route = "mixed", 
-               route_label = "route", q = NULL, key = gardner2010_withsai))
+               route_label = "route", q_label = NULL,
+               key = gardner2010_withsai))
   
   expect_error(to_cpz(example, "antipsychotic", "dose", route = "mixed", 
-               route_label = NULL, q = "q", key = gardner2010_withsai))
+               route_label = NULL, q_label = "q_label",
+               key = gardner2010_withsai))
 
-  q <- c(rep(NA, 10), 14,"notnumber",14,14,7)
-  example <- data.frame(antipsychotic, dose, q, route, stringsAsFactors = FALSE)
+  q_label <- c(rep(NA, 10), 14,"notnumber",14,14,7)
+  example <- data.frame(antipsychotic, dose, q_label, route,
+                        stringsAsFactors = FALSE)
 
   expect_error(to_cpz(example, "antipsychotic", "dose", "mixed", 
-                 route_label = "route", q ="q", key = ggardner2010_withsai))
+                 route_label = "route", q_label ="q_label",
+                 key = ggardner2010_withsai))
 
 
 })
@@ -93,9 +99,9 @@ test_that("to_cpz() produces accurate values with mixed example with
 
   route <- c(rep("oral", 5), rep("sai", 5), rep("lai", 5))
 
-  q <- c(14,14,14,14,7)
+  q_label <- c(14,14,14,14,7)
 
-  dose[11:15] <- dose[11:15]/q
+  dose[11:15] <- dose[11:15]/q_label
 
   example <- data.frame(participant_ID, antipsychotic, dose, route,
                              stringsAsFactors = FALSE)
@@ -103,7 +109,7 @@ test_that("to_cpz() produces accurate values with mixed example with
   answers <- c(rep(600, 5), rep(100, 5), rep(600, 5))
 
   test <- to_cpz(example, "antipsychotic", "dose", "mixed", 
-                 route_label = "route", q =1, key = gardner2010_withsai)
+                 route_label = "route", q_label =1, key = gardner2010_withsai)
 
   expect_equal(answers, test$cpz_eq)
 

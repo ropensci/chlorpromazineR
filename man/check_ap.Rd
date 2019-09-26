@@ -4,11 +4,11 @@
 \alias{check_ap}
 \title{Checks whether antipsychotic names are in the key}
 \usage{
-check_ap(x, key = chlorpromazineR::gardner2010, ap_label, route,
+check_ap(input_data, key = chlorpromazineR::gardner2010, ap_label, route,
   route_label)
 }
 \arguments{
-\item{x}{data.frame with antipsychotic name and dose data}
+\item{input_data}{data.frame with antipsychotic name and dose data}
 
 \item{key}{source of the conversion factors--defaults to Gardner et al. 2010}
 

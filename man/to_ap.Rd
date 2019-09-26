@@ -4,14 +4,14 @@
 \alias{to_ap}
 \title{Calculates equivalent doses}
 \usage{
-to_ap(x, convert_to_ap = "olanzapine", convert_to_route = "oral",
-  ap_label, dose_label, route = "oral",
+to_ap(input_data, convert_to_ap = "olanzapine",
+  convert_to_route = "oral", ap_label, dose_label, route = "oral",
   key = chlorpromazineR::gardner2010, cpz_eq_label = "cpz_eq",
   ref_eq_label = "ap_eq", factor_label = "cpz_conv_factor",
-  route_label = NULL, q = NULL)
+  route_label = NULL, q_label = NULL)
 }
 \arguments{
-\item{x}{data.frame with antipsychotic name and dose data}
+\item{input_data}{data.frame with antipsychotic name and dose data}
 
 \item{convert_to_ap}{name of desired reference antipsychotic}
 
@@ -37,9 +37,9 @@ conversion factors}
 \item{route_label}{if "mixed" route is specified, provide the column that
 stores the route information}
 
-\item{q}{if long-acting injectable doses are included, provide the column
-that stores the injection frequency (days), or only if the doses have already
-been divided, set q = 1.}
+\item{q_label}{if long-acting injectable doses are included, provide the
+column that stores the injection frequency (days), or only if the doses have
+already been divided, set q_label = 1.}
 }
 \value{
 data.frame with new variables storing conversion factor and

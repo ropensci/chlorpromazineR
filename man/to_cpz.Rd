@@ -4,12 +4,13 @@
 \alias{to_cpz}
 \title{Calculates chlorpromazine-equivalent doses}
 \usage{
-to_cpz(x, ap_label, dose_label, route = "oral",
+to_cpz(input_data, ap_label, dose_label, route = "oral",
   key = chlorpromazineR::gardner2010, eq_label = "cpz_eq",
-  factor_label = "cpz_conv_factor", route_label = NULL, q = NULL)
+  factor_label = "cpz_conv_factor", route_label = NULL,
+  q_label = NULL)
 }
 \arguments{
-\item{x}{data.frame with antipsychotic name and dose data}
+\item{input_data}{data.frame with antipsychotic name and dose data}
 
 \item{ap_label}{column in x that stores antipsychotic name}
 
@@ -28,9 +29,9 @@ conversion factors}
 \item{route_label}{if "mixed" route is specified, provide the column that
 stores the route information}
 
-\item{q}{if long-acting injectable doses are included, provide the column
+\item{q_label}{if long-acting injectable doses are included, provide the column
 that stores the injection frequency (days), or only if the doses have already
-been divided, set q = 1.}
+been divided, set q_label = 1.}
 }
 \value{
 data.frame with new variables storing conversion factor and 

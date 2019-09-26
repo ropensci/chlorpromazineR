@@ -11,7 +11,7 @@
 #' antipsychotic medications. See help(gardner2010) for the source reference.
 #' 
 #' @export
-#' @param x data.frame with antipsychotic name and dose data
+#' @param input_data data.frame with antipsychotic name and dose data
 #' @param ap_label column in x that stores antipsychotic name
 #' @param dose_label column in x that stores dose
 #' @param route options include "oral", "sai", "lai" or "mixed"
@@ -22,9 +22,9 @@
 #' conversion factors
 #' @param route_label if "mixed" route is specified, provide the column that
 #' stores the route information
-#' @param q if long-acting injectable doses are included, provide the column
+#' @param q_label if long-acting injectable doses are included, provide the column
 #' that stores the injection frequency (days), or only if the doses have already
-#' been divided, set q = 1.
+#' been divided, set q_label = 1.
 #' @return data.frame with new variables storing conversion factor and 
 #' CPZ-equivalent doses
 #' @family conversion functions
@@ -37,12 +37,15 @@
 #'                            stringsAsFactors = FALSE)
 #' to_cpz(example_oral, ap_label = "antipsychotic", dose_label = "dose", 
 #'        route = "oral")
-to_cpz <- function(x, ap_label, dose_label, route="oral", 
+to_cpz <- function(input_data, ap_label, dose_label, route="oral",
                    key=chlorpromazineR::gardner2010, eq_label="cpz_eq", 
-                   factor_label="cpz_conv_factor", route_label=NULL, q=NULL) {
+                   factor_label="cpz_conv_factor", route_label=NULL,
+                   q_label=NULL) {
+  
+  x <- input_data
   
   check_params(x, ap_label, dose_label, route, eq_label, factor_label,
-               route_label, q)
+               route_label, q_label)
   check_key(key)
   
   if (check_ap(x, key = key, ap_label = ap_label, route = route,
@@ -62,7 +65,8 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
     x[, factor_label] <- as.numeric(key[[route]][x[, ap_label]])
     x[, eq_label] <- apply(x[, c(dose_label, factor_label)], 1, prod)
 
-    if (route == "lai" && q != 1) x[, eq_label] <- x[, eq_label] / x[, q]
+    if (route == "lai" && q_label != 1) x[, eq_label] <- x[, eq_label] /
+                                                                   x[, q_label]
   }
 
   if (route == "mixed") {
@@ -70,20 +74,21 @@ to_cpz <- function(x, ap_label, dose_label, route="oral",
     if (!check_route(x, route_label)) stop("Route column must only include
                                             oral, sai or lai")
         
-    if (is.null(q)) stop("A column name for the LAI frequency, q, (days)
-                          must be specified")
+    if (is.null(q_label)) stop("A column name for the LAI frequency, q_label,
+                                (days) must be specified")
     if (is.null(route_label)) stop("A column name for the route, 
                                    route_label, must be specified.")
-    if (!is.numeric(x[, q])) stop("q column must be numeric for LAIs (days)")
+    if (!is.numeric(x[, q_label])) stop("q_label column must be numeric for
+                                         LAIs (days)")
         
     x <- convert_by_route(x=x, key=key, ap_label=ap_label, 
                           dose_label=dose_label, route_label=route_label, 
                           factor_label=factor_label, eq_label=eq_label)
 
-    if (q != 1) {
+    if (q_label != 1) {
       x[x$route == "lai", ][, eq_label] <-
                                   x[x[, route_label] == "lai", ][, eq_label] /
-                                  x[x[, route_label] == "lai", ][, q]
+                                  x[x[, route_label] == "lai", ][, q_label]
       }
   }
     
@@ -114,7 +119,7 @@ convert_by_route <- function(x, key, ap_label, dose_label, route_label,
 #' the x's variable ap_label are present in the key.
 #' 
 #' @export
-#' @param x data.frame with antipsychotic name and dose data
+#' @param input_data data.frame with antipsychotic name and dose data
 #' @param key source of the conversion factors--defaults to Gardner et al. 2010
 #' @param ap_label column in x that stores antipsychotic name
 #' @param route options include "oral", "sai", "lai" or "mixed"
@@ -132,9 +137,10 @@ convert_by_route <- function(x, key, ap_label, dose_label, route_label,
 #'                            stringsAsFactors = FALSE)
 #' check_ap(example_oral, ap_label = "antipsychotic", route = "oral", 
 #'          key = gardner2010)
-check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route, 
-                     route_label) {
-    
+check_ap <- function(input_data, key=chlorpromazineR::gardner2010, ap_label,
+                     route, route_label) {
+  
+  x <- input_data
   check_key(key)
   
   if (route %in% c("oral", "sai", "lai")) {
@@ -187,7 +193,7 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
 #' factors are specified in the key.
 #'
 #' @export
-#' @param x data.frame with antipsychotic name and dose data
+#' @param input_data data.frame with antipsychotic name and dose data
 #' @param convert_to_ap name of desired reference antipsychotic
 #' @param convert_to_route the route of the desired reference antipsychotic
 #' @param ap_label column in x that stores antipsychotic name
@@ -202,9 +208,9 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
 #' conversion factors
 #' @param route_label if "mixed" route is specified, provide the column that
 #' stores the route information
-#' @param q if long-acting injectable doses are included, provide the column
-#' that stores the injection frequency (days), or only if the doses have already
-#' been divided, set q = 1.
+#' @param q_label if long-acting injectable doses are included, provide the
+#' column that stores the injection frequency (days), or only if the doses have
+#' already been divided, set q_label = 1.
 #' @return data.frame with new variables storing conversion factor and
 #' CPZ-equivalent doses
 #' @family conversion functions
@@ -218,23 +224,24 @@ check_ap <- function(x, key=chlorpromazineR::gardner2010, ap_label, route,
 #'                            stringsAsFactors = FALSE)
 #' to_ap(example_oral, convert_to_ap="olanzapine", convert_to_route="oral",
 #'       ap_label = "antipsychotic", dose_label = "dose", route = "oral")
-to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
-                   ap_label, dose_label, route="oral",
-                   key=chlorpromazineR::gardner2010, cpz_eq_label="cpz_eq",
-                   ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
-                   route_label=NULL, q=NULL) {
+to_ap <- function(input_data, convert_to_ap="olanzapine",
+                  convert_to_route="oral", ap_label, dose_label, route="oral",
+                  key=chlorpromazineR::gardner2010, cpz_eq_label="cpz_eq",
+                  ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
+                  route_label=NULL, q_label=NULL) {
   
-  check_params(x, ap_label, dose_label, route, eq_label=cpz_eq_label,
-               factor_label, route_label, q)
+  check_params(input_data, ap_label, dose_label, route, eq_label=cpz_eq_label,
+               factor_label, route_label, q_label)
   check_key(key)
   
   if (!(convert_to_ap %in% names(key[[convert_to_route]]))) {
       stop("The specified convert_to antipsychotic/route is not in the key")
   }
   
-  out <- to_cpz(x = x, ap_label = ap_label, dose_label = dose_label,
-                route = route, key = key, eq_label = cpz_eq_label,
-                factor_label = factor_label, route_label = route_label, q = q)
+  out <- to_cpz(input_data = input_data, ap_label = ap_label,
+                dose_label = dose_label, route = route, key = key,
+                eq_label = cpz_eq_label, factor_label = factor_label,
+                route_label = route_label, q_label = q_label)
                 
   out[, ref_eq_label] <- out[, cpz_eq_label] /
                               as.numeric(key[[convert_to_route]][convert_to_ap])
@@ -244,7 +251,7 @@ to_ap <- function(x, convert_to_ap="olanzapine", convert_to_route="oral",
 
 #' @noRd
 check_params <- function(x, ap_label, dose_label, route, eq_label,
-                         factor_label, route_label, q) {
+                         factor_label, route_label, q_label) {
   if (!(is.data.frame(x))) stop("x must be a data.frame.")
   
   if (!(ap_label %in% names(x))) stop("ap_label must be a variable in x.")
