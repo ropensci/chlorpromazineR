@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/eebrown/chlorpromazineR",
   "issueTracker": "https://github.com/eebrown/chlorpromazineR/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
