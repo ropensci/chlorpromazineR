@@ -1,6 +1,6 @@
 # chlorpromazineR: Convert antipsychotic doses to chlorpromazine equivalents
 
-[![Travis build status](https://travis-ci.org/eebrown/chlorpromazineR.svg?branch=master)](https://travis-ci.org/eebrown/chlorpromazineR) [![Coverage status](https://codecov.io/gh/eebrown/chlorpromazineR/branch/master/graph/badge.svg)](https://codecov.io/github/eebrown/chlorpromazineR?branch=master) [![DOI](https://zenodo.org/badge/175675220.svg)](https://zenodo.org/badge/latestdoi/175675220) [![](https://badges.ropensci.org/307_status.svg)](https://github.com/ropensci/onboarding/issues/307)
+[![Travis build status](https://travis-ci.org/ropensci/chlorpromazineR.svg?branch=master)](https://travis-ci.org/eebrown/chlorpromazineR) [![Coverage status](https://codecov.io/gh/ropensci/chlorpromazineR/branch/master/graph/badge.svg)](https://codecov.io/github/eebrown/chlorpromazineR?branch=master) [![DOI](https://zenodo.org/badge/175675220.svg)](https://zenodo.org/badge/latestdoi/175675220) [![](https://badges.ropensci.org/307_status.svg)](https://github.com/ropensci/onboarding/issues/307)
 
 Studies investigating or controlling for the impact of antipsychotic medications often need to quantify the amount of medication to which an individual is or has been exposed. As different antipsychotics have different potencies, the task is more complicated than using each medication’s daily dosage in milligrams, for example. `chlorpromazineR` is an R package to calculate dose equivalents for common oral and injectable antipsychotic medications based on conversion factors from the published literature. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
 
@@ -10,13 +10,13 @@ We hope that this package is of use to scientists who do clinical research invol
 * to reduce human error and improve accuracy,
 * and to simplify workflows for large datasets, as from chart reviews of electronic health records.
 
-For further details and usage, please see the [walkthrough vignette](https://htmlpreview.github.io/?https://github.com/eebrown/chlorpromazineR/blob/master/doc/walkthrough.html).
+For further details and usage, please see the [walkthrough vignette](https://htmlpreview.github.io/?https://github.com/ropensci/chlorpromazineR/blob/master/doc/walkthrough.html).
 
 This package is in production and not yet suitable for production use. We welcome feedback--please contact via eb@ericebrown.com or file an issue.
 
 ## Installation
 
-The development version of this package can be installed via the command:  `devtools::install_github("eebrown/chlorpromazineR")`.
+The development version of this package can be installed via the command:  `devtools::install_github("ropensci/chlorpromazineR")`.
 
 ## Usage
 
@@ -65,3 +65,6 @@ The keys included in this package are derived from the following publications. I
     Woods, S. (2003). Chlorpromazine Equivalent Doses for the Newer
     Atypical Antipsychotics. Journal of Clinical Psychiatry. 64(6).
     663-667. <https://doi.org/10.4088/JCP.v64n0607>
+
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
+
