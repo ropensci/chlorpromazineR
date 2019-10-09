@@ -5,12 +5,12 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "chlorpromazineR",
-  "description": "As different antipsychotic medications have different potencies,\n    the doses of different medications cannot be directly compared. Various\n    strategies are used to convert doses into a common reference so that\n    comparison is meaningful. Chlorpromazine (CPZ) has historically been used\n    as a reference medication into which other antipsychotic doses can be\n    converted, as \"chlorpromazine-equivalent doses\". Using conversion keys\n    generated from widely-cited scientific papers (Gardner et. al 2010\n    <https://doi.org/10.1176/appi.ajp.2009.09060802>, Leucht et al. 2016\n    <https://doi.org/10.1093/schbul/sbv167>), antipsychotic doses are converted\n    to CPZ (or any specified antipsychotic) equivalents. The use of the package\n    is described in the included vignette. Not for clinical use.",
+  "description": "As different antipsychotic medications have different potencies,\n    the doses of different medications cannot be directly compared. Various\n    strategies are used to convert doses into a common reference so that\n    comparison is meaningful. Chlorpromazine (CPZ) has historically been used\n    as a reference medication into which other antipsychotic doses can be\n    converted, as \"chlorpromazine-equivalent doses\". Using conversion keys\n    generated from widely-cited scientific papers (Gardner et. al 2010\n    <doi:10.1176/appi.ajp.2009.09060802>, Leucht et al. 2016\n    <doi:10.1093/schbul/sbv167>), antipsychotic doses are converted\n    to CPZ (or any specified antipsychotic) equivalents. The use of the package\n    is described in the included vignette. Not for clinical use.",
   "name": "chlorpromazineR: Convert Antipsychotic Doses to Chlorpromazine Equivalents",
   "codeRepository": "https://github.com/ropensci/chlorpromazineR",
   "issueTracker": "https://github.com/ropensci/chlorpromazineR/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -109,7 +109,7 @@
       "version": ">= 3.5"
     }
   ],
-  "readme": "https://github.com/eebrown/chlorpromazineR/blob/master/README.md",
+  "readme": "https://github.com/ropensci/chlorpromazineR/blob/master/README.md",
   "contIntegration": [
     "https://travis-ci.org/eebrown/chlorpromazineR",
     "https://codecov.io/github/eebrown/chlorpromazineR?branch=master"
@@ -125,5 +125,6 @@
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/307",
     "provider": "http://ropensci.org"
-  }
+  },
+  "releaseNotes": "https://github.com/ropensci/chlorpromazineR/blob/master/NEWS.md"
 }
