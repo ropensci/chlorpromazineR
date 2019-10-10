@@ -11,3 +11,5 @@
 ^.buildconfig
 ^codemeta\.json$
 ^\.github$
+^CRAN-RELEASE$
+^cran-comments\.md$
