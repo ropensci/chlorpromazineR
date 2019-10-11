@@ -16,7 +16,9 @@ This package is in production and not yet suitable for production use. We welcom
 
 ## Installation
 
-The development version of this package can be installed via the command:  `devtools::install_github("ropensci/chlorpromazineR")`.
+The CRAN release version (recommended) can be installed via the command: `install.packages("chlorpromazineR")`.
+
+The development version of this package can be installed via the command: `devtools::install_github("ropensci/chlorpromazineR")`.
 
 ## Usage
 
@@ -39,9 +41,7 @@ This package is not for clinical use. The authors assume no liability. All work 
 
 ## Licence
 
-    Copyright (C) 2019 Eric E. Brown
-
-    This software is licensed under the GPL-3, please see the LICENSE file.
+Copyright (C) 2019 Eric E. Brown. This software is licensed under the GPL-3.
 
 ## Citation
 

@@ -1,6 +1,6 @@
 Package: chlorpromazineR
 Title: Convert Antipsychotic Doses to Chlorpromazine Equivalents
-Version: 0.1.2
+Version: 0.1.2.9999
 Authors@R: 
     c(person("Eric", "Brown", 
              role = c("aut", "cre"),
