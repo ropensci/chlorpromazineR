@@ -24,7 +24,8 @@ fluphenazine enanthate and decanoate).
 trim_key(gardner2010)
 }
 \seealso{
-Other key functions: \code{\link{add_key}},
-  \code{\link{check_key}}
+Other key functions: 
+\code{\link{add_key}()},
+\code{\link{check_key}()}
 }
 \concept{key functions}

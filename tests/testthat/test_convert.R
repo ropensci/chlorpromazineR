@@ -93,7 +93,7 @@ test_that("to_cpz() produces accurate values with mixed example with
                      "Fluphenazine decanoate", "Fluphenazine enanthate", 
                      "Fluspirilene")
 
-  dose <- c(700, 30, 5, 600, 60,
+  original_dose <- c(700, 30, 5, 600, 60,
             100, 40, 5, 5, 25,
             300, 40, 25, 25, 6)
 
@@ -101,6 +101,7 @@ test_that("to_cpz() produces accurate values with mixed example with
 
   q_label <- c(14,14,14,14,7)
 
+  dose <- original_dose
   dose[11:15] <- dose[11:15]/q_label
 
   example <- data.frame(participant_ID, antipsychotic, dose, route,
@@ -112,6 +113,28 @@ test_that("to_cpz() produces accurate values with mixed example with
                  route_label = "route", q_label =1, key = gardner2010_withsai)
 
   expect_equal(answers, test$cpz_eq)
+
+  example_lai <- data.frame(ID = participant_ID[11:15], 
+                            ap = antipsychotic[11:15], 
+                            dose = original_dose[11:15], route = route[11:15],
+                            q = q_label, stringsAsFactors = FALSE)
+
+  test_lai <- to_cpz(example_lai, ap_label="ap", dose_label="dose",
+                     route="lai", q_label = "q", key = gardner2010_withsai)
+
+  expect_equal(answers[11:15], test_lai$cpz_eq)
+
+  faster_q <- q_label / 2
+
+  strong_lai <- data.frame(ID = participant_ID[11:15], 
+                            ap = antipsychotic[11:15], 
+                            dose = original_dose[11:15], route = route[11:15],
+                            q = faster_q, stringsAsFactors = FALSE)
+
+  test_strong_lai <- to_cpz(strong_lai, ap_label="ap", dose_label="dose",
+                     route="lai", q_label = "q", key = gardner2010_withsai)
+
+  expect_equal(answers[11:15] * 2, test_strong_lai$cpz_eq)
 
 })
 
@@ -128,12 +151,14 @@ test_that("to_ap() rejects invalid reference antipsychotics and works", {
   expect_error(to_ap(example_oral, convert_to_ap = "olANZ",
                      convert_to_route = "oral", ap_label = "antipsychotic",
                      dose_label = "dose", route = "oral",
-                     key = chlorpromazineR::gardner2010))
+                     key = chlorpromazineR::gardner2010),
+                "convert_to antipsychotic/route is not in the key")
   
   expect_error(to_ap(example_oral, convert_to_ap = "olanzapine",
                      convert_to_route = "nai", ap_label = "antipsychotic",
                      dose_label = "dose", route = "oral",
-                     key = chlorpromazineR::gardner2010))
+                     key = chlorpromazineR::gardner2010),
+                "convert_to antipsychotic/route is not in the key")
   
   test_olanz <- to_ap(example_oral, convert_to_ap = "olanzapine",
                    convert_to_route = "oral", ap_label = "antipsychotic",
@@ -141,4 +166,28 @@ test_that("to_ap() rejects invalid reference antipsychotics and works", {
                    key = chlorpromazineR::gardner2010)
                    
   expect_equal(test_olanz$ap_eq, olanz_answers)
+})
+
+test_that("to_ap() works with sai", {
+
+  antipsychotic <- c("chlorpromazine HCl", "olanzapine tartrate", 
+                     "haloperidol lactate", "perphenazine USP")
+  dose <- c(50, 5, 2.5, 5)
+  example_sai <- data.frame(antipsychotic, dose, stringsAsFactors = FALSE)
+  
+  sai_answers <- c(2.5, 2.5, 2.5, 2.5)
+
+  test_sai <- to_ap(example_sai, convert_to_ap = "haloperidol lactate",
+                   convert_to_route = "sai", ap_label = "antipsychotic",
+                   dose_label = "dose", route = "sai",
+                   key = chlorpromazineR::gardner2010_withsai)
+
+  expect_equal(test_sai$ap_eq, sai_answers)
+
+  expect_error(to_ap(example_sai, convert_to_ap = "haloperidol lactate",
+                   ap_label = "antipsychotic",
+                   dose_label = "dose", route = "sai",
+                   key = chlorpromazineR::gardner2010_withsai), 
+               "convert_to_route must be \"sai\" as well")
+
 })

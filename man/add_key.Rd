@@ -27,7 +27,8 @@ antipsychotics from the "added" key that are not in the "base" key.
 add_key(gardner2010, leucht2016, trim = TRUE)
 }
 \seealso{
-Other key functions: \code{\link{check_key}},
-  \code{\link{trim_key}}
+Other key functions: 
+\code{\link{check_key}()},
+\code{\link{trim_key}()}
 }
 \concept{key functions}

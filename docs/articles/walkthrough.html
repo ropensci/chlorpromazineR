@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chlorpromazineR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9999</span>
       </span>
     </div>
 
@@ -54,9 +54,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/exampletable.html">Examples produced by chlorpromazineR</a>
+    </li>
+    <li>
       <a href="../articles/walkthrough.html">Using chlorpromazineR to calculate chlorpromazine-equivalent doses</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -82,7 +88,7 @@
       <h1>Using chlorpromazineR to calculate chlorpromazine-equivalent doses</h1>
                         <h4 class="author">Eric Brown, Parita Shah, Julia Kim</h4>
             
-            <h4 class="date">2019-10-09</h4>
+            <h4 class="date">2020-02-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/chlorpromazineR/blob/master/vignettes/walkthrough.Rmd"><code>vignettes/walkthrough.Rmd</code></a></small>
       <div class="hidden name"><code>walkthrough.Rmd</code></div>
@@ -211,32 +217,32 @@
 <p>The function <code><a href="../reference/to_cpz.html">to_cpz()</a></code> is used similarly as above, with the extra variable names (route_label, q) specified:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/to_cpz.html">to_cpz</a></span>(example_mixed, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">"mixed"</span>, <span class="dt">route_label =</span> <span class="st">"route"</span>, <span class="dt">q_label =</span> <span class="st">"q"</span>, <span class="dt">key=</span>gardner2010_withsai) </a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; 3             P03  30               quetiapine 300.0 NA  oral</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; 4             P04  60              ziprasidone  60.0 NA  oral</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; 5             P09  42       chlorpromazine hcl 100.0 NA   sai</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 6             P10  29             loxapine hcl  50.0 NA   sai</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; 7             P11  30      olanzapine tartrate  10.0 NA   sai</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; 8             P12  60      olanzapine tartrate   5.0 NA   sai</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; 9             P05  42 zuclopenthixol decanoate 200.0 14   lai</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; 10            P06  29 zuclopenthixol decanoate 200.0 21   lai</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 11            P07  30   perphenazine enanthate  50.0 14   lai</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;    cpz_conv_factor cpz_eq</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 1            30.00    300</span></a>
-<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 2            30.00    375</span></a>
-<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 3             0.80    240</span></a>
-<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 4             3.75    225</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 5             1.00    100</span></a>
-<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt; 6             4.00    200</span></a>
-<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt; 7            10.00    100</span></a>
-<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt; 8            10.00     50</span></a>
-<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt; 9            42.00    600</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt; 10           42.00    400</span></a>
-<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt; 11           84.00    300</span></a>
-<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt; 12          700.00    300</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route cpz_conv_factor</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral           30.00</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral           30.00</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; 3             P03  30               quetiapine 300.0 NA  oral            0.80</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; 4             P04  60              ziprasidone  60.0 NA  oral            3.75</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; 5             P09  42       chlorpromazine hcl 100.0 NA   sai            1.00</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 6             P10  29             loxapine hcl  50.0 NA   sai            4.00</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; 7             P11  30      olanzapine tartrate  10.0 NA   sai           10.00</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; 8             P12  60      olanzapine tartrate   5.0 NA   sai           10.00</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; 9             P05  42 zuclopenthixol decanoate 200.0 14   lai           42.00</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; 10            P06  29 zuclopenthixol decanoate 200.0 21   lai           42.00</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 11            P07  30   perphenazine enanthate  50.0 14   lai           84.00</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai          700.00</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;    cpz_eq</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 1     300</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 2     375</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 3     240</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 4     225</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 5     100</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt; 6     200</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt; 7     100</span></a>
+<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt; 8      50</span></a>
+<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt; 9     600</span></a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt; 10    400</span></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt; 11    300</span></a>
+<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt; 12    300</span></a></code></pre></div>
 </div>
 <div id="participants-on-multiple-medications" class="section level3">
 <h3 class="hasAnchor">
@@ -324,16 +330,14 @@
 <a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 4 (LAI) were added to the base key (bromperidol, flupentixol, olanzapine, paliperidone)</span></a>
 <a class="sourceLine" id="cb14-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb14-18" data-line-number="18"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(gardner_leucht<span class="op">$</span>sai)</a>
-<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt;  [1] "acepromazine"     "aripiprazole"     "bromperidol"     </span></a>
-<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt;  [4] "chlorpromazine"   "chlorprothixene"  "clopenthixol"    </span></a>
-<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt;  [7] "clotiapine"       "clozapine"        "dixyrazine"      </span></a>
-<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt; [10] "droperidol"       "haloperidol"      "levomepromazine" </span></a>
-<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; [13] "melperone"        "mesoridazine"     "moperone"        </span></a>
-<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt; [16] "olanzapine"       "perazine"         "periciazine"     </span></a>
-<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; [19] "perphenazine"     "prochlorperazine" "promazine"       </span></a>
-<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; [22] "prothipendyl"     "remoxipride"      "sulpiride"       </span></a>
-<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="co">#&gt; [25] "thioproperazine"  "tiapride"         "trifluoperazine" </span></a>
-<a class="sourceLine" id="cb14-28" data-line-number="28"><span class="co">#&gt; [28] "triflupromazine"  "ziprasidone"      "zuclopenthixol"</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt;  [1] "acepromazine"     "aripiprazole"     "bromperidol"      "chlorpromazine"  </span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt;  [5] "chlorprothixene"  "clopenthixol"     "clotiapine"       "clozapine"       </span></a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt;  [9] "dixyrazine"       "droperidol"       "haloperidol"      "levomepromazine" </span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt; [13] "melperone"        "mesoridazine"     "moperone"         "olanzapine"      </span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; [17] "perazine"         "periciazine"      "perphenazine"     "prochlorperazine"</span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt; [21] "promazine"        "prothipendyl"     "remoxipride"      "sulpiride"       </span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; [25] "thioproperazine"  "tiapride"         "trifluoperazine"  "triflupromazine" </span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; [29] "ziprasidone"      "zuclopenthixol"</span></a></code></pre></div>
 <p>Let’s change a value in the <code>example_oral</code> data so that there is an antipsychotic that is not listed in the <code>gardner2010</code> key: asenapine.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">other_oral &lt;-<span class="st"> </span>example_oral</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">other_oral[<span class="dv">2</span>,<span class="dv">3</span>] &lt;-<span class="st"> "asenapine"</span></a>

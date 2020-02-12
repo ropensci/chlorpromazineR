@@ -22,9 +22,9 @@
 #' conversion factors
 #' @param route_label if "mixed" route is specified, provide the column that
 #' stores the route information
-#' @param q_label if long-acting injectable doses are included, provide the column
-#' that stores the injection frequency (days), or only if the doses have already
-#' been divided, set q_label = 1.
+#' @param q_label if long-acting injectable doses are included, provide the 
+#' column that stores the injection frequency (days), or only if the doses have
+#' already been divided, set q_label = 1.
 #' @return data.frame with new variables storing conversion factor and 
 #' CPZ-equivalent doses
 #' @family conversion functions
@@ -65,8 +65,15 @@ to_cpz <- function(input_data, ap_label, dose_label, route="oral",
     x[, factor_label] <- as.numeric(key[[route]][x[, ap_label]])
     x[, eq_label] <- apply(x[, c(dose_label, factor_label)], 1, prod)
 
-    if (route == "lai" && q_label != 1) x[, eq_label] <- x[, eq_label] /
-                                                                   x[, q_label]
+    if (route == "lai") {
+      if (is.null(q_label)) {
+        stop("q_label must be specified for lai route.")
+      }
+      if (q_label != 1) {
+        x[, eq_label] <- x[, eq_label] / x[, q_label]
+    }
+  } 
+                                                                   
   }
 
   if (route == "mixed") {
@@ -230,12 +237,24 @@ to_ap <- function(input_data, convert_to_ap="olanzapine",
                   ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
                   route_label=NULL, q_label=NULL) {
   
+  if (route == "sai") {
+    if (convert_to_route != "sai") {
+      stop("For \"sai\" route, convert_to_route must be \"sai\" as well.")
+    }
+  }
+
   check_params(input_data, ap_label, dose_label, route, eq_label=cpz_eq_label,
                factor_label, route_label, q_label)
   check_key(key)
   
   if (!(convert_to_ap %in% names(key[[convert_to_route]]))) {
-      stop("The specified convert_to antipsychotic/route is not in the key")
+    stop("The specified convert_to antipsychotic/route is not in the key")
+  }
+
+  if (route == "sai") {
+    if (convert_to_route != "sai") {
+      stop("For \"sai\" route, convert_to_route must be \"sai\" as well.")
+    }
   }
   
   out <- to_cpz(input_data = input_data, ap_label = ap_label,
@@ -271,7 +290,7 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
       stop("route_label should be null if route is not mixed.")
     }
   }
-  
+
   if (!(is.character(eq_label))) {
     stop("eq_label/cpz_eq_label must be a character string.")
   }

@@ -73,7 +73,7 @@ factors are specified in the key." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chlorpromazineR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9999</span>
       </span>
     </div>
 
@@ -96,9 +96,15 @@ factors are specified in the key." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/exampletable.html">Examples produced by chlorpromazineR</a>
+    </li>
+    <li>
       <a href="../articles/walkthrough.html">Using chlorpromazineR to calculate chlorpromazine-equivalent doses</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -134,11 +140,20 @@ arbitrary antipsychotic specified as a string to convert_to_ap. Conversion
 factors are specified in the key.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>to_ap</span>(<span class='no'>input_data</span>, <span class='kw'>convert_to_ap</span> <span class='kw'>=</span> <span class='st'>"olanzapine"</span>,
-  <span class='kw'>convert_to_route</span> <span class='kw'>=</span> <span class='st'>"oral"</span>, <span class='no'>ap_label</span>, <span class='no'>dose_label</span>, <span class='kw'>route</span> <span class='kw'>=</span> <span class='st'>"oral"</span>,
-  <span class='kw'>key</span> <span class='kw'>=</span> <span class='kw pkg'>chlorpromazineR</span><span class='kw ns'>::</span><span class='no'><a href='https://docs.ropensci.org/chlorpromazineR/reference/gardner2010.html'>gardner2010</a></span>, <span class='kw'>cpz_eq_label</span> <span class='kw'>=</span> <span class='st'>"cpz_eq"</span>,
-  <span class='kw'>ref_eq_label</span> <span class='kw'>=</span> <span class='st'>"ap_eq"</span>, <span class='kw'>factor_label</span> <span class='kw'>=</span> <span class='st'>"cpz_conv_factor"</span>,
-  <span class='kw'>route_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>q_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>to_ap</span>(
+  <span class='no'>input_data</span>,
+  <span class='kw'>convert_to_ap</span> <span class='kw'>=</span> <span class='st'>"olanzapine"</span>,
+  <span class='kw'>convert_to_route</span> <span class='kw'>=</span> <span class='st'>"oral"</span>,
+  <span class='no'>ap_label</span>,
+  <span class='no'>dose_label</span>,
+  <span class='kw'>route</span> <span class='kw'>=</span> <span class='st'>"oral"</span>,
+  <span class='kw'>key</span> <span class='kw'>=</span> <span class='kw pkg'>chlorpromazineR</span><span class='kw ns'>::</span><span class='no'><a href='https://docs.ropensci.org/chlorpromazineR/reference/gardner2010.html'>gardner2010</a></span>,
+  <span class='kw'>cpz_eq_label</span> <span class='kw'>=</span> <span class='st'>"cpz_eq"</span>,
+  <span class='kw'>ref_eq_label</span> <span class='kw'>=</span> <span class='st'>"ap_eq"</span>,
+  <span class='kw'>factor_label</span> <span class='kw'>=</span> <span class='st'>"cpz_conv_factor"</span>,
+  <span class='kw'>route_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>q_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,7 +220,8 @@ already been divided, set q_label = 1.</p></td>
 CPZ-equivalent doses</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other conversion functions: <code><a href='to_cpz.html'>to_cpz</a></code></p></div>
+    <div class='dont-index'><p>Other conversion functions: 
+<code><a href='to_cpz.html'>to_cpz</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>participant_ID</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"P01"</span>, <span class='st'>"P02"</span>, <span class='st'>"P03"</span>, <span class='st'>"P04"</span>)

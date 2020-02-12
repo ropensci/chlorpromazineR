@@ -4,11 +4,20 @@
 \alias{to_ap}
 \title{Calculates equivalent doses}
 \usage{
-to_ap(input_data, convert_to_ap = "olanzapine",
-  convert_to_route = "oral", ap_label, dose_label, route = "oral",
-  key = chlorpromazineR::gardner2010, cpz_eq_label = "cpz_eq",
-  ref_eq_label = "ap_eq", factor_label = "cpz_conv_factor",
-  route_label = NULL, q_label = NULL)
+to_ap(
+  input_data,
+  convert_to_ap = "olanzapine",
+  convert_to_route = "oral",
+  ap_label,
+  dose_label,
+  route = "oral",
+  key = chlorpromazineR::gardner2010,
+  cpz_eq_label = "cpz_eq",
+  ref_eq_label = "ap_eq",
+  factor_label = "cpz_conv_factor",
+  route_label = NULL,
+  q_label = NULL
+)
 }
 \arguments{
 \item{input_data}{data.frame with antipsychotic name and dose data}
@@ -64,6 +73,7 @@ to_ap(example_oral, convert_to_ap="olanzapine", convert_to_route="oral",
       ap_label = "antipsychotic", dose_label = "dose", route = "oral")
 }
 \seealso{
-Other conversion functions: \code{\link{to_cpz}}
+Other conversion functions: 
+\code{\link{to_cpz}()}
 }
 \concept{conversion functions}

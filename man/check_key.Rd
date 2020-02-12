@@ -21,7 +21,8 @@ when creating custom keys or modifying included keys.
 check_key(gardner2010)
 }
 \seealso{
-Other key functions: \code{\link{add_key}},
-  \code{\link{trim_key}}
+Other key functions: 
+\code{\link{add_key}()},
+\code{\link{trim_key}()}
 }
 \concept{key functions}
