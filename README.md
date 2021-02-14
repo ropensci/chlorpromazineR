@@ -23,7 +23,7 @@ The development version of this package can be installed via the command: `devto
 
 ## Usage
 
-Once installed, load package with `library(chlorpromazineR)`. The package's main conversion functions are documented and usage and examples can be seen with `help(to_cpz)` and `help(to_ap)`.
+Once installed, load package with `library(chlorpromazineR)`. The package's main conversion functions are documented and usage and examples can be seen with `help(to_cpz)` and `help(to_ap)`. It is strongly recommended to read the articles from which the keys are derived, and to verify that the program's output is producing results as expected. This package facilitates bulk conversion, but should be verified to ensure it produces the results as expected.
 
 ### Convert data to chlorpromazine equivalents
 
