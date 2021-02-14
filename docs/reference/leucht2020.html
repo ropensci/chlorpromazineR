@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • chlorpromazineR</title>
+<title>Antipsychotic equivalent key from Leucht et al. 2020 data — leucht2020 • chlorpromazineR</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Antipsychotic equivalent key from Leucht et al. 2020 data — leucht2020" />
+<meta property="og:description" content="A list of antipsychotics and their olanzapine-equivalent doses, generated
+from the following file included with the package:
+system.file(&quot;extdata&quot;, &quot;leucht2020.csv&quot;, package=&quot;chlorpromazineR&quot;)." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -125,20 +128,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Antipsychotic equivalent key from Leucht et al. 2020 data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/chlorpromazineR/blob/master/R/key_data.R'><code>R/key_data.R</code></a></small>
+    <div class="hidden name"><code>leucht2020.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="exampletable.html">Examples produced by chlorpromazineR</a></dt>
-        <dd></dt>
-        <dt><a href="walkthrough.html">Using chlorpromazineR to calculate chlorpromazine-equivalent doses</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p>A list of antipsychotics and their olanzapine-equivalent doses, generated
+from the following file included with the package:
+system.file("extdata", "leucht2020.csv", package="chlorpromazineR").</p>
     </div>
+
+    <pre class="usage"><span class='va'>leucht2020</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A named list of 3 named lists (1 for each route) and each sub-list
+contains the conversion factors for each antipsychotic. The 3 top-level lists
+are named `oral`, `sai`, and `lai` (route), and the lists they contain have
+names corresponding to the antipsychotic, e.g. `olanzapine`.</p>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Leucht, S., Crippa, A., Siafis, S., Patel, M., Orsini, N. &amp; Davis,
+J. M. (2020). Dose-Response Meta-Analysis of Antipsychotic Drugs for Acute
+Schizophrenia. American Journal of Psychiatry. 117(4).
+&lt;https://doi.org/10.1176/appi.ajp.2019.19010034&gt;</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This reference does not include chlorpromazine, so the conversion from
+leucht2016 is implied (i.e. chlorpromazine = olanzapine * 30).</p>
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

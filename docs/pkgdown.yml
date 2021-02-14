@@ -1,7 +1,8 @@
-pandoc: 2.2.3.2
-pkgdown: 1.4.1
+pandoc: 2.11.2
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   exampletable: exampletable.html
   walkthrough: walkthrough.html
+last_built: 2021-02-14T04:41Z
 

@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Using chlorpromazineR to calculate chlorpromazine-equivalent doses • chlorpromazineR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Using chlorpromazineR to calculate chlorpromazine-equivalent doses">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="chlorpromazineR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -67,8 +67,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropensci/chlorpromazineR">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ropensci/chlorpromazineR/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -82,13 +82,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="walkthrough_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Using chlorpromazineR to calculate chlorpromazine-equivalent doses</h1>
+      <h1 data-toc-skip>Using chlorpromazineR to calculate chlorpromazine-equivalent doses</h1>
                         <h4 class="author">Eric Brown, Parita Shah, Julia Kim</h4>
             
-            <h4 class="date">2020-02-11</h4>
+            <h4 class="date">2021-02-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/chlorpromazineR/blob/master/vignettes/walkthrough.Rmd"><code>vignettes/walkthrough.Rmd</code></a></small>
       <div class="hidden name"><code>walkthrough.Rmd</code></div>
@@ -103,7 +103,7 @@
 <p>Studies investigating or controlling for the impact of antipsychotic medications often need to quantify the amount of medication to which an individual is or has been exposed. As different antipsychotics have different potencies, the task is more complicated than using each medication’s daily dosage in milligrams, for example. Further complicating the matter is that antipsychotic medications have different formulations including oral medications, and injectable formulations that are either short- or long-acting (also called depots). A commonly used strategy to account for the differing potencies is to calculate the equivalent dose of each medication in terms of a reference medication.</p>
 <p>Chlorpromazine (CPZ) is an antipsychotic medication most often used for this purpose. A CPZ-equivalent dose is typically defined as a dose of antipsychotic that is comparable to 100 mg of CPZ.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The total daily dose of a medication expressed in milligrams of CPZ per day is the daily-dose equivalent, and is commonly utilized in both clinical and research settings.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Both strategies allow the dose of one medication, such as quetiapine, to be expressed in equivalents of chlorpromazine.</p>
 <p>There are various approaches to defining dose equivalents, including the “defined daily doses” (Methodology WCCfDS, 2013), and Delphie methods.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Defined daily doses, which are produced by the World Health Organization, provide an estimate of the average maintenance antipsychotic daily dose required for a 70-kg adult with psychosis.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> On the other hand, the Delphi method is an approach to reach a consensus to antipsychotic dose equivalents based on a two-stage, questionnaire-based survey of experts.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> Using the doses defined through these methods, equivalency ratio for each antipsychotic can be calculated, with CPZ as a reference medication (i.e. x mg/day of antipsychotic A is equal to 1 mg/day CPZ).</p>
-<p>While there is no single standard method to defining dose equivalence, the International Consensus Study by Gardner et al. (2010), which used the Delphi method,<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> is a widely used resource to calculate equivalency ratios.</p>
+<p>While there is no single standard method to defining dose equivalence, the International Consensus Study by Gardner et al. (2010), which used the Delphi method,<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> is a widely used resource to calculate equivalency ratios.</p>
 </div>
 <div id="chlorpromaziner" class="section level2">
 <h2 class="hasAnchor">
@@ -127,15 +127,18 @@
 <h3 class="hasAnchor">
 <a href="#key-data-structure" class="anchor"></a>Key data structure</h3>
 <p>The conversion factors are stored in “keys”. A key is a <code>list</code> object containing 3 named sub-<code>lists</code>: <code>oral</code>, <code>sai</code> and <code>lai</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(gardner2010)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; [1] "oral" "sai"  "lai"</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">gardner2010</span><span class="op">)</span>
+<span class="co">#&gt; [1] "oral" "sai"  "lai"</span></code></pre></div>
 <p>Each sub-<code>list</code> is itself a named list where the names are the antipsychotic names, and the values are the conversion factors.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(gardner2010<span class="op">$</span>oral)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; [1] "chlorpromazine" "amisulpride"    "aripiprazole"   "benperidol"    </span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; [5] "clopenthixol"</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">gardner2010</span><span class="op">$</span><span class="va">oral</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>
+<span class="co">#&gt; [1] "chlorpromazine" "amisulpride"    "aripiprazole"   "benperidol"    </span>
+<span class="co">#&gt; [5] "clopenthixol"</span></code></pre></div>
 <p>The conversion factor is what a given dose needs to be multiplied by to get the CPZ-equivalent.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">gardner2010<span class="op">$</span>oral<span class="op">$</span>aripiprazole</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; [1] 20</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gardner2010</span><span class="op">$</span><span class="va">oral</span><span class="op">$</span><span class="va">aripiprazole</span>
+<span class="co">#&gt; [1] 20</span></code></pre></div>
 <p>For example, with aripiprazole, the value is 20, meaning that the CPZ-equivalent dose of aripiprazole 5 mg is <code>5 * 20 = 100</code>.</p>
 </div>
 </div>
@@ -146,28 +149,30 @@
 <h3 class="hasAnchor">
 <a href="#example-for-one-route-only" class="anchor"></a>Example for one route only</h3>
 <p>To demonstrate with a simple example using only oral medications, consider the following data:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">participant_ID &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">age &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">42</span>, <span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">60</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">antipsychotic &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"olanzapine"</span>, <span class="st">"olanzapine"</span>, <span class="st">"quetiapine"</span>, <span class="st">"ziprasidone"</span>)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">dose &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">10</span>, <span class="fl">12.5</span>, <span class="dv">300</span>, <span class="dv">60</span>)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">example_oral &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(participant_ID, age, antipsychotic, dose, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">                           <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">example_oral</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;   participant_ID age antipsychotic  dose</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; 1            P01  42    olanzapine  10.0</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 2            P02  29    olanzapine  12.5</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 3            P03  30    quetiapine 300.0</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 4            P04  60   ziprasidone  60.0</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">participant_ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span><span class="op">)</span>
+<span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">29</span>, <span class="fl">30</span>, <span class="fl">60</span><span class="op">)</span>
+<span class="va">antipsychotic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"olanzapine"</span>, <span class="st">"olanzapine"</span>, <span class="st">"quetiapine"</span>, <span class="st">"ziprasidone"</span><span class="op">)</span>
+<span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12.5</span>, <span class="fl">300</span>, <span class="fl">60</span><span class="op">)</span>
+<span class="va">example_oral</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">participant_ID</span>, <span class="va">age</span>, <span class="va">antipsychotic</span>, <span class="va">dose</span>, 
+                           stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="va">example_oral</span>
+<span class="co">#&gt;   participant_ID age antipsychotic  dose</span>
+<span class="co">#&gt; 1            P01  42    olanzapine  10.0</span>
+<span class="co">#&gt; 2            P02  29    olanzapine  12.5</span>
+<span class="co">#&gt; 3            P03  30    quetiapine 300.0</span>
+<span class="co">#&gt; 4            P04  60   ziprasidone  60.0</span></code></pre></div>
 <p>In this case we have <code>example_oral</code>, a <code>data.frame</code>, with one row per participant, and a variable for the antipsychotic name, labeled <code>antipsychotic</code> and a variable for the dose, named <code>dose</code>.</p>
 <p>To calculate CPZ-equivalent doses, use the <code><a href="../reference/to_cpz.html">to_cpz()</a></code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/to_cpz.html">to_cpz</a></span>(example_oral, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">"oral"</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;   participant_ID age antipsychotic  dose cpz_conv_factor cpz_eq</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 1            P01  42    olanzapine  10.0           30.00    300</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 2            P02  29    olanzapine  12.5           30.00    375</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 3            P03  30    quetiapine 300.0            0.80    240</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 4            P04  60   ziprasidone  60.0            3.75    225</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/to_cpz.html">to_cpz</a></span><span class="op">(</span><span class="va">example_oral</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, dose_label <span class="op">=</span> <span class="st">"dose"</span>, 
+       route <span class="op">=</span> <span class="st">"oral"</span><span class="op">)</span>
+<span class="co">#&gt;   participant_ID age antipsychotic  dose cpz_conv_factor cpz_eq</span>
+<span class="co">#&gt; 1            P01  42    olanzapine  10.0           30.00    300</span>
+<span class="co">#&gt; 2            P02  29    olanzapine  12.5           30.00    375</span>
+<span class="co">#&gt; 3            P03  30    quetiapine 300.0            0.80    240</span>
+<span class="co">#&gt; 4            P04  60   ziprasidone  60.0            3.75    225</span></code></pre></div>
 <p>Notice that 2 new columns appear, which are named based on the default arguments in <code><a href="../reference/to_cpz.html">to_cpz()</a></code>. The CPZ-equivalent doses are in the column labeled <code>cpz_eq</code>.</p>
 </div>
 <div id="example-for-data-with-oral-and-injectable-routes" class="section level3">
@@ -177,72 +182,74 @@
 <p>In this case, more information is required to calculate the equivalent doses. Specifically, a variable to indicate the route (“oral”, “sai”, or “lai”) is required, and if long-acting injectables are used, then the injection frequency is also required.*</p>
 <p>*If the doses have already manually been divided by the frequency, then setting the <code>q</code> parameter to <code>1</code> will forgo the need to specify a variable storing the frequency information.</p>
 <p>Here is some example data:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">example_lai &lt;-<span class="st"> </span>example_oral</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">example_lai<span class="op">$</span>participant_ID &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"P05"</span>, <span class="st">"P06"</span>, <span class="st">"P07"</span>, <span class="st">"P08"</span>)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">example_lai<span class="op">$</span>antipsychotic &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"zuclopenthixol decanoate"</span>, </a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">                               <span class="st">"zuclopenthixol decanoate"</span>, </a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">                               <span class="st">"perphenazine enanthate"</span>, <span class="st">"fluspirilene"</span>)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">example_lai<span class="op">$</span>q &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">14</span>, <span class="dv">21</span>, <span class="dv">14</span>, <span class="dv">14</span>)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">example_lai<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">200</span>, <span class="dv">200</span>, <span class="dv">50</span>, <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">example_sai &lt;-<span class="st"> </span>example_oral</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">example_sai<span class="op">$</span>participant_ID &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"P09"</span>, <span class="st">"P10"</span>, <span class="st">"P11"</span>, <span class="st">"P12"</span>)</a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">example_sai<span class="op">$</span>antipsychotic &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Chlorpromazine HCl"</span>, <span class="st">"Loxapine HCl"</span>, </a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">                               <span class="st">"Olanzapine tartrate"</span>, <span class="st">"Olanzapine tartrate"</span>)</a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">example_sai<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">100</span>, <span class="dv">50</span>, <span class="dv">10</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">example_oral<span class="op">$</span>q &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">example_sai<span class="op">$</span>q &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">example_oral<span class="op">$</span>route &lt;-<span class="st"> "oral"</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">example_lai<span class="op">$</span>route &lt;-<span class="st"> "lai"</span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">example_sai<span class="op">$</span>route &lt;-<span class="st"> "sai"</span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">example_mixed &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(example_oral, example_sai, example_lai)</a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24">example_mixed</a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt; 3             P03  30               quetiapine 300.0 NA  oral</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt; 4             P04  60              ziprasidone  60.0 NA  oral</span></a>
-<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt; 5             P09  42       Chlorpromazine HCl 100.0 NA   sai</span></a>
-<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt; 6             P10  29             Loxapine HCl  50.0 NA   sai</span></a>
-<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt; 7             P11  30      Olanzapine tartrate  10.0 NA   sai</span></a>
-<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt; 8             P12  60      Olanzapine tartrate   5.0 NA   sai</span></a>
-<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt; 9             P05  42 zuclopenthixol decanoate 200.0 14   lai</span></a>
-<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt; 10            P06  29 zuclopenthixol decanoate 200.0 21   lai</span></a>
-<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt; 11            P07  30   perphenazine enanthate  50.0 14   lai</span></a>
-<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_lai</span> <span class="op">&lt;-</span> <span class="va">example_oral</span>
+<span class="va">example_lai</span><span class="op">$</span><span class="va">participant_ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P05"</span>, <span class="st">"P06"</span>, <span class="st">"P07"</span>, <span class="st">"P08"</span><span class="op">)</span>
+<span class="va">example_lai</span><span class="op">$</span><span class="va">antipsychotic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"zuclopenthixol decanoate"</span>, 
+                               <span class="st">"zuclopenthixol decanoate"</span>, 
+                               <span class="st">"perphenazine enanthate"</span>, <span class="st">"fluspirilene"</span><span class="op">)</span>
+<span class="va">example_lai</span><span class="op">$</span><span class="va">q</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">21</span>, <span class="fl">14</span>, <span class="fl">14</span><span class="op">)</span>
+<span class="va">example_lai</span><span class="op">$</span><span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">200</span>, <span class="fl">50</span>, <span class="fl">6</span><span class="op">)</span>
+
+<span class="va">example_sai</span> <span class="op">&lt;-</span> <span class="va">example_oral</span>
+<span class="va">example_sai</span><span class="op">$</span><span class="va">participant_ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P09"</span>, <span class="st">"P10"</span>, <span class="st">"P11"</span>, <span class="st">"P12"</span><span class="op">)</span>
+<span class="va">example_sai</span><span class="op">$</span><span class="va">antipsychotic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chlorpromazine HCl"</span>, <span class="st">"Loxapine HCl"</span>, 
+                               <span class="st">"Olanzapine tartrate"</span>, <span class="st">"Olanzapine tartrate"</span><span class="op">)</span>
+<span class="va">example_sai</span><span class="op">$</span><span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">50</span>, <span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span>
+
+<span class="va">example_oral</span><span class="op">$</span><span class="va">q</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
+<span class="va">example_sai</span><span class="op">$</span><span class="va">q</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
+
+<span class="va">example_oral</span><span class="op">$</span><span class="va">route</span> <span class="op">&lt;-</span> <span class="st">"oral"</span>
+<span class="va">example_lai</span><span class="op">$</span><span class="va">route</span> <span class="op">&lt;-</span> <span class="st">"lai"</span>
+<span class="va">example_sai</span><span class="op">$</span><span class="va">route</span> <span class="op">&lt;-</span> <span class="st">"sai"</span>
+
+<span class="va">example_mixed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">example_oral</span>, <span class="va">example_sai</span>, <span class="va">example_lai</span><span class="op">)</span>
+
+<span class="va">example_mixed</span>
+<span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route</span>
+<span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral</span>
+<span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral</span>
+<span class="co">#&gt; 3             P03  30               quetiapine 300.0 NA  oral</span>
+<span class="co">#&gt; 4             P04  60              ziprasidone  60.0 NA  oral</span>
+<span class="co">#&gt; 5             P09  42       Chlorpromazine HCl 100.0 NA   sai</span>
+<span class="co">#&gt; 6             P10  29             Loxapine HCl  50.0 NA   sai</span>
+<span class="co">#&gt; 7             P11  30      Olanzapine tartrate  10.0 NA   sai</span>
+<span class="co">#&gt; 8             P12  60      Olanzapine tartrate   5.0 NA   sai</span>
+<span class="co">#&gt; 9             P05  42 zuclopenthixol decanoate 200.0 14   lai</span>
+<span class="co">#&gt; 10            P06  29 zuclopenthixol decanoate 200.0 21   lai</span>
+<span class="co">#&gt; 11            P07  30   perphenazine enanthate  50.0 14   lai</span>
+<span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai</span></code></pre></div>
 <p>The function <code><a href="../reference/to_cpz.html">to_cpz()</a></code> is used similarly as above, with the extra variable names (route_label, q) specified:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/to_cpz.html">to_cpz</a></span>(example_mixed, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">"mixed"</span>, <span class="dt">route_label =</span> <span class="st">"route"</span>, <span class="dt">q_label =</span> <span class="st">"q"</span>, <span class="dt">key=</span>gardner2010_withsai) </a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route cpz_conv_factor</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral           30.00</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral           30.00</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; 3             P03  30               quetiapine 300.0 NA  oral            0.80</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; 4             P04  60              ziprasidone  60.0 NA  oral            3.75</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; 5             P09  42       chlorpromazine hcl 100.0 NA   sai            1.00</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 6             P10  29             loxapine hcl  50.0 NA   sai            4.00</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; 7             P11  30      olanzapine tartrate  10.0 NA   sai           10.00</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; 8             P12  60      olanzapine tartrate   5.0 NA   sai           10.00</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; 9             P05  42 zuclopenthixol decanoate 200.0 14   lai           42.00</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; 10            P06  29 zuclopenthixol decanoate 200.0 21   lai           42.00</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 11            P07  30   perphenazine enanthate  50.0 14   lai           84.00</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai          700.00</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;    cpz_eq</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; 1     300</span></a>
-<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt; 2     375</span></a>
-<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt; 3     240</span></a>
-<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt; 4     225</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt; 5     100</span></a>
-<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt; 6     200</span></a>
-<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="co">#&gt; 7     100</span></a>
-<a class="sourceLine" id="cb7-24" data-line-number="24"><span class="co">#&gt; 8      50</span></a>
-<a class="sourceLine" id="cb7-25" data-line-number="25"><span class="co">#&gt; 9     600</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="co">#&gt; 10    400</span></a>
-<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="co">#&gt; 11    300</span></a>
-<a class="sourceLine" id="cb7-28" data-line-number="28"><span class="co">#&gt; 12    300</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/to_cpz.html">to_cpz</a></span><span class="op">(</span><span class="va">example_mixed</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, dose_label <span class="op">=</span> <span class="st">"dose"</span>, 
+       route <span class="op">=</span> <span class="st">"mixed"</span>, route_label <span class="op">=</span> <span class="st">"route"</span>, q_label <span class="op">=</span> <span class="st">"q"</span>, key<span class="op">=</span><span class="va">gardner2010_withsai</span><span class="op">)</span> 
+<span class="co">#&gt;    participant_ID age            antipsychotic  dose  q route cpz_conv_factor</span>
+<span class="co">#&gt; 1             P01  42               olanzapine  10.0 NA  oral           30.00</span>
+<span class="co">#&gt; 2             P02  29               olanzapine  12.5 NA  oral           30.00</span>
+<span class="co">#&gt; 3             P03  30               quetiapine 300.0 NA  oral            0.80</span>
+<span class="co">#&gt; 4             P04  60              ziprasidone  60.0 NA  oral            3.75</span>
+<span class="co">#&gt; 5             P09  42       chlorpromazine hcl 100.0 NA   sai            1.00</span>
+<span class="co">#&gt; 6             P10  29             loxapine hcl  50.0 NA   sai            4.00</span>
+<span class="co">#&gt; 7             P11  30      olanzapine tartrate  10.0 NA   sai           10.00</span>
+<span class="co">#&gt; 8             P12  60      olanzapine tartrate   5.0 NA   sai           10.00</span>
+<span class="co">#&gt; 9             P05  42 zuclopenthixol decanoate 200.0 14   lai           42.00</span>
+<span class="co">#&gt; 10            P06  29 zuclopenthixol decanoate 200.0 21   lai           42.00</span>
+<span class="co">#&gt; 11            P07  30   perphenazine enanthate  50.0 14   lai           84.00</span>
+<span class="co">#&gt; 12            P08  60             fluspirilene   6.0 14   lai          700.00</span>
+<span class="co">#&gt;    cpz_eq</span>
+<span class="co">#&gt; 1     300</span>
+<span class="co">#&gt; 2     375</span>
+<span class="co">#&gt; 3     240</span>
+<span class="co">#&gt; 4     225</span>
+<span class="co">#&gt; 5     100</span>
+<span class="co">#&gt; 6     200</span>
+<span class="co">#&gt; 7     100</span>
+<span class="co">#&gt; 8      50</span>
+<span class="co">#&gt; 9     600</span>
+<span class="co">#&gt; 10    400</span>
+<span class="co">#&gt; 11    300</span>
+<span class="co">#&gt; 12    300</span></code></pre></div>
 </div>
 <div id="participants-on-multiple-medications" class="section level3">
 <h3 class="hasAnchor">
@@ -254,114 +261,123 @@
 <h2 class="hasAnchor">
 <a href="#checking-for-inclusion-and-matching-of-antipsychotic-names" class="anchor"></a>Checking for inclusion and matching of antipsychotic names</h2>
 <p>The software depends on an exact match (except for case) of the generic names of antipsychotics. To check if there are rows that do not match, <code><a href="../reference/check_ap.html">check_ap()</a></code> can be used. Here is an example of data where all the antipsychotic names match the key, showing that 0 is returned (the number of mismatches):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/check_ap.html">check_ap</a></span>(example_oral, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">route =</span> <span class="st">"oral"</span>, <span class="dt">key=</span>gardner2010)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/check_ap.html">check_ap</a></span><span class="op">(</span><span class="va">example_oral</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, route <span class="op">=</span> <span class="st">"oral"</span>, key<span class="op">=</span><span class="va">gardner2010</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>When there are mismatches, they are listed, and the number is returned:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">example_sai &lt;-<span class="st"> </span>example_sai</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="../reference/check_ap.html">check_ap</a></span>(example_sai, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">route =</span> <span class="st">"sai"</span>, <span class="dt">key=</span>gardner2010)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; The following antipsychotics were not found in the key:</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; Chlorpromazine HCl (sai)</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; Loxapine HCl (sai)</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; Olanzapine tartrate (sai)</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt; Olanzapine tartrate (sai)</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_sai</span> <span class="op">&lt;-</span> <span class="va">example_sai</span>
+<span class="fu"><a href="../reference/check_ap.html">check_ap</a></span><span class="op">(</span><span class="va">example_sai</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, route <span class="op">=</span> <span class="st">"sai"</span>, key<span class="op">=</span><span class="va">gardner2010</span><span class="op">)</span>
+<span class="co">#&gt; The following antipsychotics were not found in the key:</span>
+<span class="co">#&gt; Chlorpromazine HCl (sai)</span>
+<span class="co">#&gt; Loxapine HCl (sai)</span>
+<span class="co">#&gt; Olanzapine tartrate (sai)</span>
+<span class="co">#&gt; Olanzapine tartrate (sai)</span>
+<span class="co">#&gt; [1] 4</span></code></pre></div>
 <p>As with <code><a href="../reference/to_cpz.html">to_cpz()</a></code>, mixed routes can be used with <code><a href="../reference/check_ap.html">check_ap()</a></code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">example_mixed_bad &lt;-<span class="st"> </span>example_mixed</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">example_mixed_bad[<span class="dv">1</span>,<span class="dv">3</span>] &lt;-<span class="st"> "olanzzzzapine"</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">example_mixed_bad[<span class="dv">4</span>,<span class="dv">3</span>] &lt;-<span class="st"> "Seroquel"</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">example_mixed_bad[<span class="dv">5</span>,<span class="dv">3</span>] &lt;-<span class="st"> "chlorpromazineHCl"</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">example_mixed_bad[<span class="dv">9</span>,<span class="dv">3</span>] &lt;-<span class="st"> "zuclo decanoate"</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw"><a href="../reference/check_ap.html">check_ap</a></span>(example_mixed_bad, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, </a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">         <span class="dt">route =</span> <span class="st">"mixed"</span>, <span class="dt">route_label =</span> <span class="st">"route"</span>, <span class="dt">key=</span>gardner2010_withsai)</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#&gt; The following antipsychotics were not found in the key:</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#&gt; olanzzzzapine (oral)</span></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co">#&gt; Seroquel (oral)</span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#&gt; chlorpromazineHCl (sai)</span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#&gt; zuclo decanoate (lai)</span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">example_mixed_bad</span> <span class="op">&lt;-</span> <span class="va">example_mixed</span>
+<span class="va">example_mixed_bad</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"olanzzzzapine"</span>
+<span class="va">example_mixed_bad</span><span class="op">[</span><span class="fl">4</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Seroquel"</span>
+<span class="va">example_mixed_bad</span><span class="op">[</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"chlorpromazineHCl"</span>
+<span class="va">example_mixed_bad</span><span class="op">[</span><span class="fl">9</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"zuclo decanoate"</span>
+<span class="fu"><a href="../reference/check_ap.html">check_ap</a></span><span class="op">(</span><span class="va">example_mixed_bad</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, 
+         route <span class="op">=</span> <span class="st">"mixed"</span>, route_label <span class="op">=</span> <span class="st">"route"</span>, key<span class="op">=</span><span class="va">gardner2010_withsai</span><span class="op">)</span>
+<span class="co">#&gt; The following antipsychotics were not found in the key:</span>
+<span class="co">#&gt; olanzzzzapine (oral)</span>
+<span class="co">#&gt; Seroquel (oral)</span>
+<span class="co">#&gt; chlorpromazineHCl (sai)</span>
+<span class="co">#&gt; zuclo decanoate (lai)</span>
+<span class="co">#&gt; [1] 4</span></code></pre></div>
 <p>While the default <code>gardner2010</code> key uses the full antipsychotic name for SAI and LAI formulations (e.g. Chlorpromazine HCl) in order to be consistent with the publication and reduce the risk of errors due to ambiguity, the use can modify the key to “trim” the antipsychotic names to just 1 word (e.g. chlorpromazine).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(gardner2010<span class="op">$</span>lai)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt;  [1] "clopenthixol decanoate"   "flupenthixol decanoate"  </span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt;  [3] "fluphenazine decanoate"   "fluphenazine enanthate"  </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt;  [5] "fluspirilene"             "haloperidol decanoate"   </span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt;  [7] "perphenazine enanthate"   "pipotiazine palmitate"   </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;  [9] "risperidone microspheres" "zuclopenthixol decanoate"</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">gardner2010</span><span class="op">$</span><span class="va">lai</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "clopenthixol decanoate"   "flupenthixol decanoate"  </span>
+<span class="co">#&gt;  [3] "fluphenazine decanoate"   "fluphenazine enanthate"  </span>
+<span class="co">#&gt;  [5] "fluspirilene"             "haloperidol decanoate"   </span>
+<span class="co">#&gt;  [7] "perphenazine enanthate"   "pipotiazine palmitate"   </span>
+<span class="co">#&gt;  [9] "risperidone microspheres" "zuclopenthixol decanoate"</span></code></pre></div>
 <p>To trim to 1-word antipsychotic names, we have made the <code><a href="../reference/trim_key.html">trim_key()</a></code> function, which takes a key and generates a new key from it with the 1-word antipsychotic labels. If you want to use the <code>gardner2010</code> key but want 1-word antipsychotic names, then you can use <code>trim_key</code> to generate that new key, which you can then use in <code><a href="../reference/to_cpz.html">to_cpz()</a></code>. For example:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">trimmed_gardner &lt;-<span class="st"> </span><span class="kw"><a href="../reference/trim_key.html">trim_key</a></span>(gardner2010)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;            compounds are not equivalent.</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(trimmed_gardner<span class="op">$</span>lai)</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;  [1] "clopenthixol"   "flupenthixol"   "fluphenazine"   "fluphenazine"  </span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;  [5] "fluspirilene"   "haloperidol"    "perphenazine"   "pipotiazine"   </span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  [9] "risperidone"    "zuclopenthixol"</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">trimmed_gardner</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/trim_key.html">trim_key</a></span><span class="op">(</span><span class="va">gardner2010</span><span class="op">)</span>
+<span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span>
+<span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span>
+<span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span>
+<span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span>
+<span class="co">#&gt;            compounds are not equivalent.</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">trimmed_gardner</span><span class="op">$</span><span class="va">lai</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "clopenthixol"   "flupenthixol"   "fluphenazine"   "fluphenazine"  </span>
+<span class="co">#&gt;  [5] "fluspirilene"   "haloperidol"    "perphenazine"   "pipotiazine"   </span>
+<span class="co">#&gt;  [9] "risperidone"    "zuclopenthixol"</span></code></pre></div>
 </div>
 <div id="using-other-keys" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-other-keys" class="anchor"></a>Using other keys</h2>
 <p>The above examples have used the default CPZ conversion key, <code>gardner2010</code>, based on data extracted from Gardner et al. 2010. However, not all antipsychotic medications were included in that study. This package also includes a key extracted from the data included in the Leucht et al. 2016 publication based on the World Health Organization’s Defined Daily Doses. To explicitly change the CPZ key, use the key parameter when calling <code><a href="../reference/to_cpz.html">to_cpz()</a></code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/to_cpz.html">to_cpz</a></span>(example_oral, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">"oral"</span>, <span class="dt">key =</span> leucht2016)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt;   participant_ID age antipsychotic  dose  q route cpz_conv_factor   cpz_eq</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; 1            P01  42    olanzapine  10.0 NA  oral      30.0300300 300.3003</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; 2            P02  29    olanzapine  12.5 NA  oral      30.0300300 375.3754</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; 3            P03  30    quetiapine 300.0 NA  oral       0.7500188 225.0056</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; 4            P04  60   ziprasidone  60.0 NA  oral       3.7495313 224.9719</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/to_cpz.html">to_cpz</a></span><span class="op">(</span><span class="va">example_oral</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, dose_label <span class="op">=</span> <span class="st">"dose"</span>, 
+       route <span class="op">=</span> <span class="st">"oral"</span>, key <span class="op">=</span> <span class="va">leucht2016</span><span class="op">)</span>
+<span class="co">#&gt;   participant_ID age antipsychotic  dose  q route cpz_conv_factor   cpz_eq</span>
+<span class="co">#&gt; 1            P01  42    olanzapine  10.0 NA  oral      30.0300300 300.3003</span>
+<span class="co">#&gt; 2            P02  29    olanzapine  12.5 NA  oral      30.0300300 375.3754</span>
+<span class="co">#&gt; 3            P03  30    quetiapine 300.0 NA  oral       0.7500188 225.0056</span>
+<span class="co">#&gt; 4            P04  60   ziprasidone  60.0 NA  oral       3.7495313 224.9719</span></code></pre></div>
 <p>However, the authors do not recommend using the DDD values when more scientific values are available. Therefore, it can be desirable to create a new key with data from the <code>gardner2010</code> key (or your own created key) combined with the <code>leucht2016</code> key, using data from <code>gardner2010</code> key where possible.</p>
 <p>For this purpose, we have created the <code><a href="../reference/add_key.html">add_key()</a></code> function, which takes a preferred base key from which ALL available values are taken, and adds only the missing antipsychotic conversion values from the second key to be added. Further, there is a <code>trim</code> parameter, which invokes the <code><a href="../reference/trim_key.html">trim_key()</a></code> function on both keys, in the case as in <code>leucht2016</code> where only 1-word antipsychotic names are provided.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">gardner_leucht &lt;-<span class="st"> </span><span class="kw"><a href="../reference/add_key.html">add_key</a></span>(<span class="dt">base =</span> gardner2010, <span class="dt">add =</span> leucht2016, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;            compounds are not equivalent.</span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span></a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt;            compounds are not equivalent.</span></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; 24 (ORAL) were added to the base key (acepromazine, acetophenazine, asenapine, bromperidol, butaperazine, chlorprothixene, dixyrazine, flupentixol, levosulpiride, lurasidone, melperone, moperone, penfluridol, perazine, periciazine, pipamperone, pipotiazine, promazine, prothipendyl, sultopride, thiopropazate, thioproperazine, tiapride, tiotixene) </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; 30 (SAI) were added to the base key (acepromazine, aripiprazole, bromperidol, chlorpromazine, chlorprothixene, clopenthixol, clotiapine, clozapine, dixyrazine, droperidol, haloperidol, levomepromazine, melperone, mesoridazine, moperone, olanzapine, perazine, periciazine, perphenazine, prochlorperazine, promazine, prothipendyl, remoxipride, sulpiride, thioproperazine, tiapride, trifluoperazine, triflupromazine, ziprasidone, zuclopenthixol) </span></a>
-<a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 4 (LAI) were added to the base key (bromperidol, flupentixol, olanzapine, paliperidone)</span></a>
-<a class="sourceLine" id="cb14-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb14-18" data-line-number="18"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(gardner_leucht<span class="op">$</span>sai)</a>
-<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="co">#&gt;  [1] "acepromazine"     "aripiprazole"     "bromperidol"      "chlorpromazine"  </span></a>
-<a class="sourceLine" id="cb14-20" data-line-number="20"><span class="co">#&gt;  [5] "chlorprothixene"  "clopenthixol"     "clotiapine"       "clozapine"       </span></a>
-<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt;  [9] "dixyrazine"       "droperidol"       "haloperidol"      "levomepromazine" </span></a>
-<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co">#&gt; [13] "melperone"        "mesoridazine"     "moperone"         "olanzapine"      </span></a>
-<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; [17] "perazine"         "periciazine"      "perphenazine"     "prochlorperazine"</span></a>
-<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co">#&gt; [21] "promazine"        "prothipendyl"     "remoxipride"      "sulpiride"       </span></a>
-<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#&gt; [25] "thioproperazine"  "tiapride"         "trifluoperazine"  "triflupromazine" </span></a>
-<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co">#&gt; [29] "ziprasidone"      "zuclopenthixol"</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gardner_leucht</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_key.html">add_key</a></span><span class="op">(</span>base <span class="op">=</span> <span class="va">gardner2010</span>, add <span class="op">=</span> <span class="va">leucht2016</span>, trim <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span>
+<span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span>
+<span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span>
+<span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span>
+<span class="co">#&gt;            compounds are not equivalent.</span>
+<span class="co">#&gt; The trim_key() function can introduce errors if used in improper</span>
+<span class="co">#&gt;            circumstances. Ensure that the antipsychotic compounds in your data</span>
+<span class="co">#&gt;            and in the intended keys are the same compounds. The trim function is</span>
+<span class="co">#&gt;            for convenience, but would introduce errors in your data if the</span>
+<span class="co">#&gt;            compounds are not equivalent.</span>
+<span class="co">#&gt; 24 (ORAL) were added to the base key (acepromazine, acetophenazine, asenapine, bromperidol, butaperazine, chlorprothixene, dixyrazine, flupentixol, levosulpiride, lurasidone, melperone, moperone, penfluridol, perazine, periciazine, pipamperone, pipotiazine, promazine, prothipendyl, sultopride, thiopropazate, thioproperazine, tiapride, tiotixene) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; 30 (SAI) were added to the base key (acepromazine, aripiprazole, bromperidol, chlorpromazine, chlorprothixene, clopenthixol, clotiapine, clozapine, dixyrazine, droperidol, haloperidol, levomepromazine, melperone, mesoridazine, moperone, olanzapine, perazine, periciazine, perphenazine, prochlorperazine, promazine, prothipendyl, remoxipride, sulpiride, thioproperazine, tiapride, trifluoperazine, triflupromazine, ziprasidone, zuclopenthixol) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; 4 (LAI) were added to the base key (bromperidol, flupentixol, olanzapine, paliperidone)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">gardner_leucht</span><span class="op">$</span><span class="va">sai</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "acepromazine"     "aripiprazole"     "bromperidol"      "chlorpromazine"  </span>
+<span class="co">#&gt;  [5] "chlorprothixene"  "clopenthixol"     "clotiapine"       "clozapine"       </span>
+<span class="co">#&gt;  [9] "dixyrazine"       "droperidol"       "haloperidol"      "levomepromazine" </span>
+<span class="co">#&gt; [13] "melperone"        "mesoridazine"     "moperone"         "olanzapine"      </span>
+<span class="co">#&gt; [17] "perazine"         "periciazine"      "perphenazine"     "prochlorperazine"</span>
+<span class="co">#&gt; [21] "promazine"        "prothipendyl"     "remoxipride"      "sulpiride"       </span>
+<span class="co">#&gt; [25] "thioproperazine"  "tiapride"         "trifluoperazine"  "triflupromazine" </span>
+<span class="co">#&gt; [29] "ziprasidone"      "zuclopenthixol"</span></code></pre></div>
 <p>Let’s change a value in the <code>example_oral</code> data so that there is an antipsychotic that is not listed in the <code>gardner2010</code> key: asenapine.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">other_oral &lt;-<span class="st"> </span>example_oral</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">other_oral[<span class="dv">2</span>,<span class="dv">3</span>] &lt;-<span class="st"> "asenapine"</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">other_oral[<span class="dv">2</span>,<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw"><a href="../reference/check_ap.html">check_ap</a></span>(other_oral, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">route =</span> <span class="st">"oral"</span>)</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt; The following antipsychotics were not found in the key:</span></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt; asenapine (oral)</span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt; [1] 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">other_oral</span> <span class="op">&lt;-</span> <span class="va">example_oral</span>
+<span class="va">other_oral</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"asenapine"</span>
+<span class="va">other_oral</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+
+<span class="fu"><a href="../reference/check_ap.html">check_ap</a></span><span class="op">(</span><span class="va">other_oral</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, route <span class="op">=</span> <span class="st">"oral"</span><span class="op">)</span>
+<span class="co">#&gt; The following antipsychotics were not found in the key:</span>
+<span class="co">#&gt; asenapine (oral)</span>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
 <p>We can see that asenapine is not in the default key. We could use the <code>leucht2016</code> key:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="../reference/to_cpz.html">to_cpz</a></span>(other_oral, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">       <span class="dt">route =</span> <span class="st">"oral"</span>, <span class="dt">key =</span> gardner_leucht)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#&gt;   participant_ID age antipsychotic dose  q route cpz_conv_factor  cpz_eq</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt; 1            P01  42    olanzapine   10 NA  oral         30.0000 300.000</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co">#&gt; 2            P02  29     asenapine   10 NA  oral         14.9925 149.925</span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#&gt; 3            P03  30    quetiapine  300 NA  oral          0.8000 240.000</span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/to_cpz.html">to_cpz</a></span><span class="op">(</span><span class="va">other_oral</span>, ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, dose_label <span class="op">=</span> <span class="st">"dose"</span>, 
+       route <span class="op">=</span> <span class="st">"oral"</span>, key <span class="op">=</span> <span class="va">gardner_leucht</span><span class="op">)</span>
+<span class="co">#&gt;   participant_ID age antipsychotic dose  q route cpz_conv_factor  cpz_eq</span>
+<span class="co">#&gt; 1            P01  42    olanzapine   10 NA  oral         30.0000 300.000</span>
+<span class="co">#&gt; 2            P02  29     asenapine   10 NA  oral         14.9925 149.925</span>
+<span class="co">#&gt; 3            P03  30    quetiapine  300 NA  oral          0.8000 240.000</span>
+<span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span></code></pre></div>
 <p>Note that it used the <code>gardner2010</code> values where they were available (olanzapine, quetiapine, ziprasidone) and the <code>leucht2016</code> key for asenapine.</p>
 <p>To draw from values from additional keys (e.g. user-created keys), the <code><a href="../reference/add_key.html">add_key()</a></code> function could be used iteratively. The first argument of <code><a href="../reference/add_key.html">add_key()</a></code>, <code>base</code>, is always the key with values that take priority.</p>
 </div>
 <div id="list-of-included-keys" class="section level2">
 <h2 class="hasAnchor">
 <a href="#list-of-included-keys" class="anchor"></a>List of included keys</h2>
-<p>Use the built in help function to see the full reference for any key, e.g. <code><a href="https://rdrr.io/r/utils/help.html">help(davis1974)</a></code>. The data may need to be loaded prior to using the help function (e.g. load via <code><a href="../reference/davis1974.html">chlorpromazineR::davis1974</a></code>, then use <code><a href="https://rdrr.io/r/utils/help.html">help(davis1974)</a></code>.</p>
+<p>Use the built in help function to see the full reference for any key, e.g. <code><a href="../reference/davis1974.html">help(davis1974)</a></code>. The data may need to be loaded prior to using the help function (e.g. load via <code><a href="../reference/davis1974.html">chlorpromazineR::davis1974</a></code>, then use <code><a href="../reference/davis1974.html">help(davis1974)</a></code>.</p>
 <table class="table">
 <colgroup>
 <col width="29%">
@@ -406,49 +422,39 @@
 <h2 class="hasAnchor">
 <a href="#converting-to-equivalents-of-an-arbitrary-antipsychotic" class="anchor"></a>Converting to equivalents of an arbitrary antipsychotic</h2>
 <p>Historically, CPZ has been used as the reference antipsychotic. However, using the same key data, any arbitrary reference antipsychotic could be used. Similar to <code><a href="../reference/to_cpz.html">to_cpz()</a></code>, <code><a href="../reference/to_ap.html">to_ap()</a></code> can perform this conversion. The desired reference antipsychotic can be specified, e.g. with the parameters <code>convert_to_ap = "olanzapine", convert_to_route = "oral"</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="../reference/to_ap.html">to_ap</a></span>(other_oral, <span class="dt">convert_to_ap =</span> <span class="st">"olanzapine"</span>, <span class="dt">convert_to_route =</span> <span class="st">"oral"</span>, </a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">      <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">      <span class="dt">route =</span> <span class="st">"oral"</span>, <span class="dt">key =</span> gardner_leucht)</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#&gt;   participant_ID age antipsychotic dose  q route cpz_conv_factor  cpz_eq</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">#&gt; 1            P01  42    olanzapine   10 NA  oral         30.0000 300.000</span></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#&gt; 2            P02  29     asenapine   10 NA  oral         14.9925 149.925</span></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt; 3            P03  30    quetiapine  300 NA  oral          0.8000 240.000</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">#&gt;       ap_eq</span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">#&gt; 1 10.000000</span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">#&gt; 2  4.997501</span></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">#&gt; 3  8.000000</span></a>
-<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co">#&gt; 4  7.500000</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/to_ap.html">to_ap</a></span><span class="op">(</span><span class="va">other_oral</span>, convert_to_ap <span class="op">=</span> <span class="st">"olanzapine"</span>, convert_to_route <span class="op">=</span> <span class="st">"oral"</span>, 
+      ap_label <span class="op">=</span> <span class="st">"antipsychotic"</span>, dose_label <span class="op">=</span> <span class="st">"dose"</span>, 
+      route <span class="op">=</span> <span class="st">"oral"</span>, key <span class="op">=</span> <span class="va">gardner_leucht</span><span class="op">)</span>
+<span class="co">#&gt;   participant_ID age antipsychotic dose  q route cpz_conv_factor  cpz_eq</span>
+<span class="co">#&gt; 1            P01  42    olanzapine   10 NA  oral         30.0000 300.000</span>
+<span class="co">#&gt; 2            P02  29     asenapine   10 NA  oral         14.9925 149.925</span>
+<span class="co">#&gt; 3            P03  30    quetiapine  300 NA  oral          0.8000 240.000</span>
+<span class="co">#&gt; 4            P04  60   ziprasidone   60 NA  oral          3.7500 225.000</span>
+<span class="co">#&gt;       ap_eq</span>
+<span class="co">#&gt; 1 10.000000</span>
+<span class="co">#&gt; 2  4.997501</span>
+<span class="co">#&gt; 3  8.000000</span>
+<span class="co">#&gt; 4  7.500000</span></code></pre></div>
 </div>
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Davis, J. M. (1974). Dose equivalence of the antipsychotic drugs. Journal of Psychiatric Research, 1, 65–69.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Danivas, V., &amp; Venkatasubramanian, G. (2013). Current perspectives on chlorpromazine equivalents: Comparing apples and oranges! Indian Journal of Psychiatry, 55(2), 207–208. <a href="https://doi.org/10.4103/0019-5545.111475" class="uri">https://doi.org/10.4103/0019-5545.111475</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>Dalkey, N. (1969). The Delphi Method: An Experimental Study of Group Opinion | RAND. Retrieved from <a href="https://www.rand.org/pubs/research_memoranda/RM5888.html" class="uri">https://www.rand.org/pubs/research_memoranda/RM5888.html</a><a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Leucht, S., Samara, M., Heres, S., &amp; Davis, J. M. (2016). Dose Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin, 42(suppl_1), S90–S94. <a href="https://doi.org/10.1093/schbul/sbv167" class="uri">https://doi.org/10.1093/schbul/sbv167</a><a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Hasson, F., Keeney, S., &amp; McKenna, H. (2000). Research guidelines for the Delphi survey technique. Journal of Advanced Nursing, 32(4), 1008–1015.<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., &amp; Baldessarini, R. J. (2010). International consensus study of antipsychotic dosing. The American Journal of Psychiatry, 167(6), 686–693. <a href="https://doi.org/10.1176/appi.ajp.2009.09060802" class="uri">https://doi.org/10.1176/appi.ajp.2009.09060802</a><a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Davis, J. M. (1974). Dose equivalence of the antipsychotic drugs. Journal of Psychiatric Research, 1, 65–69.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Danivas, V., &amp; Venkatasubramanian, G. (2013). Current perspectives on chlorpromazine equivalents: Comparing apples and oranges! Indian Journal of Psychiatry, 55(2), 207–208. <a href="https://doi.org/10.4103/0019-5545.111475" class="uri">https://doi.org/10.4103/0019-5545.111475</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Dalkey, N. (1969). The Delphi Method: An Experimental Study of Group Opinion | RAND. Retrieved from <a href="https://www.rand.org/pubs/research_memoranda/RM5888.html" class="uri">https://www.rand.org/pubs/research_memoranda/RM5888.html</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Leucht, S., Samara, M., Heres, S., &amp; Davis, J. M. (2016). Dose Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin, 42(suppl_1), S90–S94. <a href="https://doi.org/10.1093/schbul/sbv167" class="uri">https://doi.org/10.1093/schbul/sbv167</a><a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Hasson, F., Keeney, S., &amp; McKenna, H. (2000). Research guidelines for the Delphi survey technique. Journal of Advanced Nursing, 32(4), 1008–1015.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., &amp; Baldessarini, R. J. (2010). International consensus study of antipsychotic dosing. The American Journal of Psychiatry, 167(6), 686–693. <a href="https://doi.org/10.1176/appi.ajp.2009.09060802" class="uri">https://doi.org/10.1176/appi.ajp.2009.09060802</a><a href="#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#background">Background</a></li>
-      <li><a href="#chlorpromaziner">chlorpromazineR</a></li>
-      <li><a href="#tutorial">Tutorial</a></li>
-      <li><a href="#checking-for-inclusion-and-matching-of-antipsychotic-names">Checking for inclusion and matching of antipsychotic names</a></li>
-      <li><a href="#using-other-keys">Using other keys</a></li>
-      <li><a href="#list-of-included-keys">List of included keys</a></li>
-      <li><a href="#converting-to-equivalents-of-an-arbitrary-antipsychotic">Converting to equivalents of an arbitrary antipsychotic</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -459,7 +465,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,0 +1,235 @@
+---
+title: "Examples produced by chlorpromazineR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{exampletable}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(chlorpromazineR)
+```
+
+For a walkthrough on this package's functions and how to use them, see the walkthrough vignette. The purpose of this vignette is to exhibit the antipsychotics included by the conversion keys and their dose equivalents.
+
+## Gardner 2010
+
+For the reference, see `help(gardner2010)`.
+
+```{r}
+data_gardner_oral_names <- c("Amisulpride", "Aripiprazole", "Benperidol", "Chlorpromazine",
+                             "Clopenthixol", "Clorprothixene", "Clotiapine", "Clozapine",
+                             "Droperidol", "Flupenthixol", "Fluphenazine", "Haloperidol",
+                             "Levomepromazine", "Loxapine", "Mesoridazine", 
+                             "Methotrimeprazine", "Molindone", "Olanzapine", "Oxypertine",
+                             "Paliperidone", "Pericyazine", "Perphenazine", "Pimozide",
+                             "Prochlorperazine", "Quetiapine", "Remoxipride", "Risperidone",
+                             "Sertindole", "Sulpiride", "Thioridazine", "Thiothixene",
+                             "Trifluoperazine", "Trifluperidol", "Triflupromazine",
+                             "Ziprasidone", "Zotepine", "Zuclopenthixol")
+
+data_gardner_oral_median <- c(700, 30, 5, 600, 60, 500, 100, 400, 10, 10, 12, 10, 400, 
+                              60, 300, 300, 100, 20, 240, 9, 50, 30, 8, 88, 750, 212, 6, 
+                              20, 800, 500, 30, 20, 2, 100, 160, 300, 50)
+
+data_gardner_oral <- data.frame(ap = data_gardner_oral_names, 
+                                dose = data_gardner_oral_median)
+
+```
+## Oral route
+
+### Equivalent to olanzapine 20 mg (CPZ 600 mg)
+```{r}
+to_ap(data_gardner_oral, convert_to_ap = "olanzapine", ap_label = "ap", 
+      dose_label = "dose", route = "oral")
+
+```
+### Equivalent to chlorpromazine 100 mg 
+```{r}
+data_gardner_oral_median_cpz100 <- data_gardner_oral_median / 6
+data_gardner_oral_cpz100 <- data.frame(ap = data_gardner_oral_names,
+                                       dose=data_gardner_oral_median_cpz100)
+
+to_ap(data_gardner_oral_cpz100, convert_to_ap = "olanzapine", 
+      ap_label = "ap", dose_label = "dose", route = "oral")
+
+```
+
+## Short-acting injectables
+
+```{r}
+data_gardner_sai_names <- c("Chlorpromazine HCl", "Clotiapine injectable",
+                            "Fluphenazine HCl", "Haloperidol lactate",
+                            "Loxapine HCl", "Mesoridazine besylate",
+                            "Olanzapine tartrate", "Perphenazine USP",
+                            "Prochlorperazine mesylate", "Promazine HCl",
+                            "Trifluoperazine HCl", "Triflupromazine HCl",
+                            "Ziprasidone mesylate", "Zuclopenthixol acetate")
+
+data_gardner_sai_median <- c(100, 40, 5, 5, 25, 100, 10, 10, 22, 100, 
+                             5, 60, 20, 50)
+
+data_gardner_sai <- data.frame(ap = data_gardner_sai_names, 
+                               dose = data_gardner_sai_median)
+
+
+to_cpz(data_gardner_sai, key=gardner2010_withsai, ap_label = "ap", 
+      dose_label = "dose", route = "sai")
+
+```
+### Equivalent to haloperidol 5 mg IM
+```{r}
+to_ap(data_gardner_sai, key=gardner2010_withsai, 
+      convert_to_ap = "haloperidol lactate", 
+      ap_label = "ap", dose_label = "dose", route = "sai",
+      convert_to_route = "sai")
+```
+    
+## Long-acting injectables
+
+```{r}
+data_gardner_lai_names <- c("Clopenthixol decanoate", "Flupenthixol decanoate", 
+                            "Fluphenazine decanoate", "Fluphenazine enanthate", 
+                            "Fluspirilene", "Haloperidol decanoate", 
+                            "Perphenazine enanthate", "Pipotiazine palmitate", 
+                            "Risperidone microspheres", "Zuclopenthixol decanoate")
+
+data_gardner_lai_median <- c(300, 40, 25, 25, 6, 150, 100, 100, 50, 200)
+
+data_gardner_lai_q <- c(14, 14, 14, 14, 7, 28, 14, 28, 14, 14)
+
+data_gardner_lai <- data.frame(ap = data_gardner_lai_names,
+                               dose = data_gardner_lai_median,
+                               q = data_gardner_lai_q)
+
+to_cpz(data_gardner_lai, key=gardner2010, ap_label = "ap", 
+       dose_label = "dose", route = "lai", q_label = "q")
+
+```
+
+## Davis 1974
+
+For the reference, see `help(davis1974)`.
+
+```{r}
+data_davis_names <- c("Chlorpromazine", "Triflupromazine", "Thioridazine", "Prochlorperazine",
+                      "Perphenazine", "Fluphenazine", "Trifluoperazine", "Acetophenazine", 
+                      "Carphenazine", "Butaperazine", "Mesoridazine", "Piperacetazine", 
+                      "Haloperidol", "Chlorprothixene", "Thiothixene")
+
+data_davis_doses <- c(100, 28.4, 95.3, 14.3, 8.9, 1.2, 2.8, 23.5, 24.3, 8.9, 55.3, 10.5, 1.6, 
+                     43.9, 5.2)
+
+data_davis_oral <- data.frame(ap = data_davis_names, 
+                              dose = data_davis_doses)
+```
+
+### Oral
+
+```{r}
+to_cpz(data_davis_oral, ap_label = "ap", 
+      dose_label = "dose", route = "oral", key=davis1974)
+```
+### Short acting injectable
+
+The Davis ket converts parenteral (SAI) to oral chlorpromazine equivalents on the basis of the statement in the text that oral is assumed to be 3x the potency of oral. 
+
+```{r}
+to_cpz(data_davis_oral, ap_label = "ap", 
+      dose_label = "dose", route = "sai", key=davis1974)
+```
+
+
+## Leucht 2016
+
+For the reference, see `help(leucht2016)`.
+
+```{r}
+
+leucht_names <- c("Acepromazine", "Acetophenazine", "Amisulpride", "Aripiprazole", 
+                  "Asenapine", "Benperidol", "Bromperidol", "Butaperazine", "Cariprazine",
+                  "Chlorproethazine", "Chlorpromazine", "Chlorprothixene", "Clopenthixol",
+                  "Clotiapine", "Clozapine", "Cyamemazine", "Dixyrazine", "Droperidol",
+                  "Fluanisone", "Flupentixol", "Fluphenazine", "Fluspirilene", "Haloperidol",
+                  "Iloperidone", "Levomepromazine", "Levosulpiride", "Loxapine", "Lurasidone",
+                  "Melperone", "Mesoridazine", "Molindone", "Moperone", "Mosapramine",
+                  "Olanzapine", "Oxypertine", "Paliperidone", "Penfluridol", "Perazine",
+                  "Periciazine", "Perphenazine", "Pimozide", "Pipamperone", "Pipotiazine",
+                  "Prochlorperazine", "Promazine", "Prothipendyl", "Quetiapine", "Remoxipride",
+                  "Risperidone", "Sertindole", "Sulpiride", "Sultopride", "Thiopropazate",
+                  "Thioproperazine", "Thioridazine", "Tiapride", "Tiotixene", 
+                  "Trifluoperazine", "Trifluperidol", "Triflupromazine", "Veralipride",
+                  "Ziprasidone", "Zotepine", "Zuclopenthixol")
+
+leucht_DDD_oral <- c(100, 50, 400, 15, 20, 1.5, 10, 10, NA, NA, 300, 300, 100, 80, 300, NA, 
+                     50, NA, NA, 6, 10, NA, 8, NA, 300, 400, 100, 60, 300, 200, 50, 20, NA, 
+                     10, 120, 6, 6, 100, 50, 30, 4, 200, 10, 100, 300, 240, 400, 300, 5, 16, 
+                     800, 1200, 60, 75, 300, 400, 30, 20, 2, 100, NA, 80, 200, 30)
+
+leucht_DDD_sai <- c(50, NA, NA, 15, NA, NA, 10, NA, NA, NA, 100, 50, 100, 80, 300, NA, 30, 
+                    2.5, NA, NA, NA, NA, 8, NA, 100, NA, NA, NA, 300, 200, NA, 20, NA, 10, 
+                    NA, NA, NA, 100, 20, 10, NA, NA, NA, 50, 100, 240, NA, 300, NA, NA, 
+                    800, NA, NA, 20, NA, 400, NA, 8, NA, 100, NA, 40, NA, 30)
+
+leucht_DDD_lai <- c(NA, NA, NA, NA, NA, NA, 3.3, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
+                    NA, NA, 4, 1, 0.7, 3.3, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 10.0, 
+                    NA, 2.5, NA, NA, NA, 7.0, NA, NA, 5, NA, NA, NA, NA, NA, 2.7, NA, NA, 
+                    NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 15)
+
+
+
+data_leucht_DDD_oral <- data.frame(ap = leucht_names, 
+                              dose = leucht_DDD_oral)
+
+data_leucht_DDD_sai <- data.frame(ap = leucht_names, 
+                              dose = leucht_DDD_sai)
+
+# pretend that all are given q 14 days
+data_leucht_DDD_lai <- data.frame(ap = leucht_names, 
+                                  dose = (leucht_DDD_lai*14), 
+                                  q = rep(14, 64))
+
+data_leucht_DDD_oral <- data_leucht_DDD_oral[!is.na(data_leucht_DDD_oral$dose),]
+data_leucht_DDD_sai <- data_leucht_DDD_sai[!is.na(data_leucht_DDD_sai$dose),]
+data_leucht_DDD_lai <- data_leucht_DDD_lai[!is.na(data_leucht_DDD_lai$dose),]
+
+
+to_ap(data_leucht_DDD_oral, ap_label = "ap", dose_label = "dose", 
+      route = "oral", key=leucht2016, convert_to_ap = "olanzapine")
+
+to_ap(data_leucht_DDD_sai, ap_label = "ap", dose_label = "dose", 
+      route = "sai", key=leucht2016, convert_to_ap = "olanzapine", 
+      convert_to_route = "sai")
+
+to_ap(data_leucht_DDD_lai, ap_label = "ap", dose_label = "dose", 
+      route = "lai", key=leucht2016, convert_to_ap = "olanzapine", q = "q")
+
+```
+
+## Woods 2003
+
+For the reference, see `help(woods2003)`.
+
+```{r}
+
+woods_names <- c("haloperidol", "risperidone", "olanzapine",
+                 "quetiapine", "ziprasidone", "aripiprazole")
+
+woods_doses <- c(2, 2, 5, 75, 60, 7.5)
+
+woods_oral <- data.frame(ap = woods_names, 
+                         dose = woods_doses)
+
+to_ap(woods_oral, route="oral", ap_label="ap", 
+       dose="dose", key=woods2003, 
+      convert_to_ap = "olanzapine")
+
+```

@@ -14,10 +14,9 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -110,10 +109,7 @@
     }
   ],
   "readme": "https://github.com/ropensci/chlorpromazineR/blob/master/README.md",
-  "contIntegration": [
-    "https://travis-ci.org/eebrown/chlorpromazineR",
-    "https://codecov.io/github/eebrown/chlorpromazineR?branch=master"
-  ],
+  "contIntegration": ["https://travis-ci.org/ropensci/chlorpromazineR", "https://codecov.io/github/ropensci/chlorpromazineR?branch=master"],
   "keywords": [
     "psychiatry",
     "pharmacology",
@@ -123,8 +119,8 @@
   ],
   "review": {
     "@type": "Review",
-    "url": "https://github.com/ropensci/onboarding/issues/307",
-    "provider": "http://ropensci.org"
+    "url": "https://github.com/ropensci/software-review/issues/307",
+    "provider": "https://ropensci.org"
   },
   "releaseNotes": "https://github.com/ropensci/chlorpromazineR/blob/master/NEWS.md",
   "provider": {
@@ -133,5 +129,6 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "relatedLink": "https://docs.ropensci.org/chlorpromazineR"
+  "relatedLink": "https://docs.ropensci.org/chlorpromazineR",
+  "fileSize": "2426.173KB"
 }

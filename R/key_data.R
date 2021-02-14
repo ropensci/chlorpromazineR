@@ -49,16 +49,35 @@
 #'
 #' A list of antipsychotics and their chlorpromazine equivalent doses, generated
 #' from the following file included with the package:
-#' system.file("extdata", "leucht2016.csv", package="chlorpromazineR"). 
-#' 
-#' @format A named list of 3 named lists (1 for each route) and each sub-list 
+#' system.file("extdata", "leucht2016.csv", package="chlorpromazineR").
+#'
+#' @format A named list of 3 named lists (1 for each route) and each sub-list
 #' contains the conversion factors for each antipsychotic. The 3 top-level lists
 #' are named `oral`, `sai`, and `lai` (route), and the lists they contain have
 #' names corresponding to the antipsychotic, e.g. `olanzapine`.
-#' @source Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose 
+#' @source Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose
 #' Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia Bulletin,
 #' 42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>
 "leucht2016"
+
+#' Antipsychotic equivalent key from Leucht et al. 2020 data
+#'
+#' A list of antipsychotics and their olanzapine-equivalent doses, generated
+#' from the following file included with the package:
+#' system.file("extdata", "leucht2020.csv", package="chlorpromazineR").
+#'
+#' This reference does not include chlorpromazine, so the conversion from
+#' leucht2016 is implied (i.e. chlorpromazine = olanzapine * 30).
+#'
+#' @format A named list of 3 named lists (1 for each route) and each sub-list
+#' contains the conversion factors for each antipsychotic. The 3 top-level lists
+#' are named `oral`, `sai`, and `lai` (route), and the lists they contain have
+#' names corresponding to the antipsychotic, e.g. `olanzapine`.
+#' @source Leucht, S., Crippa, A., Siafis, S., Patel, M., Orsini, N. & Davis,
+#' J. M. (2020). Dose-Response Meta-Analysis of Antipsychotic Drugs for Acute
+#' Schizophrenia. American Journal of Psychiatry. 117(4).
+#' <https://doi.org/10.1176/appi.ajp.2019.19010034>
+"leucht2020"
 
 #' Chlorpromazine equivalent key from Davis 1974 data
 #'
@@ -91,17 +110,17 @@
 "woods2003"
 
 # gardner2010gen <- function() {
-#   g <- read.csv(system.file("extdata", "gardner2010.csv", 
-#                             package="chlorpromazineR"), 
+#   g <- read.csv(system.file("extdata", "gardner2010.csv",
+#                             package="chlorpromazineR"),
 #                 stringsAsFactors = FALSE)
-#   g_oral <- as.list(600 / g[g[,"route"]=="oral",]$median) 
-#   names(g_oral) <- tolower(g[g[,"route"]=="oral",]$drug) 
-#   g_sai <- as.list(100 / g[g[,"route"]=="SAI",]$median) 
-#   names(g_sai) <- tolower(g[g[,"route"]=="SAI",]$drug) 
-#   g_lai <- as.list((600 / ((g[g[,"route"]=="LAI",]$median) / 
+#   g_oral <- as.list(600 / g[g[,"route"]=="oral",]$median)
+#   names(g_oral) <- tolower(g[g[,"route"]=="oral",]$drug)
+#   g_sai <- as.list(100 / g[g[,"route"]=="SAI",]$median)
+#   names(g_sai) <- tolower(g[g[,"route"]=="SAI",]$drug)
+#   g_lai <- as.list((600 / ((g[g[,"route"]=="LAI",]$median) /
 #                                      g[g[,"route"]=="LAI",]$days)))
-#   names(g_lai) <- tolower(g[g[,"route"]=="LAI",]$drug) 
-#   return(list(oral=g_oral, sai=g_sai, lai=g_lai)) 
+#   names(g_lai) <- tolower(g[g[,"route"]=="LAI",]$drug)
+#   return(list(oral=g_oral, sai=g_sai, lai=g_lai))
 # }
 
 # leucht2016gen <- function() {
@@ -109,7 +128,7 @@
 #                           package="chlorpromazineR"),
 #               stringsAsFactors = FALSE)
 # l_oral <- as.list(100 / l[l[,"route"]=="oral",]$CPZ100MGEQ)
-# names(l_oral) <- tolower(l[l[,"route"]=="oral",]$drug) 
+# names(l_oral) <- tolower(l[l[,"route"]=="oral",]$drug)
 # l_sai <- as.list(100 / l[l[,"route"]=="SAI",]$CPZ100MGEQ)
 # names(l_sai) <- tolower(l[l[,"route"]=="SAI",]$drug)
 # l_lai <- as.list(100 / l[l[,"route"]=="LAI",]$CPZ100MGEQ)
@@ -139,3 +158,17 @@
 #  w_lai <- list()
 #  return(list(oral=w_oral, sai=w_sai, lai=w_lai))
 #}
+
+# leucht2020gen <- function() {
+#   g <- read.csv(system.file("extdata", "leucht2020.csv",
+#                             package="chlorpromazineR"),
+#                 sep=",", header=TRUE)
+#
+#   g_oral <- as.list((1 / g[g[,"route"]=="oral",]$OLZ1mgeq) * 30)
+#   names(g_oral) <- tolower(g[g[,"route"]=="oral",]$drug)
+#
+#   g_lai <- as.list((1 / ((g[g[,"route"]=="LAI",]$OLZ1mgeq))) * 30)
+#   names(g_lai) <- tolower(g[g[,"route"]=="LAI",]$drug)
+#
+#   return(list(oral=g_oral, sai=list(), lai=g_lai))
+# }

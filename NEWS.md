@@ -11,3 +11,9 @@ Added new vignette with examples from each of the keys (references).
 ## Minor changes
 
 Added additional tests and code cleanup.
+
+# chlorpromazineR 0.1.3.9999 (devel)
+
+## Major changes
+
+Added new key: leucht2020. 

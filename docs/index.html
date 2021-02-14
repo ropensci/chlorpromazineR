@@ -6,10 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Convert Antipsychotic Doses to Chlorpromazine Equivalents • chlorpromazineR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Convert Antipsychotic Doses to Chlorpromazine Equivalents">
 <meta property="og:description" content='As different antipsychotic medications have different potencies,
     the doses of different medications cannot be directly compared. Various
@@ -22,13 +23,12 @@
     &lt;doi:10.1093/schbul/sbv167&gt;), antipsychotic doses are converted
     to CPZ (or any specified antipsychotic) equivalents. The use of the package
     is described in the included vignette. Not for clinical use.'>
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -49,7 +49,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -77,8 +77,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropensci/chlorpromazineR">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/ropensci/chlorpromazineR/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -106,28 +106,33 @@
 <li>and to simplify workflows for large datasets, as from chart reviews of electronic health records.</li>
 </ul>
 <p>For further details and usage, please see the <a href="https://htmlpreview.github.io/?https://github.com/ropensci/chlorpromazineR/blob/master/doc/walkthrough.html">walkthrough vignette</a>.</p>
-<p>This package is in production and not yet suitable for production use. We welcome feedback–please contact via <a href="mailto:eb@ericebrown.com">eb@ericebrown.com</a> or file an issue.</p>
+<p>This package is in production and not yet suitable for production use. We welcome feedback–please contact via <a href="mailto:eb@ericebrown.com" class="email">eb@ericebrown.com</a> or file an issue.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The CRAN release version (recommended) can be installed via the command: <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("chlorpromazineR")</a></code>.</p>
-<p>The development version of this package can be installed via the command: <code><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">devtools::install_github("ropensci/chlorpromazineR")</a></code>.</p>
+<p>The development version of this package can be installed via the command: <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("ropensci/chlorpromazineR")</a></code>.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Once installed, load package with <code><a href="https://rdrr.io/r/base/library.html">library(chlorpromazineR)</a></code>. The package’s main conversion functions are documented and usage and examples can be seen with <code><a href="https://rdrr.io/r/utils/help.html">help(to_cpz)</a></code> and <code><a href="https://rdrr.io/r/utils/help.html">help(to_ap)</a></code>.</p>
+<p>Once installed, load package with <code><a href="https://docs.ropensci.org/chlorpromazineR">library(chlorpromazineR)</a></code>. The package’s main conversion functions are documented and usage and examples can be seen with <code><a href="reference/to_cpz.html">help(to_cpz)</a></code> and <code><a href="reference/to_ap.html">help(to_ap)</a></code>. It is strongly recommended to read the articles from which the keys are derived, and to verify that the program’s output is producing results as expected. This package facilitates bulk conversion, but should be verified to ensure it produces the results as expected.</p>
+<div id="online-calculator" class="section level3">
+<h3 class="hasAnchor">
+<a href="#online-calculator" class="anchor"></a>Online calculator</h3>
+<p>An online calculator using this package is available as a <a href="http://ap.eebc.ca/">shiny app</a>.</p>
+</div>
 <div id="convert-data-to-chlorpromazine-equivalents" class="section level3">
 <h3 class="hasAnchor">
 <a href="#convert-data-to-chlorpromazine-equivalents" class="anchor"></a>Convert data to chlorpromazine equivalents</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">participant_ID &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">age &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">42</span>, <span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">60</span>) <span class="co"># not used in calculation</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">antipsychotic &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"olanzapine"</span>, <span class="st">"olanzapine"</span>, <span class="st">"quetiapine"</span>, <span class="st">"ziprasidone"</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">dose &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">10</span>, <span class="fl">12.5</span>, <span class="dv">300</span>, <span class="dv">60</span>)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">example_oral &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(participant_ID, age, antipsychotic, dose, </a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">                           <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="reference/to_cpz.html">to_cpz</a></span>(example_oral, <span class="dt">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="dt">dose_label =</span> <span class="st">"dose"</span>, </a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">       <span class="dt">route =</span> <span class="st">"oral"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>participant_ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"P01"</span>, <span class="st">"P02"</span>, <span class="st">"P03"</span>, <span class="st">"P04"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">29</span>, <span class="dv">30</span>, <span class="dv">60</span>) <span class="co"># not used in calculation</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>antipsychotic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"olanzapine"</span>, <span class="st">"olanzapine"</span>, <span class="st">"quetiapine"</span>, <span class="st">"ziprasidone"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="fl">12.5</span>, <span class="dv">300</span>, <span class="dv">60</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>example_oral <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(participant_ID, age, antipsychotic, dose, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">to_cpz</span>(example_oral, <span class="at">ap_label =</span> <span class="st">"antipsychotic"</span>, <span class="at">dose_label =</span> <span class="st">"dose"</span>, </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">route =</span> <span class="st">"oral"</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="disclaimer" class="section level2">
@@ -143,36 +148,36 @@
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
-<p>If you use this package in your scientific paper, please cite the original papers from which the conversion factors are derived, in addition to citing this R package. The references can be viewed by using the built-in help function, e.g. <code><a href="https://rdrr.io/r/utils/help.html">help(gardner2010)</a></code>.</p>
-<p>The keys included in this package are derived from the following publications. In addition, a spreadsheet-based tool facilitating dose equivalence conversion has been published by Leucht et al. (2016).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">Davis, <span class="kw">J.</span> (<span class="dv">1974</span>). Dose equivalence of the anti<span class="op">-</span>psychotic drugs.</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">Journal of Psychiatric Research, <span class="dv">11</span>, <span class="dv">65</span><span class="fl">-69.</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="op">&lt;</span>https<span class="op">:</span><span class="er">//</span>doi.org<span class="op">/</span><span class="fl">10.1016</span><span class="op">/</span><span class="dv">0022-3956</span>(<span class="dv">74</span>)<span class="dv">90071-5</span><span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., <span class="op">&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">Baldessarini, R. <span class="kw">J.</span> (<span class="dv">2010</span>). International consensus study of </a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">antipsychotic dosing. The American Journal of Psychiatry, <span class="dv">167</span>(<span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">686–<span class="fl">693.</span> <span class="op">&lt;</span>https<span class="op">:</span><span class="er">//</span>doi.org<span class="op">/</span><span class="fl">10.1176</span><span class="op">/</span>appi.ajp.<span class="fl">2009.09060802</span><span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">Leucht, S., Samara, M., Heres, S., <span class="op">&amp;</span><span class="st"> </span>Davis, J. <span class="kw">M.</span> (<span class="dv">2016</span>). Dose</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">Equivalents <span class="cf">for</span> Antipsychotic Drugs<span class="op">:</span><span class="st"> </span>The DDD Method. Schizophrenia</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">Bulletin, <span class="dv">42</span>(suppl_<span class="dv">1</span>), S90–S94. <span class="op">&lt;</span>https<span class="op">:</span><span class="er">//</span>doi.org<span class="op">/</span><span class="fl">10.1093</span><span class="op">/</span>schbul<span class="op">/</span>sbv167<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">Woods, <span class="kw">S.</span> (<span class="dv">2003</span>). Chlorpromazine Equivalent Doses <span class="cf">for</span> the Newer</a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">Atypical Antipsychotics. Journal of Clinical Psychiatry. <span class="dv">64</span>(<span class="dv">6</span>).</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="dv">663</span><span class="fl">-667.</span> <span class="op">&lt;</span>https<span class="op">:</span><span class="er">//</span>doi.org<span class="op">/</span><span class="fl">10.4088</span><span class="op">/</span>JCP.v64n0607<span class="op">&gt;</span></a></code></pre></div>
+<p>If you use this package in your scientific paper, please cite the original papers from which the conversion factors are derived, in addition to citing this R package. The references can be viewed by using the built-in help function, e.g. <code><a href="reference/gardner2010.html">help(gardner2010)</a></code>.</p>
+<p>The keys included in this package are derived from the following publications. In addition, a spreadsheet-based tool facilitating dose equivalence conversion has been published by Leucht et al. (2016).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Davis, <span class="fu">J.</span> (<span class="dv">1974</span>). Dose equivalence of the anti<span class="sc">-</span>psychotic drugs.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Journal of Psychiatric Research, <span class="dv">11</span>, <span class="dv">65</span><span class="fl">-69.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.1016</span><span class="sc">/</span><span class="dv">0022-3956</span>(<span class="dv">74</span>)<span class="dv">90071-5</span><span class="sc">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Gardner, D. M., Murphy, A. L., O’Donnell, H., Centorrino, F., <span class="sc">&amp;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>Baldessarini, R. <span class="fu">J.</span> (<span class="dv">2010</span>). International consensus study of </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>antipsychotic dosing. The American Journal of Psychiatry, <span class="dv">167</span>(<span class="dv">6</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>686–<span class="fl">693.</span> <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.1176</span><span class="sc">/</span>appi.ajp.<span class="fl">2009.09060802</span><span class="sc">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>Leucht, S., Samara, M., Heres, S., <span class="sc">&amp;</span> Davis, J. <span class="fu">M.</span> (<span class="dv">2016</span>). Dose</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Equivalents <span class="cf">for</span> Antipsychotic Drugs<span class="sc">:</span> The DDD Method. Schizophrenia</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>Bulletin, <span class="dv">42</span>(suppl_1), S90–S94. <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.1093</span><span class="sc">/</span>schbul<span class="sc">/</span>sbv167<span class="sc">&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Woods, <span class="fu">S.</span> (<span class="dv">2003</span>). Chlorpromazine Equivalent Doses <span class="cf">for</span> the Newer</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Atypical Antipsychotics. Journal of Clinical Psychiatry. <span class="dv">64</span>(<span class="dv">6</span>).</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="dv">663</span><span class="fl">-667.</span> <span class="sc">&lt;</span>https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.4088</span><span class="sc">/</span>JCP.v64n0607<span class="sc">&gt;</span></span></code></pre></div>
 <p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=chlorpromazineR">https://​cloud.r-project.org/​package=chlorpromazineR</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/ropensci/chlorpromazineR">https://​github.com/​ropensci/​chlorpromazineR</a>
+<li>Browse source code at <br><a href="https://github.com/ropensci/chlorpromazineR/">https://​github.com/​ropensci/​chlorpromazineR/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/ropensci/chlorpromazineR/issues">https://​github.com/​ropensci/​chlorpromazineR/​issues</a>
 </li>
@@ -193,9 +198,9 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Eric Brown <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1575-2606" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
-<li>Parita Shah <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-7302-0411" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
-<li>Julia Kim <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0379-1333" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
+<li>Eric Brown <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1575-2606" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Parita Shah <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-7302-0411" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Julia Kim <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0379-1333" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -219,7 +224,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

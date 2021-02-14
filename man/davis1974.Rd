@@ -4,10 +4,12 @@
 \name{davis1974}
 \alias{davis1974}
 \title{Chlorpromazine equivalent key from Davis 1974 data}
-\format{A named list of 3 named lists (1 for each route) and each sub-list
+\format{
+A named list of 3 named lists (1 for each route) and each sub-list
 contains the conversion factors for each antipsychotic. The 3 top-level lists
 are named `oral`, `sai`, and `lai` (route), and the lists they contain have
-names corresponding to the antipsychotic, e.g. `olanzapine`.}
+names corresponding to the antipsychotic, e.g. `olanzapine`.
+}
 \source{
 John Davis (1974). Dose equivalence of the anti-psychotic drugs.
 Journal of Psychiatric Research, 11, 65-69.
