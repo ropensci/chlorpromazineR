@@ -236,6 +236,7 @@ Use the built in help function to see the full reference for any key, e.g. `help
 |gardner2010|<https://doi.org/10.1176/appi.ajp.2009.09060802>|Consensus study.|
 |gardner2010_withsai|<https://doi.org/10.1176/appi.ajp.2009.09060802>|The included SAI data result in equivalent to SAI (parenteral) chlorpromazine, not oral.|
 |leucht2016|<https://doi.org/10.1093/schbul/sbv167>|WHO DDD method.|
+|leucht2020|<https://doi.org/10.1176/appi.ajp.2019.19010034>|Dose-response meta-analysis.|
 |woods2003|<https://doi.org/10.4088/JCP.v64n0607>||
 
 ## Converting to equivalents of an arbitrary antipsychotic
