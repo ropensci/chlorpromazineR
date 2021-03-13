@@ -1,6 +1,6 @@
 # chlorpromazineR: Convert antipsychotic doses to chlorpromazine equivalents
 
-[![cran checks](https://cranchecks.info/badges/summary/chlorpromazineR)](https://cran.r-project.org/web/checks/check_results_chlorpromazineR.html) [![Travis build status](https://travis-ci.org/ropensci/chlorpromazineR.svg?branch=master)](https://travis-ci.org/ropensci/chlorpromazineR) [![Coverage status](https://codecov.io/gh/ropensci/chlorpromazineR/branch/master/graph/badge.svg)](https://codecov.io/github/ropensci/chlorpromazineR?branch=master) [![DOI](https://zenodo.org/badge/175675220.svg)](https://zenodo.org/badge/latestdoi/175675220) [![](https://badges.ropensci.org/307_status.svg)](https://github.com/ropensci/onboarding/issues/307) 
+[![cran checks](https://cranchecks.info/badges/summary/chlorpromazineR)](https://cran.r-project.org/web/checks/check_results_chlorpromazineR.html) [![R-CMD-check](https://github.com/ropensci/chlorpromazineR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/chlorpromazineR/actions) [![Coverage status](https://codecov.io/gh/ropensci/chlorpromazineR/branch/master/graph/badge.svg)](https://codecov.io/github/ropensci/chlorpromazineR?branch=master) [![DOI](https://zenodo.org/badge/175675220.svg)](https://zenodo.org/badge/latestdoi/175675220) [![](https://badges.ropensci.org/307_status.svg)](https://github.com/ropensci/software-review/issues/307/) 
 
 
 Studies investigating or controlling for the impact of antipsychotic medications often need to quantify the amount of medication to which an individual is or has been exposed. As different antipsychotics have different potencies, the task is more complicated than using each medication’s daily dosage in milligrams, for example. `chlorpromazineR` is an R package to calculate dose equivalents for common oral and injectable antipsychotic medications based on conversion factors from the published literature. We do not propose to suggest which conversion factors are appropriate to use, or how to interpret the converted data. All users should also refer to the papers from which the conversion factor data originates to determine whether the use of such data is appropriate for their study.
@@ -13,7 +13,7 @@ We hope that this package is of use to scientists who do clinical research invol
 
 For further details and usage, please see the [walkthrough vignette](https://htmlpreview.github.io/?https://github.com/ropensci/chlorpromazineR/blob/master/doc/walkthrough.html).
 
-This package is in production and not yet suitable for production use. We welcome feedback--please contact via eb@ericebrown.com or file an issue.
+This results from this package should be double checked for accuracy when used in production. We welcome feedback--please contact via eb@ericebrown.com or file an issue.
 
 ## Installation
 
@@ -46,13 +46,11 @@ This package is not for clinical use. The authors assume no liability. All work 
 
 ## Licence
 
-Copyright (C) 2019 Eric E. Brown. This software is licensed under the GPL-3.
+Copyright (C) 2019-2021 Eric E. Brown. This software is licensed under the GPL-3.
 
 ## Citation
 
-If you use this package in your scientific paper, please cite the original papers from which the conversion factors are derived, in addition to citing this R package. The references can be viewed by using the built-in help function, e.g. `help(gardner2010)`.
-
-The keys included in this package are derived from the following publications. In addition, a spreadsheet-based tool facilitating dose equivalence conversion has been published by Leucht et al. (2016).
+If you use this package in your scientific paper, please cite this package and the original papers from which the conversion factors are derived. The references can be viewed by using the built-in help function, e.g. `help(gardner2010)`, and as listed below. In addition, a spreadsheet-based tool facilitating dose equivalence conversion has been published by Leucht et al. (2020).
 
     Davis, J. (1974). Dose equivalence of the anti-psychotic drugs.
     Journal of Psychiatric Research, 11, 65-69.
@@ -66,10 +64,16 @@ The keys included in this package are derived from the following publications. I
     Leucht, S., Samara, M., Heres, S., & Davis, J. M. (2016). Dose
     Equivalents for Antipsychotic Drugs: The DDD Method. Schizophrenia
     Bulletin, 42(suppl_1), S90–S94. <https://doi.org/10.1093/schbul/sbv167>
+    
+    Leucht, S., Crippa, A., Siafis, S., Patel, M., Orsini, N. & Davis, J. M. 
+    (2020). Dose-Response Meta-Analysis of Antipsychotic Drugs for Acute 
+    Schizophrenia. American Journal of Psychiatry. 117(4).
+    <https://doi.org/10.1176/appi.ajp.2019.19010034>
 
     Woods, S. (2003). Chlorpromazine Equivalent Doses for the Newer
     Atypical Antipsychotics. Journal of Clinical Psychiatry. 64(6).
     663-667. <https://doi.org/10.4088/JCP.v64n0607>
+    
+    
 
 [![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
-

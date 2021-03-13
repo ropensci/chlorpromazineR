@@ -12,8 +12,12 @@ Added new vignette with examples from each of the keys (references).
 
 Added additional tests and code cleanup.
 
-# chlorpromazineR 0.1.3.9999 (devel)
+# chlorpromazineR 0.1.4
 
 ## Major changes
 
-Added new key: leucht2020. 
+Added new key: leucht2020 (<https://doi.org/10.1176/appi.ajp.2019.19010034>)
+
+### Minor changes
+
+Added additional tests to compare results to spreadsheet by Leucht et al. with similar purpose.
