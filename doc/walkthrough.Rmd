@@ -4,7 +4,7 @@ author: "Eric Brown, Parita Shah, Julia Kim"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using chlorpromazineR to Calculate Chlorpromazine-Equivalent Doses}
+  %\VignetteIndexEntry{Using chlorpromazineR to calculate chlorpromazine-equivalent doses}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

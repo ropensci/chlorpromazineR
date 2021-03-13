@@ -3,3 +3,6 @@ Meta
 inst/doc
 .buildconfig
 scratch
+..Rcheck/
+.github/.gitignore
+vignettes/.Rhistory

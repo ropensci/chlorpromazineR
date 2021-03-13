@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/chlorpromazineR",
   "issueTracker": "https://github.com/ropensci/chlorpromazineR/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -124,6 +124,9 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "relatedLink": ["https://docs.ropensci.org/chlorpromazineR", "https://docs.ropensci.org/chlorpromazineR/"],
-  "fileSize": "2447.543KB"
+  "relatedLink": [
+    "https://docs.ropensci.org/chlorpromazineR",
+    "https://docs.ropensci.org/chlorpromazineR/"
+  ],
+  "fileSize": "2447.075KB"
 }

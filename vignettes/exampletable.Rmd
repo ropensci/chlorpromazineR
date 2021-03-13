@@ -2,7 +2,7 @@
 title: "Examples produced by chlorpromazineR"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{exampletable}
+  %\VignetteIndexEntry{Examples produced by chlorpromazineR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

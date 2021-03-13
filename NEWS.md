@@ -12,7 +12,7 @@ Added new vignette with examples from each of the keys (references).
 
 Added additional tests and code cleanup.
 
-# chlorpromazineR 0.1.4
+# chlorpromazineR 0.2.0
 
 ## Major changes
 
