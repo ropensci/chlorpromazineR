@@ -137,6 +137,10 @@ test_that("bad keys don't validate with check_key()", {
   expect_error(check_key(closer))
 })
 
+test_that("check_key() is order-insensitive", {
+  expect_true(check_key(gardner2010[c("sai", "oral", "lai")]))
+})
+
 test_that("trim_key() doesn't try to work on bad key", {
 
   expect_error(trim_key(3))

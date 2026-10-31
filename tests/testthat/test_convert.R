@@ -177,6 +177,34 @@ test_that("to_ap() rejects invalid reference antipsychotics and works", {
   expect_equal(test_olanz$ap_eq, olanz_answers)
 })
 
+test_that("to_ap() and mixed-route checks accept case-insensitive names", {
+  participant_ID <- c("P01", "P02", "P03")
+  antipsychotic <- c("Olanzapine", "Quetiapine", "Ziprasidone")
+  dose <- c(10, 300, 60)
+  example_oral <- data.frame(participant_ID, antipsychotic, dose,
+                             stringsAsFactors = FALSE)
+
+  expect_equal(
+    to_ap(example_oral, convert_to_ap = "OLANZAPINE", convert_to_route = "ORAL",
+          ap_label = "antipsychotic", dose_label = "dose", route = "ORAL",
+          key = chlorpromazineR::gardner2010)$ap_eq,
+    c(10, 8, 7.5)
+  )
+
+  route_data <- data.frame(
+    participant_ID = c("P01", "P02"),
+    antipsychotic = c("Chlorpromazine", "Fluphenazine HCl"),
+    dose = c(500, 10),
+    route = c("ORAL", "SAI"),
+    stringsAsFactors = FALSE
+  )
+
+  expect_equal(
+    check_ap(route_data, gardner2010_withsai, "antipsychotic", "mixed", "route"),
+    0
+  )
+})
+
 test_that("to_ap() works with sai", {
 
   antipsychotic <- c("chlorpromazine HCl", "olanzapine tartrate",

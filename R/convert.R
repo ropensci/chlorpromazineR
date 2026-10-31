@@ -42,6 +42,7 @@ to_cpz <- function(input_data, ap_label, dose_label, route="oral",
                    factor_label="cpz_conv_factor", route_label=NULL,
                    q_label=NULL) {
   
+  route <- tolower(route)
   x <- input_data
   
   check_params(x, ap_label, dose_label, route, eq_label, factor_label,
@@ -60,6 +61,9 @@ to_cpz <- function(input_data, ap_label, dose_label, route="oral",
   x <- cbind(x, cpz_conv_factor, cpz_eq)
     
   x[,ap_label] <- tolower(x[,ap_label])
+  if (!is.null(route_label)) {
+    x[, route_label] <- tolower(x[, route_label])
+  }
   
   if (route %in% c("oral", "sai", "lai")) {
     x[, factor_label] <- as.numeric(key[[route]][x[, ap_label]])
@@ -93,7 +97,7 @@ to_cpz <- function(input_data, ap_label, dose_label, route="oral",
                           factor_label=factor_label, eq_label=eq_label)
 
     if (q_label != 1) {
-      x[x$route == "lai", ][, eq_label] <-
+      x[x[, route_label] == "lai", ][, eq_label] <-
                                   x[x[, route_label] == "lai", ][, eq_label] /
                                   x[x[, route_label] == "lai", ][, q_label]
       }
@@ -147,6 +151,7 @@ convert_by_route <- function(x, key, ap_label, dose_label, route_label,
 check_ap <- function(input_data, key=chlorpromazineR::gardner2010, ap_label,
                      route, route_label) {
   
+  route <- tolower(route)
   x <- input_data
   check_key(key)
   
@@ -154,27 +159,28 @@ check_ap <- function(input_data, key=chlorpromazineR::gardner2010, ap_label,
       notfound <- !(tolower(x[, ap_label]) %in% names(key[[route]]))
       bad <- paste0(x[, ap_label][notfound], " (", route, ")\n")
   } else if (route == "mixed") {
-      notfound_oral <- !(tolower(x[x[, route_label] == "oral",][, ap_label])
+      x_route <- tolower(x[, route_label])
+      notfound_oral <- !(tolower(x[x_route == "oral",][, ap_label])
                          %in% names(key$oral))
-      notfound_sai <- !(tolower(x[x[, route_label] == "sai",][, ap_label])
+      notfound_sai <- !(tolower(x[x_route == "sai",][, ap_label])
                         %in% names(key$sai))
-      notfound_lai <- !(tolower(x[x[, route_label] == "lai",][, ap_label])
+      notfound_lai <- !(tolower(x[x_route == "lai",][, ap_label])
                         %in% names(key$lai))
       notfound <- c(notfound_oral, notfound_sai, notfound_lai)
         
       if (any(notfound_oral)) {
           bad1 <-
-                paste(x[x[, route_label] == "oral",][, ap_label][notfound_oral],
+                paste(x[x_route == "oral",][, ap_label][notfound_oral],
                 "(oral)\n")
       } else bad1 <- NULL
 
       if (any(notfound_sai)) {
-          bad2 <- paste(x[x[, route_label] == "sai",][, ap_label][notfound_sai],
+          bad2 <- paste(x[x_route == "sai",][, ap_label][notfound_sai],
                         "(sai)\n")
       } else bad2 <- NULL
 
       if (any(notfound_lai)) {
-          bad3 <- paste(x[x[, route_label] == "lai",][, ap_label][notfound_lai],
+          bad3 <- paste(x[x_route == "lai",][, ap_label][notfound_lai],
                         "(lai)\n")
       } else bad3 <- NULL
 
@@ -237,6 +243,10 @@ to_ap <- function(input_data, convert_to_ap="olanzapine",
                   ref_eq_label="ap_eq", factor_label="cpz_conv_factor",
                   route_label=NULL, q_label=NULL) {
   
+  convert_to_ap <- tolower(convert_to_ap)
+  convert_to_route <- tolower(convert_to_route)
+  route <- tolower(route)
+  
   if (route == "sai") {
     if (convert_to_route != "sai") {
       stop("For \"sai\" route, convert_to_route must be \"sai\" as well.")
@@ -277,6 +287,7 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
   
   if (!(dose_label %in% names(x))) stop("dose_label must be a variable in x.")
   
+  route <- tolower(route)
   if ((length(route) != 1) | !(route %in% c("oral", "sai", "lai", "mixed"))) {
     stop("route must be 1 of \"oral\", \"sai\", \"lai\", or \"mixed\"")
   }
@@ -302,5 +313,5 @@ check_params <- function(x, ap_label, dose_label, route, eq_label,
 
 #' @noRd
 check_route <- function(x, route_label) {
-  return(all(x[,route_label] %in% c("oral", "sai", "lai")))
+  return(all(tolower(x[, route_label]) %in% c("oral", "sai", "lai")))
 }

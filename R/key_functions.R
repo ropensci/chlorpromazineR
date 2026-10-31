@@ -17,15 +17,17 @@ check_key <- function(key) {
   if (!(is.list(key))) stop("Key is not a list.")
   if (length(key) != 3) stop("Key is not 3 lists.")
   
-  if (!all(names(key) == c("oral", "sai", "lai"))) {
+  expected_names <- c("oral", "sai", "lai")
+  if (!setequal(names(key), expected_names)) {
     stop("Key list names should be oral, sai and lai")  
-  } 
+  }
   
-  if (!all(unlist(lapply(key, is.list)))) {
+  if (!all(vapply(key, is.list, logical(1)))) {
     stop("Each element of key should be a list")
   }
   
-  if (!is.numeric(unlist(lapply(unlist(key), unlist)))) {
+  if (!all(vapply(key, function(x) is.numeric(unlist(x)) || length(x) == 0,
+                  logical(1)))) {
     stop("Each key list should have numeric data.")
   }
   
