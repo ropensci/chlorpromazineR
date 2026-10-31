@@ -16,11 +16,12 @@ Added additional tests and code cleanup.
 
 ## Major changes
 
-Added new key: yu2023 (<https://doi.org/10.1136/bmjment-2022-300546>)
+Added new keys: yu2023 and yu2023_scz
+(<https://doi.org/10.1136/bmjment-2022-300546>)
 
 ## Minor changes
 
-Updated references and package documentation for the new key.
+Updated references and package documentation for the new keys.
 
 # chlorpromazineR 0.2.0
 

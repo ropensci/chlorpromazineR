@@ -75,6 +75,9 @@ If you use this package in your scientific paper, please cite this package and t
     dose equivalents for acute bipolar mania and schizophrenia. BMJ Mental
     Health, 26(1), e300546. <https://doi.org/10.1136/bmjment-2022-300546>
 
+    The `yu2023` key uses the acute mania dose equivalents; `yu2023_scz` uses
+    the schizophrenia dose equivalents from Table 1.
+
     Woods, S. (2003). Chlorpromazine Equivalent Doses for the Newer
     Atypical Antipsychotics. Journal of Clinical Psychiatry. 64(6).
     663-667. <https://doi.org/10.4088/JCP.v64n0607>

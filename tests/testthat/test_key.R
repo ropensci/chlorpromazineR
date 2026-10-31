@@ -53,6 +53,7 @@ test_that("included keys are valid format", {
   expect_equal(check_key(davis1974), TRUE)
   expect_equal(check_key(woods2003), TRUE)
   expect_equal(check_key(yu2023), TRUE)
+  expect_equal(check_key(yu2023_scz), TRUE)
 })
 
 test_that("yu2023 contains chlorpromazine-equivalent doses for oral drugs", {
@@ -62,4 +63,17 @@ test_that("yu2023 contains chlorpromazine-equivalent doses for oral drugs", {
   expect_equal(yu2023$oral$risperidone, 30 / 0.32)
   expect_length(yu2023$sai, 0)
   expect_length(yu2023$lai, 0)
+})
+
+test_that("yu2023_scz contains schizophrenia chlorpromazine-equivalent doses", {
+  expect_equal(yu2023_scz$oral$chlorpromazine, 1)
+  expect_equal(yu2023_scz$oral$olanzapine, 30)
+  expect_equal(yu2023_scz$oral$haloperidol, 30 / 0.74)
+  expect_equal(yu2023_scz$oral$risperidone, 30 / 0.38)
+  expect_equal(yu2023_scz$oral$ziprasidone, 30 / 7.92)
+  expect_equal(yu2023_scz$oral$quetiapine, 30 / 32.27)
+  expect_equal(yu2023_scz$oral$aripiprazole, 30 / 1.41)
+  expect_equal(yu2023_scz$oral$asenapine, 30 / 0.89)
+  expect_length(yu2023_scz$sai, 0)
+  expect_length(yu2023_scz$lai, 0)
 })
