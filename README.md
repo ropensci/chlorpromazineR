@@ -70,6 +70,11 @@ If you use this package in your scientific paper, please cite this package and t
     Schizophrenia. American Journal of Psychiatry. 117(4).
     <https://doi.org/10.1176/appi.ajp.2019.19010034>
 
+    Yu, C.-L., Carvalho, A. F., Thompson, T., Tsai, T.-C., Tseng, P.-T.,
+    Hsu, C.-W., Hsu, T.-W., & Liang, C.-S. (2023). Comparison of antipsychotic
+    dose equivalents for acute bipolar mania and schizophrenia. BMJ Mental
+    Health, 26(1), e300546. <https://doi.org/10.1136/bmjment-2022-300546>
+
     Woods, S. (2003). Chlorpromazine Equivalent Doses for the Newer
     Atypical Antipsychotics. Journal of Clinical Psychiatry. 64(6).
     663-667. <https://doi.org/10.4088/JCP.v64n0607>

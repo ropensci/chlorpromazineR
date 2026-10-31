@@ -79,6 +79,23 @@
 #' <https://doi.org/10.1176/appi.ajp.2019.19010034>
 "leucht2020"
 
+#' Chlorpromazine equivalent key from Yu et al. 2023 data
+#'
+#' A list of antipsychotics and their chlorpromazine equivalent doses, generated
+#' by converting the dose equivalents for acute bipolar mania reported in the
+#' article to chlorpromazine-equivalent values using the package's standard
+#' conversion assumption (chlorpromazine = olanzapine * 30).
+#'
+#' @format A named list of 3 named lists (1 for each route) and each sub-list
+#' contains the conversion factors for each antipsychotic. The 3 top-level lists
+#' are named `oral`, `sai`, and `lai` (route), and the lists they contain have
+#' names corresponding to the antipsychotic, e.g. `olanzapine`.
+#' @source Yu, C.-L., Carvalho, A. F., Thompson, T., Tsai, T.-C., Tseng, P.-T.,
+#' Hsu, C.-W., Hsu, T.-W., & Liang, C.-S. (2023). Comparison of antipsychotic
+#' dose equivalents for acute bipolar mania and schizophrenia. BMJ Mental Health,
+#' 26(1), e300546. <https://doi.org/10.1136/bmjment-2022-300546>
+"yu2023"
+
 #' Chlorpromazine equivalent key from Davis 1974 data
 #'
 #' A list of antipsychotics and their chlorpromazine equivalent doses, generated

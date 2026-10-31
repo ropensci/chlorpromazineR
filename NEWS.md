@@ -12,6 +12,16 @@ Added new vignette with examples from each of the keys (references).
 
 Added additional tests and code cleanup.
 
+# chlorpromazineR 0.2.1
+
+## Major changes
+
+Added new key: yu2023 (<https://doi.org/10.1136/bmjment-2022-300546>)
+
+## Minor changes
+
+Updated references and package documentation for the new key.
+
 # chlorpromazineR 0.2.0
 
 ## Major changes
